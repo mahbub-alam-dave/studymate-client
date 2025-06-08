@@ -1,12 +1,16 @@
 import React from 'react';
 import { Outlet } from 'react-router';
-import Navbar from '../components/Navbar';
+import Navbar from '../components/header/Navbar';
+import Footer from '../components/Footer';
 
 const Root = () => {
     return (
         <div>
             <Navbar />
-            <Outlet />
+            <div className='min-h-[73vh]'>
+                <Outlet />
+            </div>
+            <Footer />
         </div>
     );
 };

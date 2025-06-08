@@ -46,6 +46,7 @@ const ContextProvider = ({children}) => {
 
     const value ={
         user,
+        setUser,
         registerUser,
         loginUser,
         loginWithGoogle,
