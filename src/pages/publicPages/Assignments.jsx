@@ -10,12 +10,13 @@ const Assignments = () => {
     useEffect(() => {
         setAssignments(allAssignments)
     }, [allAssignments])
+
     return (
         <div className='py-12 px-4 sm:px-6'>
                   <h2 className="text-2xl md:text-3xl font-bold text-center pb-12">
         All Assignments
       </h2>
-      <div className='flex flex-col lg:flex-row gap-4 sm:gap-5 md:gap-5 max-w-[1320px] mx-auto'>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-5 max-w-[1320px] mx-auto'>
             {
                 assignments.map(assignment => <AssignmentCard
                     key={assignment._id}

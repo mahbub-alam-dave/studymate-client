@@ -10,6 +10,11 @@ const ContextProvider = ({children}) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
 
+    // const [assignments, setAssignments] = useState([])
+    // useEffect(() => {
+    //     fetch('')
+    // }, [])
+
     const registerUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
     }

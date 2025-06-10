@@ -57,7 +57,9 @@ const router = createBrowserRouter([
   },
   {
     path: "pending-assignments",
-    element: <PrivateRoute> <PendingAssignments /> </PrivateRoute>
+    element: <PrivateRoute> <PendingAssignments /> </PrivateRoute>,
+    loader: () => fetch('http://localhost:3000/pending-assignments'),
+    hydrateFallbackElement: <Loader /> 
   },
   {
     path: "my-attempted-assignment",

@@ -18,7 +18,7 @@ const AssignmentDetails = () => {
       ...data,
       assignmentId: assignment._id,
       examineeName: user?.displayName,
-      email: user?.name,
+      email: user?.email,
       status: "pending",
     };
 
