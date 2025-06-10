@@ -12,6 +12,9 @@ import PrivateRoute from './layouts/PrivateRoute'
 import CreateAssignments from './pages/privatePages/CreateAssignments'
 import AttemptedAssignments from './pages/privatePages/AttemptedAssignments'
 import PendingAssignments from './pages/privatePages/PendingAssignments'
+import Loader from './components/Loader'
+import UpdateAssignment from './pages/privatePages/UpdateAssignment'
+import AssignmentDetails from './pages/privatePages/AssignmentDetails'
 
 const router = createBrowserRouter([
   {
@@ -24,7 +27,9 @@ const router = createBrowserRouter([
   },
   {
     path: '/assignments',
-    element: <Assignments />
+    element: <Assignments />,
+    loader: () => fetch('http://localhost:3000/assignments'),
+    hydrateFallbackElement: <Loader /> 
   },
   {
     path: '/login',
@@ -37,6 +42,18 @@ const router = createBrowserRouter([
   {
     path: "create-assignment",
     element: <PrivateRoute> <CreateAssignments /> </PrivateRoute>
+  },
+  {
+    path: "update-assignment/:id",
+    element: <PrivateRoute> <UpdateAssignment /> </PrivateRoute>,
+    loader: ({params}) => fetch(`http://localhost:3000/assignments/${params.id}`),
+    hydrateFallbackElement: <Loader /> 
+  },
+  {
+    path: "view-assignment-details/:id",
+    element: <PrivateRoute> <AssignmentDetails /> </PrivateRoute>,
+    loader: ({params}) => fetch(`http://localhost:3000/assignments/${params.id}`),
+    hydrateFallbackElement: <Loader /> 
   },
   {
     path: "pending-assignments",
