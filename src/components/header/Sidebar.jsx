@@ -27,17 +27,10 @@ const Sidebar = ({displayMenu, setDisplayMenu, handleLogout}) => {
             </NavLink>
             <NavLink
               onClick={() => setDisplayMenu((display) => !display)}
-              to={"/all-recipes"}
+              to={"/assignments"}
               className="font-semibold text-base"
             >
-              <span>All recipes</span>
-            </NavLink>
-            <NavLink
-              onClick={() => setDisplayMenu((display) => !display)}
-              to={"/add-recipe"}
-              className="font-semibold text-base"
-            >
-              <span>Add recipe</span>
+              <span>Assignments</span>
             </NavLink>
             {user ? 
             <button onClick={handleLogout} className="btn block sm:hidden">Logout</button>
