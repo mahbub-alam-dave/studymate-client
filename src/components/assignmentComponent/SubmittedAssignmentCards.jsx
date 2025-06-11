@@ -15,13 +15,15 @@ const SubmittedAssignmentCards = ({mySubmittedAssignment}) => {
                         <h2 className='text-base'><span className='font-semibold'>Total Marks: </span> {submittedAssignment?.marks}</h2>
                         <h2 className='text-base'><span className='font-semibold'>Status: </span> {submittedAssignment?.status}</h2>
                         {
-                            submittedAssignment?.feedback ?
+                            submittedAssignment?.examinerFeedback ?
                             <div>
-                                <h2>No marks or feedback given</h2>
+                                <p><span className='font-semibold'>Obtained Marks:</span> {submittedAssignment?.obtainedMarks}</p>
+                                <p><span className='font-semibold'>Examiner Feedback:</span> {submittedAssignment?.examinerFeedback}</p>
+
                             </div>
                             : 
                             <div>
-                                <h2 className='text-red-500'>No marks or feedback given</h2>
+                                <h2 className='text-red-500'>No marks or feedback given yet !!</h2>
                             </div>
                         }
                     </div>

@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useLoaderData } from 'react-router';
+import PendingAssignmentCard from '../../components/assignmentComponent/PendingAssignmentCard';
 
 const PendingAssignments = () => {
     const pendingSubmittedAssignments = useLoaderData()
-    console.log(pendingSubmittedAssignments)
+    const [openModal, setOpenModal] = useState(false)
+    // console.log(pendingSubmittedAssignments)
+
+    const handlePendingAssignment = () => {
+        console.log("pending assignment btn")
+    }
     return (
-        <div className='py-12 px-4 sm:px-5 md:px-6 flex flex-col gap-8'>
-            <h2 className='text-2xl lg:text-3xl font-bold text-center'>Pending Assignments</h2>
+        <div className='py-12 px-4 sm:px-5 md:px-6 flex flex-col gap-8 max-w-[880px] mx-auto'>
+            <h2 className='text-2xl lg:text-3xl font-bold text-center'>All Pending Assignments</h2>
             <div className='flex flex-col gap-4'>
                 {
                     pendingSubmittedAssignments.map((assignment, index) => {
@@ -16,7 +22,13 @@ const PendingAssignments = () => {
                                 <h2><span className='font-bold'> Assignment Title: </span>{assignment.title}</h2>
                                 <p><span className='font-bold'>Marks: </span> {assignment.marks}</p>
                                 <p><span className='font-bold'>Examinee: </span> {assignment.examineeName}</p>
-                                <button className='btn'>Give Mark</button>
+                                <button onClick={()=> setOpenModal(true)} className='btn'>Give Mark</button>
+                                <PendingAssignmentCard 
+                                openModal={openModal}
+                                closeModal={() => setOpenModal(false)}
+                                assignment ={assignment}
+                                handlePendingAssignment={handlePendingAssignment}
+                                 />
                             </div>
                         )
                     })
