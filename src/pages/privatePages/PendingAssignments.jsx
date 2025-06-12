@@ -17,9 +17,9 @@ const PendingAssignments = () => {
                 {
                     pendingSubmittedAssignments.map((assignment, index) => {
                         return(
-                            <div key={assignment._id} className='shadow border p-4 rounded-xl flex flex-col gap-2 items-start border-gray-200 dark:border-base-300  bg-[#caf0f8] dark:bg-gray-800 text-black dark:text-[#e9e9e9]'>
+                            <div key={assignment._id} className='shadow border p-4 sm:p-6 rounded-xl flex flex-col gap-2 items-start bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] text-gray-200 border-[#00b4d8] dark:border-[#03045e]'>
                                 <span className='bg-[#ff7d00] p-1 rounded-[2px]'>{index +1}. </span>
-                                <h2 className='text-2xl sm:text-3xl font-bold'><span className=' '></span>{assignment.title}</h2>
+                                <h2 className='text-2xl sm:text-3xl font-bold'><span className=' '></span>{assignment.title}</h2> 
                                 <p className='text-base sm:text-lg'><span className='font-bold'>Marks: </span> {assignment.marks}</p>
                                 <p className='text-base sm:text-lg'><span className='font-bold'>Examinee Name: </span> {assignment.examineeName}</p>
                                 <button onClick={()=> setOpenModal(true)} className='btn bg-[var(--color-buttonBg)] text-[var(--color-buttonText)] text-base sm:text-lg'>Evaluate </button>

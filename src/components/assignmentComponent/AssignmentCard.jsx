@@ -73,7 +73,7 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
     navigate(`/view-assignment-details/${id}`)
   }
   return (
-    <div className="w-full flex flex-col sm:flex-row border border-[var(--color-border)] bg-[#caf0f8] dark:bg-gray-800 text-black dark:text-[#e9e9e9] rounded-2xl relative">
+    <div className="w-full flex flex-col sm:flex-row border border-[var(--color-border)] bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] text-gray-200 rounded-2xl relative">
       <img
         className="sm:w-[220px]  object-cover rounded-tl-2xl rounded-tr-2xl sm:rounded-tr-[0px] sm:rounded-bl-2xl"
         src={assignment.imageUrl}
