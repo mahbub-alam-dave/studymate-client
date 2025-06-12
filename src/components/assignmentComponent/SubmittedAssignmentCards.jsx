@@ -10,8 +10,8 @@ const SubmittedAssignmentCards = ({mySubmittedAssignment}) => {
            {
             submittedAssignments.map((submittedAssignment, index) => {
                 return(
-                    <div key={submittedAssignment._id} className='w-full shadow dark:shadow-gray-50 bg-gray-50 dark:bg-gray-700 text-black dark:text-gray-200 p-4 flex flex-col gap-2 rounded-xl'>
-                        <h2 className='font-bold text-xl md:text-2xl'>{index + 1}. {submittedAssignment?.title}</h2>
+                    <div key={submittedAssignment._id} className='w-full shadow-lg shadow-gray-400 dark:shadow-[#000814] bg-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] text-gray-200 p-4 sm:p-6 flex flex-col gap-2 border border-[#00b4d8] dark:border-[#03045e] rounded-xl'>
+                        <h2 className='font-bold text-xl sm:text-2xl md:text-3xl'>{index + 1}. {submittedAssignment?.title}</h2>
                         <h2 className='text-base'><span className='font-semibold'>Total Marks: </span> {submittedAssignment?.marks}</h2>
                         <h2 className='text-base'><span className='font-semibold'>Status: </span> {submittedAssignment?.status}</h2>
                         {

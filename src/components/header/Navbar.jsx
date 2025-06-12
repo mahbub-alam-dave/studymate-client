@@ -92,10 +92,10 @@ const Navbar = () => {
 
           <CiMenuFries
             onClick={handleMenuBtn}
-            className={`text-3xl font-bold block lg:hidden`}
+            className={`text-3xl text-gray-200 font-bold block lg:hidden`}
           />
           {/* <input type="checkbox" value="cupcake" className="toggle theme-controller" /> */}
-          <button onClick={() => setMode(!mode)} className="btn btn-sm">{mode ? "Dark" : "Light"}</button>
+          <button onClick={() => setMode(!mode)} className="btn btn-sm transition-colors duration-300">{mode ? "Dark" : "Light"}</button>
         </div>
       </div>
       <Sidebar displayMenu={displayMenu} setDisplayMenu={setDisplayMenu} handleLogout={handleLogout} />

@@ -9,7 +9,7 @@ const Sidebar = ({displayMenu, setDisplayMenu, handleLogout}) => {
     
     return (
         <div
-          className={`max-w-[300px] w-full bg-white shadow-lg h-screen fixed top-0 transition-all duration-600 ease-in-out block lg:hidden ${
+          className={`max-w-[300px] w-full bg-gray-200 shadow-lg h-screen fixed top-0 transition-all duration-600 ease-in-out block lg:hidden ${
             displayMenu ? "right-0" : "right-[-300px]"
           } z-10`}
         >

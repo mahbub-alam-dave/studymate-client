@@ -59,19 +59,19 @@ const UpdateAssignment = () => {
   };
 
   return (
-    <div className="px-4 sm:px-6 py-12 flex flex-col gap-8 justify-center ">
-      <h2 className="text-2xl md:text-3xl font-bold text-center dark:text-gray-200">
-        Create An Assignment
+    <div className="px-4 sm:px-6 py-12">
+      <div className="flex flex-col gap-8 justify-center max-w-[799px] w-full mx-auto bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] border border-[#00b4d8] dark:border-[#03045e] rounded-2xl px-4 sm:px-6 py-8">
+      <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-200">
+        Update Assignment
       </h2>
-      <div className="max-w-[799px] w-full mx-auto">
         <form onSubmit={handleUpdateAssignmentForm}>
-          <fieldset className="fieldset bg-base-200 border-base-300 dark:bg-gray-800 dark:text-gray-200 rounded-box  border p-4 sm:p-6">
+          <fieldset className="fieldset text-gray-200">
             <label className="label mt-2">Title</label>
             <input
               type="text"
               name="title"
               defaultValue={assignment.title}
-              className="input w-full dark:bg-gray-500"
+              className="input w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
               placeholder="Assignment title"
             />
 
@@ -80,7 +80,7 @@ const UpdateAssignment = () => {
               type="url"
               name="imageUrl"
               defaultValue={assignment.imageUrl}
-              className="input w-full dark:bg-gray-500"
+              className="input w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
               placeholder="Thumbnail image url"
             />
 
@@ -88,7 +88,7 @@ const UpdateAssignment = () => {
             <input
               type="number"
               defaultValue={assignment.marks}
-              className="input w-full dark:bg-gray-500"
+              className="input w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
               name="marks"
               placeholder="Enter marks"
             />
@@ -97,7 +97,7 @@ const UpdateAssignment = () => {
               <div className="flex flex-col gap-1 w-full">
                 <label className="label">Difficulty Label</label>
                 <select
-                  className="select w-full dark:bg-gray-500"
+                  className="select w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
                   defaultValue={assignment.level}
                   name="level"
                 >
@@ -119,7 +119,7 @@ const UpdateAssignment = () => {
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
                   name="dueDate"
-                  className="input w-full dark:bg-gray-500"
+                  className="input w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
                 />
               </div>
             </div>
@@ -128,15 +128,15 @@ const UpdateAssignment = () => {
             <textarea
               type="number"
               defaultValue={assignment.description}
-              className="textarea w-full dark:bg-gray-500"
+              className="textarea w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
               name="description"
               placeholder="Enter assignment description"
             />
             <button
               type="submit"
-              className="btn bg-[#00b4d8] dark:bg-[#03045e] text-[#e9e9e9] mt-4"
+              className="btn hover:bg-[rgba(0,180,216,0.31)] dark:hover:bg-[rgba(3,5,94,0.3)] transition-colors hover:text-gray-50 bg-transparent mt-4 border-[#00b4d8] dark:border-[#03045e] shadow-none text-gray-200"
             >
-              Submit Assignment
+              Update Assignment
             </button>
           </fieldset>
         </form>
