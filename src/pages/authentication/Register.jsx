@@ -102,36 +102,36 @@ const Register = () => {
       });
   };
   return (
-    <div className="">
-      <div className="card bg-base-100 w-full max-w-md mx-auto shrink-0 shadow-2xl my-12">
-        <div className="card-body">
-          <h1 className="text-3xl text-center font-bold">Register now!</h1>
+    <div className="p-4 my-12">
+      <div className="card bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] w-full max-w-md mx-auto shrink-0 shadow-2xl">
+        <div className="card-body text-gray-200 px-4 sm:px-6 py-8">
+          <h1 className="text-3xl text-center font-bold text-gray-200">Register now!</h1>
           <form onSubmit={handleUserRegisterForm} className="fieldset">
             <label className="label">Name</label>
             <input
               type="text"
-              className="input w-full "
+              className="input w-full bg-transparent border-gray-300 focus:outline-none"
               name="name"
               placeholder="Name"
             />
             <label className="label">Photo Url</label>
             <input
               type="text"
-              className="input w-full"
+              className="input w-full bg-transparent border-gray-300 focus:outline-none"
               name="photo"
               placeholder="Photo Url"
             />
             <label className="label">Email</label>
             <input
               type="email"
-              className="input w-full"
+              className="input w-full bg-transparent border-gray-300 focus:outline-none"
               name="email"
               placeholder="Email"
             />
             <label className="label">Password</label>
             <input
               type="password"
-              className="input w-full"
+              className="input w-full bg-transparent border-gray-300 focus:outline-none"
               name="password"
               placeholder="Password"
             />

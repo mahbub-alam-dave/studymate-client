@@ -2,7 +2,7 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div className='bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814]'>
+        <div className='bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] p-4 sm:p-5 md:p-6'>
 <footer className="footer sm:footer-horizontal max-w-[1440px] mx-auto text-neutral-content py-10">
   <aside>
           <h2 className="rancho text-2xl text-pink-600 font-bold">
