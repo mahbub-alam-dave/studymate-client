@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Rancho&display=swap');
+@custom-variant dark (&:where(.dark, .dark *));
 
 body {
    font-family: "Raleway", sans-serif;
@@ -17,14 +18,23 @@ body {
 
 
 a.active {
-    color: blue;
+    color: #f7b801;
     font-weight: 500;
+    /* background-color: green; */
+    text-decoration: underline;
 }
 
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
   --color-primary: blue;
-  --color-secondary: #eeeeee;
+  --color-secondary: rgba(238,238,238,0.3);
   --color-accent: #e0e0e0;
+  --color-cardBg: #48cae4;
+  --color-buttonBg: #f94144;
+  --color-buttonText: #ffffff;
+  --color-navbarBg: #2196f3;
+  --logo-text: #deff0a;
+  --color-border: rgba(218,218,218,0.48)
+  
 }

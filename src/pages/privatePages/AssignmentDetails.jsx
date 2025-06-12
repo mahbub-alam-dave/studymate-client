@@ -51,7 +51,7 @@ const AssignmentDetails = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto flex flex-col justify-center  border rounded-2xl relative my-12">
+    <div className="max-w-lg w-full dark:bg-gray-800 dark:text-gray-200 mx-auto flex flex-col justify-center  border rounded-2xl relative my-12">
       <img
         className="w-full object-cover rounded-tl-2xl rounded-tr-2xl"
         src={assignment.imageUrl}

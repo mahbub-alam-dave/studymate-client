@@ -6,7 +6,7 @@ import { CiMenuFries } from "react-icons/ci";
 const User = ({navLinks}) => {
     const {user} = useContext(ContextValue)
     return ( 
-            <div className="dropdown dropdown-end">
+            <div className="dropdown dropdown-end ">
               <div
                 tabIndex={0}
                 role="button"
@@ -25,7 +25,7 @@ const User = ({navLinks}) => {
 
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-4 max-w-72 p-4 shadow flex flex-col gap-4"
+                className="menu menu-sm dropdown-content bg-white dark:bg-gray-500 dark:text-gray-200 rounded-box z-1 mt-4 max-w-[420px] p-4 shadow flex flex-col gap-4"
               >
                 {navLinks}
                 

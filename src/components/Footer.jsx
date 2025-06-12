@@ -2,8 +2,8 @@ import React from 'react';
 
 const Footer = () => {
     return (
-        <div className='bg-[var(--color-primary)]'>
-<footer className="footer sm:footer-horizontal max-w-11/12 mx-auto text-neutral-content py-10">
+        <div className='bg-[#00b4d8] dark:bg-[#03045e]'>
+<footer className="footer sm:footer-horizontal max-w-[1440px] mx-auto text-neutral-content py-10">
   <aside>
           <h2 className="rancho text-2xl text-pink-600 font-bold">
             Study <span className="text-white">Mate</span>

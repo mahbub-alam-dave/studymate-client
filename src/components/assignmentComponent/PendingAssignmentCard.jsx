@@ -45,7 +45,7 @@ const PendingAssignmentCard = ({
   };
   if (!openModal) return null;
   return (
-    <div className="fixed inset-0 px-4 md:px-6 bg-[var(--color-secondary)] flex pt-12 md:p-16 flex-col gap-8 items-center">
+    <div className="fixed inset-0 px-4 md:px-6 bg-[#ade8f4] dark:bg-gray-900 text-black dark:text-[#e9e9e9] flex pt-12 md:p-16 flex-col gap-8 items-center z-50">
       <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center">
         Assignment Evaluation Form
       </h2>
@@ -66,7 +66,7 @@ const PendingAssignmentCard = ({
             </a>
           </span>
           <p>
-            <span className="font-semibold">Message: </span>
+            <span className="font-semibold">Examiner's Message: </span>
             {assignment.message}
           </p>
         </div>
@@ -75,12 +75,12 @@ const PendingAssignmentCard = ({
             Examiner's Feedback Form
           </span>
           <form onSubmit={handleSubmitMarks}>
-            <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
+            <fieldset className="fieldset bg-[#48cae4] dark:bg-gray-700 border-base-300 rounded-box border p-4">
               <label className="label">Marks</label>
               <input
                 type="number"
                 name="marks"
-                className="input w-full"
+                className="input w-full dark:bg-gray-600 focus:outline-none border-none"
                 placeholder="Enter marks here"
                 required
               />
@@ -88,7 +88,7 @@ const PendingAssignmentCard = ({
               <textarea
                 type="text"
                 name="feedback"
-                className="textarea w-full"
+                className="textarea w-full dark:bg-gray-600 border-none focus:outline-none"
                 placeholder="Enter feedback here"
                 required
               />

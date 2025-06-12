@@ -9,8 +9,8 @@ import { Fade } from 'react-awesome-reveal';
 
 const FeatureSection = () => {
     return (
-        <div className='my-12 sm:my-16 flex flex-col gap-12 justify-center items-center max-w-[1320px] mx-auto p-4 sm:p-5 md:p-6'>
-            <h2 className='text-2xl md:text-3xl font-bold text-center'>Our Latest Features</h2>
+        <div className='my-12 sm:my-16 flex flex-col gap-12 justify-center items-center max-w-[1440px] mx-auto p-4 sm:p-5 md:p-6'>
+            <h2 className='text-2xl md:text-3xl font-bold text-center dark:text-white'>Our Latest Features</h2>
 
             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6'>
                 <motion.div

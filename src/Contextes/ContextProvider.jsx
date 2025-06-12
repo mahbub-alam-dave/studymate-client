@@ -10,10 +10,19 @@ const ContextProvider = ({children}) => {
     const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
 
-    // const [assignments, setAssignments] = useState([])
-    // useEffect(() => {
-    //     fetch('')
-    // }, [])
+    const [mode, setMode] = useState(localStorage.getItem("theme") === "dark")
+
+
+    useEffect(() => {
+        if(mode) {
+            document.documentElement.classList.add("dark")
+            localStorage.setItem("theme", "dark")
+        }
+        else {
+            document.documentElement.classList.remove("dark")
+            localStorage.setItem("theme", "light")
+        }
+    }, [mode])
 
     const registerUser = (email, password) => {
         return createUserWithEmailAndPassword(auth, email, password)
@@ -57,7 +66,9 @@ const ContextProvider = ({children}) => {
         loginWithGoogle,
         updateUserProfile,
         logOutUser,
-        loading
+        loading,
+        mode,
+        setMode
     }
     return (
         <ContextValue value={value}>

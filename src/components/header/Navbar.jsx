@@ -6,10 +6,12 @@ import { CiMenuFries } from "react-icons/ci";
 import User from "../../components/header/User";
 
 const Navbar = () => {
-  const { user, logOutUser } = useContext(ContextValue);
+  const { user, logOutUser, mode, setMode } = useContext(ContextValue);
   const [displayMenu, setDisplayMenu] = useState(false);
   const sidebarRef = useRef(null);
   const menuButtonRef = useRef(null);
+
+  console.log(mode)
 
   const handleLogout = () => {
     logOutUser();
@@ -31,10 +33,10 @@ const Navbar = () => {
 
   const navLinks2 = (
     <>
-      <NavLink to={"/"}>
+      <NavLink to={"/"} className='text-white'>
         <span>Home</span>
       </NavLink>
-      <NavLink to={"/assignments"}>
+      <NavLink to={"/assignments"} className='text-white'>
         <span>Assignments</span>
       </NavLink>
     </>
@@ -63,11 +65,11 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-base-100 w-full shadow-sm">
-      <div className="navbar w-full  sm:max-w-11/12 mx-auto flex justify-between gap-4">
+    <div className="bg-[#00b4d8] dark:bg-[#03045e] w-full shadow-sm">
+      <div className="p-5 w-full max-w-[1440px] mx-auto flex justify-between items-center gap-4 px-4 sm:px-5 md:px-6">
         <div className="f">
-          <h2 className="rancho text-2xl text-pink-600 font-bold">
-            Study <span className="text-blue-600">Mate</span>
+          <h2 className="rancho text-2xl text-[var(--logo-text)] font-bold">
+            Study <span className="text-white">Mate</span>
           </h2>
         </div>
         <div className=" hidden lg:flex gap-4 sm:gap-5 md:gap-6 lg:gap-8">
@@ -80,7 +82,7 @@ const Navbar = () => {
               handleLogout={handleLogout}
               navLinks={navLinks}
             />
-            <button onClick={handleLogout} className="btn hidden sm:block text-white bg-[var(--color-primary)]">Logout</button>
+            <button onClick={handleLogout} className="btn hidden sm:block text-white bg-[var(--color-buttonBg)] border-none shadow-none">Logout</button>
             </div>
           ) : (
             <Link to="/login">
@@ -92,7 +94,8 @@ const Navbar = () => {
             onClick={handleMenuBtn}
             className={`text-3xl font-bold block lg:hidden`}
           />
-          <input type="checkbox" value="dark" className="toggle theme-controller" />
+          {/* <input type="checkbox" value="cupcake" className="toggle theme-controller" /> */}
+          <button onClick={() => setMode(!mode)} className="btn btn-sm">{mode ? "Dark" : "Light"}</button>
         </div>
       </div>
       <Sidebar displayMenu={displayMenu} setDisplayMenu={setDisplayMenu} handleLogout={handleLogout} />

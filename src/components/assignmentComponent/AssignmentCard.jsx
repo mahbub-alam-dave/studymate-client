@@ -73,7 +73,7 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
     navigate(`/view-assignment-details/${id}`)
   }
   return (
-    <div className="w-full flex flex-col sm:flex-row border rounded-2xl relative">
+    <div className="w-full flex flex-col sm:flex-row border border-[var(--color-border)] bg-[#caf0f8] dark:bg-gray-800 text-black dark:text-[#e9e9e9] rounded-2xl relative">
       <img
         className="sm:w-[220px]  object-cover rounded-tl-2xl rounded-tr-2xl sm:rounded-tr-[0px] sm:rounded-bl-2xl"
         src={assignment.imageUrl}
@@ -81,7 +81,7 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
       />
       <div className="flex flex-col gap-2 p-4 relative">
         <p
-          className={`absolute top-2 left-4 p-1 rounded-sm text-sm text-[#e9e9e9] mb-4 ${
+          className={`absolute top-2 left-4 p-1 rounded-sm text-sm  mb-4 ${
             assignment.level === "Easy"
               ? "bg-green-500"
               : assignment.level === "Medium"
