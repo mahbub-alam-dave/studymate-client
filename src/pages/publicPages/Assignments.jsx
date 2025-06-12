@@ -16,7 +16,7 @@ const Assignments = () => {
                   <h2 className="text-2xl md:text-3xl font-bold text-center dark:text-gray-200 pb-12">
         All Assignments
       </h2>
-      <div className='grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-5 md:gap-5 max-w-[1440px] w-full mx-auto'>
+      <div className='grid grid-cols-1 gap-4 sm:gap-5 md:gap-6 max-w-[1440px] w-full mx-auto'>
             {
                 assignments.map(assignment => <AssignmentCard
                     key={assignment._id}

@@ -51,9 +51,10 @@ const AssignmentDetails = () => {
   };
 
   return (
-    <div className="max-w-lg w-full dark:bg-gray-800 dark:text-gray-200 mx-auto flex flex-col justify-center  border rounded-2xl relative my-12">
+    <div className="py-12">
+    <div className="max-w-[1024px] w-full bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] border-[#00b4d8] dark:border-[#03045e] text-gray-200 mx-auto flex flex-col justify-center  border rounded-2xl relative">
       <img
-        className="w-full object-cover rounded-tl-2xl rounded-tr-2xl"
+        className="w-full h-[450px] object-cover rounded-tl-2xl rounded-tr-2xl"
         src={assignment.imageUrl}
         alt={assignment.title}
       />
@@ -86,7 +87,7 @@ const AssignmentDetails = () => {
         </p>
         <p>{assignment.description}</p>
         <div className="flex gap-2 flex-wrap">
-          <button onClick={() => setOpenSubmitModal(true)} className="btn">
+          <button onClick={() => setOpenSubmitModal(true)} className="btn text-base">
             Take Assignment
           </button>
           <AssignmentSubmitModal
@@ -96,6 +97,7 @@ const AssignmentDetails = () => {
           />
         </div>
       </div>
+    </div>
     </div>
   );
 };

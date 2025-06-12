@@ -23,17 +23,17 @@ const AssignmentSubmitModal = ({closeModal, openModal, submitAssignment}) => {
   if (!openModal) return null;
 
     return (
-<div className="fixed inset-0 bg-gray-600 bg-opacity-40 flex items-center justify-center z-50">
-      <div className="bg-white rounded-xl p-6 w-full max-w-md space-y-4">
-        <h2 className="text-xl font-bold">Submit Info</h2>
+<div className="fixed inset-0 bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] flex items-center justify-center  z-50">
+      <div className="bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] border border-[#00b4d8] dark:border-[#03045e] rounded-xl p-6 w-full max-w-md space-y-4">
+        <h2 className="text-xl font-bold text-gray-200">Submit Your Assignment</h2>
         <form onSubmit={handleSubmitAssignment} className="space-y-3">
           <input
             type="url"
             name="docUrl"
-            placeholder="Enter URL"
+            placeholder="Enter doc url"
             value={submittedData.url}
             onChange={handleChange}
-            className="input input-bordered w-full"
+            className="input input-bordered w-full bg-transparent border-[#00b4d8] dark:border-[#03045e]"
             required
           />
           <textarea
@@ -41,7 +41,7 @@ const AssignmentSubmitModal = ({closeModal, openModal, submitAssignment}) => {
             placeholder="Enter your message"
             value={submittedData.message}
             onChange={handleChange}
-            className="textarea textarea-bordered w-full"
+            className="textarea textarea-bordered w-full bg-transparent border-[#00b4d8] dark:border-[#03045e]"
             required
           />
           <div className="flex justify-end gap-2">

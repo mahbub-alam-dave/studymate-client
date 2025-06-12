@@ -75,13 +75,14 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
   return (
     <div className="w-full flex flex-col sm:flex-row border border-[var(--color-border)] bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] text-gray-200 rounded-2xl relative">
       <img
-        className="sm:w-[220px]  object-cover rounded-tl-2xl rounded-tr-2xl sm:rounded-tr-[0px] sm:rounded-bl-2xl"
+        className="sm:w-[320px]  object-cover rounded-tl-2xl rounded-tr-2xl sm:rounded-tr-[0px] sm:rounded-bl-2xl"
         src={assignment.imageUrl}
         alt={assignment.title}
       />
-      <div className="flex flex-col gap-2 p-4 relative">
+      <div className="flex flex-col gap-3 p-4 justify-center">
+        <div className="flex flex-col gap-1 items-start">
         <p
-          className={`absolute top-2 left-4 p-1 rounded-sm text-sm  mb-4 ${
+          className={`p-1 rounded-sm text-sm ${
             assignment.level === "Easy"
               ? "bg-green-500"
               : assignment.level === "Medium"
@@ -91,15 +92,10 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
         >
           {assignment.level}
         </p>
-        {/* <h2><span>Assignment title: </span> {assignment.title}</h2> */}
-        {/* <p><span>Difficulty: </span> {assignment.level}</p> */}
-        {/* <p><span>Due Date: </span> {assignment.dueDate}</p> */}
-        {/* <p><span>Marks: </span> {assignment.marks}</p> */}
-        {/* <p><span>Description: </span> {assignment.description}</p> */}
-        <p className="mt-5 text-2xl sm:text-3xl font-semibold">
+        <p className="text-2xl sm:text-3xl font-semibold">
           {assignment.title}
         </p>
-        {/* <p>{assignment.dueDate}</p> */}
+        </div>
         <p>
           <span>Marks: </span> {assignment.marks}
         </p>
