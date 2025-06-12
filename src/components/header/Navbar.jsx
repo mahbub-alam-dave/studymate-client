@@ -65,9 +65,9 @@ const Navbar = () => {
   };
 
   return (
-    <div className="bg-[#00b4d8] dark:bg-[#03045e] w-full shadow-sm">
+    <div className="bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] w-full">
       <div className="p-5 w-full max-w-[1440px] mx-auto flex justify-between items-center gap-4 px-4 sm:px-5 md:px-6">
-        <div className="f">
+        <div className="">
           <h2 className="rancho text-2xl text-[var(--logo-text)] font-bold">
             Study <span className="text-white">Mate</span>
           </h2>
@@ -82,11 +82,11 @@ const Navbar = () => {
               handleLogout={handleLogout}
               navLinks={navLinks}
             />
-            <button onClick={handleLogout} className="btn hidden sm:block text-white bg-[var(--color-buttonBg)] border-none shadow-none">Logout</button>
+            <button onClick={handleLogout} className="btn hidden sm:block text-white bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] border-none shadow-none">Logout</button>
             </div>
           ) : (
             <Link to="/login">
-              <button className="btn text-white bg-[var(--color-primary)]">Login</button>
+              <button className="btn text-white bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814]">Login</button>
             </Link>
           )}
 

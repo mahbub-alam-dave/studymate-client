@@ -26,8 +26,8 @@ const Banner = () => {
         <input
           type="text"
           placeholder="username@site.com"
-          className="input w-full input-bordered join-item" />
-        <button className="btn btn-primary join-item">Subscribe</button>
+          className="input w-full input-bordered join-item dark:bg-gray-300" />
+        <button className="btn text-white border-none rounded-tr-md rounded-br-md shadow-none join-item bg-gradient-to-r from-[#00b4d8] to-[#10129c] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814]">Subscribe</button>
       </div>
     </fieldset>
   </form>
