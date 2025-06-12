@@ -11,7 +11,7 @@ const Navbar = () => {
   const sidebarRef = useRef(null);
   const menuButtonRef = useRef(null);
 
-  console.log(mode)
+  // console.log(mode)
 
   const handleLogout = () => {
     logOutUser();
@@ -68,7 +68,7 @@ const Navbar = () => {
     <div className="bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] w-full">
       <div className="p-5 w-full max-w-[1440px] mx-auto flex justify-between items-center gap-4 px-4 sm:px-5 md:px-6">
         <div className="">
-          <h2 className="rancho text-2xl text-[var(--logo-text)] font-bold">
+          <h2 className="rancho text-2xl text-[#deff0a] font-bold">
             Study <span className="text-white">Mate</span>
           </h2>
         </div>

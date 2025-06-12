@@ -10,6 +10,7 @@ const Assignments = () => {
     useEffect(() => {
         setAssignments(allAssignments)
     }, [allAssignments])
+    // console.log(allAssignments)
 
     return (
         <div className='py-12 px-4 sm:px-5 md:px-6'>

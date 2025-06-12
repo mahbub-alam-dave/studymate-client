@@ -24,11 +24,7 @@ const UseAxiosSecure = () => {
         return Promise.reject(error)
     })
 
-    return (
-        <div>
-            
-        </div>
-    );
+    return axiosInstance
 };
 
 export default UseAxiosSecure;
