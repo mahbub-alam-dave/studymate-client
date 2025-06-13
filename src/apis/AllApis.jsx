@@ -1,4 +1,3 @@
-import React from 'react';
 import UseAxiosSecure from '../hooks/UseAxiosSecure';
 
 
@@ -12,8 +11,15 @@ const AllApis = () => {
         .then(res => res.data)
     }
 
+    const secureByFirebaseToken = async (url) => {
+        console.log(url)
+        // return await axiosSecure.get(url)
+        // .then(res => res.json())
+    }
+
     return {
-        mySubmittedAssignment
+        mySubmittedAssignment,
+        secureByFirebaseToken
     }
 };
 
