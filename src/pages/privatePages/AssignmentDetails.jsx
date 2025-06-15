@@ -52,7 +52,7 @@ const AssignmentDetails = () => {
 
   return (
     <div className="py-12">
-    <div className="max-w-[1024px] w-full bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] border-[#00b4d8] dark:border-[#03045e] text-gray-200 mx-auto flex flex-col justify-center  border rounded-2xl relative">
+    <div className="max-w-[1024px] w-full bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] border-[#00b4d8] dark:border-[#03045e] text-gray-200 mx-auto flex flex-col justify-center  border rounded-2xl relative">
       <img
         className="w-full h-[450px] object-cover rounded-tl-2xl rounded-tr-2xl"
         src={assignment.imageUrl}
@@ -70,11 +70,6 @@ const AssignmentDetails = () => {
         >
           {assignment.level}
         </p>
-        {/* <h2><span>Assignment title: </span> {assignment.title}</h2> */}
-        {/* <p><span>Difficulty: </span> {assignment.level}</p> */}
-        {/* <p><span>Due Date: </span> {assignment.dueDate}</p> */}
-        {/* <p><span>Marks: </span> {assignment.marks}</p> */}
-        {/* <p><span>Description: </span> {assignment.description}</p> */}
         <p className="mt-5 text-2xl sm:text-3xl font-semibold">
           {assignment.title}
         </p>
@@ -87,7 +82,7 @@ const AssignmentDetails = () => {
         </p>
         <p>{assignment.description}</p>
         <div className="flex gap-2 flex-wrap">
-          <button onClick={() => setOpenSubmitModal(true)} className="btn text-base">
+          <button onClick={() => setOpenSubmitModal(true)} className="btn text-base mt-2 bg-[#4ED7F1] dark:bg-[#03045e] text-gray-200 hover:text-white hover:bg-transparent">
             Take Assignment
           </button>
           <AssignmentSubmitModal

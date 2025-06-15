@@ -17,6 +17,7 @@ import UpdateAssignment from './pages/privatePages/UpdateAssignment'
 import AssignmentDetails from './pages/privatePages/AssignmentDetails'
 import { assignmentDetails } from './apis/assignmentDetails'
 import { pendingAssignments } from './apis/PendingAssignmentApi'
+import { updateAssignment } from './apis/updateAssignmentApi'
 // import DataLoader from './apis/DataLoader'
 
 const router = createBrowserRouter([
@@ -49,7 +50,8 @@ const router = createBrowserRouter([
   {
     path: "update-assignment/:id",
     element: <PrivateRoute> <UpdateAssignment /> </PrivateRoute>,
-    loader: ({params}) => fetch(`http://localhost:3000/assignments/${params.id}`),
+    // loader: ({params}) => fetch(`http://localhost:3000/assignments/${params.id}`),
+    loader: updateAssignment,
     hydrateFallbackElement: <Loader /> 
   },
   {

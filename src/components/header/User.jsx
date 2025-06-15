@@ -25,7 +25,7 @@ const User = ({navLinks}) => {
 
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] text-gray-200 rounded-box z-1 mt-4 max-w-[420px] p-4 shadow flex flex-col gap-4"
+                className="menu menu-sm dropdown-content bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] text-gray-200 rounded-box z-1 mt-4 max-w-[420px] p-4 shadow flex flex-col gap-4"
               >
                 {navLinks}
                 

@@ -1,12 +1,16 @@
-# React + Vite
+# Complete Web application Development for (Study Mate)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The Study Mate is online study related web application for students. The application have integrated firebase authentication system. User can register to the application by email, password, username or easily sign with their google account. User can log in by using email and password and by their google account. Students who don't logged in to the application haven't got the opportunity to visit, explore, contribute to assignment-details, update, delete, my-assignment-page, pending-assignment etc. They can only visit the home page and the assignment page. Logged in users can have full control to the application. They can explore, see assignments, participate to any assignments, see their submitted assignments, Explore pending assignments, have the right to evaluate any pending assignments etc. The application has custom designed two color mode of light and dark.   
 
-Currently, two official plugins are available:
+## Tools technologies and packages that have used to the application:
+- html, css, javascript
+- react js, node js, mongodb
+- firebase, framer motion etc.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Live Url and Github Repositories
+Client Side Repositories: 
+Server Side Repositories:
+Live Url:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+

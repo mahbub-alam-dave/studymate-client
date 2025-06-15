@@ -1,15 +1,13 @@
 import axios from "axios";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { ContextValue } from "../../Contextes/AllContexts";
 import Swal from "sweetalert2";
-import { useLoaderData, useNavigate } from "react-router";
+import { Link, useLoaderData, useNavigate } from "react-router";
 
 const UpdateAssignment = () => {
   const assignment = useLoaderData();
   // console.log(assignment)
-  const { user } = useContext(ContextValue);
   const [startDate, setStartDate] = useState(assignment.dueDate);
   const navigate = useNavigate()
 
@@ -60,7 +58,7 @@ const UpdateAssignment = () => {
 
   return (
     <div className="px-4 sm:px-6 py-12">
-      <div className="flex flex-col gap-8 justify-center max-w-[799px] w-full mx-auto bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] border border-[#00b4d8] dark:border-[#03045e] rounded-2xl px-4 sm:px-6 py-8">
+      <div className="flex flex-col gap-8 justify-center max-w-[799px] w-full mx-auto bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] border border-gray-200 dark:border-[#03045e] rounded-2xl px-4 sm:px-6 py-8 shadow-xl ">
       <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-200">
         Update Assignment
       </h2>
@@ -71,7 +69,7 @@ const UpdateAssignment = () => {
               type="text"
               name="title"
               defaultValue={assignment.title}
-              className="input w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
+              className="input w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
               placeholder="Assignment title"
             />
 
@@ -80,7 +78,7 @@ const UpdateAssignment = () => {
               type="url"
               name="imageUrl"
               defaultValue={assignment.imageUrl}
-              className="input w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
+              className="input w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
               placeholder="Thumbnail image url"
             />
 
@@ -88,7 +86,7 @@ const UpdateAssignment = () => {
             <input
               type="number"
               defaultValue={assignment.marks}
-              className="input w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
+              className="input w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none no-spinner"
               name="marks"
               placeholder="Enter marks"
             />
@@ -97,7 +95,7 @@ const UpdateAssignment = () => {
               <div className="flex flex-col gap-1 w-full">
                 <label className="label">Difficulty Label</label>
                 <select
-                  className="select w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
+                  className="select w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
                   defaultValue={assignment.level}
                   name="level"
                 >
@@ -119,7 +117,7 @@ const UpdateAssignment = () => {
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
                   name="dueDate"
-                  className="input w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
+                  className="input w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
                 />
               </div>
             </div>
@@ -128,16 +126,26 @@ const UpdateAssignment = () => {
             <textarea
               type="number"
               defaultValue={assignment.description}
-              className="textarea w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
+              className="textarea w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
               name="description"
               placeholder="Enter assignment description"
             />
+            <div className="flex gap-2 sm:gap-3 md:gap-4 mt-4">
+            <Link to={'/assignments'}>
+            <button
+              
+              className="btn bg-[#FF3F33] dark:bg-[#8E1616] text-gray-200 shadow-none hover:text-white hover:bg-transparent"
+            >
+              Cancel
+            </button>
+            </Link>
             <button
               type="submit"
-              className="btn hover:bg-[rgba(0,180,216,0.31)] dark:hover:bg-[rgba(3,5,94,0.3)] transition-colors hover:text-gray-50 bg-transparent mt-4 border-[#00b4d8] dark:border-[#03045e] shadow-none text-gray-200"
+              className="btn bg-[#00b4d8] dark:bg-[#03045e] dark:hover:bg-[rgba(3,5,94,0.3)] transition-colors hover:text-gray-50 hover:bg-transparent border shadow-none text-gray-200"
             >
               Update Assignment
             </button>
+            </div>
           </fieldset>
         </form>
       </div>

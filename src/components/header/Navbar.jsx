@@ -1,20 +1,36 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
 import { ContextValue } from "../../Contextes/AllContexts";
 import Sidebar from "./Sidebar";
 import { CiMenuFries } from "react-icons/ci";
 import User from "../../components/header/User";
+import ToggleIcon from "./ToggleIcon";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const { user, logOutUser, mode, setMode } = useContext(ContextValue);
+  const { user, logOutUser } = useContext(ContextValue);
   const [displayMenu, setDisplayMenu] = useState(false);
   const sidebarRef = useRef(null);
   const menuButtonRef = useRef(null);
+  const navigate = useNavigate();
 
   // console.log(mode)
 
   const handleLogout = () => {
-    logOutUser();
+    logOutUser()
+      .then(() => {
+        // user logged out successfully
+        navigate("/");
+      })
+      .catch((error) => {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: error.message,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
   };
 
   const navLinks = (
@@ -33,10 +49,10 @@ const Navbar = () => {
 
   const navLinks2 = (
     <>
-      <NavLink to={"/"} className='text-white'>
+      <NavLink to={"/"} className="h-full flex items-center hover:bg-[#00b4d8] dark:hover:bg-[#03045e] px-3">
         <span>Home</span>
       </NavLink>
-      <NavLink to={"/assignments"} className='text-white'>
+      <NavLink to={"/assignments"} className="h-full flex items-center hover:bg-[#00b4d8] dark:hover:bg-[#03045e] px-3">
         <span>Assignments</span>
       </NavLink>
     </>
@@ -64,41 +80,55 @@ const Navbar = () => {
     setDisplayMenu((prev) => !prev);
   };
 
+  // bg-gradient-to-br from- to-[rgb(3,5,94)] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814]
+
   return (
-    <div className="bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] w-full">
-      <div className="p-5 w-full max-w-[1440px] mx-auto flex justify-between items-center gap-4 px-4 sm:px-5 md:px-6">
+    <div className="bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814] w-full shadow-md border border-white dark:border-[#03045e]">
+      <div className="h-[75px] w-full max-w-[1440px] mx-auto flex justify-between items-center gap-4 px-4 sm:px-5 md:px-6">
         <div className="">
-          <h2 className="rancho text-2xl text-[#deff0a] font-bold">
+          <h2 className="rancho text-2xl text-[#FF3F33] font-bold">
             Study <span className="text-white">Mate</span>
           </h2>
         </div>
-        <div className=" hidden lg:flex gap-4 sm:gap-5 md:gap-6 lg:gap-8">
+        <div className="h-full lg:items-center justify-center hidden lg:flex gap-4 sm:gap-5 md:gap-6 lg:gap-8 text-white">
           {navLinks2}
         </div>
         <div className="flex  items-center gap-2">
           {user ? (
             <div className="flex gap-3 items-center">
-            <User
-              handleLogout={handleLogout}
-              navLinks={navLinks}
-            />
-            <button onClick={handleLogout} className="btn hidden sm:block text-white bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] border-none shadow-none">Logout</button>
+              <User handleLogout={handleLogout} navLinks={navLinks} />
+              {/* bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] */}
+              <button
+                onClick={handleLogout}
+                className="btn hidden bg-[#FF3F33] dark:bg-[#8E1616] sm:block text-gray-200 border-none shadow-none"
+              >
+                Logout
+              </button>
             </div>
           ) : (
             <Link to="/login">
-              <button className="btn text-white bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814]">Login</button>
+              {/* bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] */}
+              <button className="btn hidden sm:block bg-[#4ED7F1] dark:bg-[#03045e] text-gray-200 hover:bg-transparent hover:font-bold transition-colors hover:border-2 duration-100">
+                Login
+              </button>
             </Link>
           )}
 
           <CiMenuFries
             onClick={handleMenuBtn}
-            className={`text-3xl text-gray-200 font-bold block lg:hidden`}
+            className={`text-3xl text-[#FF3F33] font-bold block lg:hidden`}
           />
           {/* <input type="checkbox" value="cupcake" className="toggle theme-controller" /> */}
-          <button onClick={() => setMode(!mode)} className="btn btn-sm transition-colors duration-300">{mode ? "Dark" : "Light"}</button>
+          <div className="hidden lg:block">
+            <ToggleIcon />
+          </div>
         </div>
       </div>
-      <Sidebar displayMenu={displayMenu} setDisplayMenu={setDisplayMenu} handleLogout={handleLogout} />
+      <Sidebar
+        displayMenu={displayMenu}
+        setDisplayMenu={setDisplayMenu}
+        handleLogout={handleLogout}
+      />
     </div>
   );
 };

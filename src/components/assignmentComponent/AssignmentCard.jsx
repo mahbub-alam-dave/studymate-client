@@ -10,7 +10,7 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
   const navigate = useNavigate();
 
   const handleDeleteAssignment = (id) => {
-    if (assignment.email === user.email) {
+    if (assignment.email === user?.email) {
       Swal.fire({
         title: "Do you want to delete the assignment?",
         showDenyButton: false,
@@ -55,7 +55,7 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
   };
 
   const handleUpdateAssignment = (id) => {
-    if (user.email === assignment.email) {
+    if (user?.email === assignment.email) {
       navigate(`/update-assignment/${id}`);
     } else {
       Swal.fire({
@@ -65,52 +65,66 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
         showConfirmButton: false,
         timer: 1500,
       });
-      return
+      return;
     }
   };
 
-  const handleViewAssignment = id => {
-    navigate(`/view-assignment-details/${id}`)
-  }
+  const handleViewAssignment = (id) => {
+    if (user) return navigate(`/view-assignment-details/${id}`);
+      Swal.fire({
+        position: "top-end",
+        icon: "info",
+        title: "Please login to see details!",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+    
+  };
+  // bg-gradient-to-br from-[#00b4d8] to-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] text-gray-200
   return (
-    <div className="w-full flex flex-col sm:flex-row border border-[var(--color-border)] bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] text-gray-200 rounded-2xl relative">
+    <div className="w-full flex flex-col sm:flex-row bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814] text-gray-200 border border-white dark:border-[#03045e] shadow-sm rounded-2xl gap-4 relative p-4">
       <img
-        className="sm:w-[320px]  object-cover rounded-tl-2xl rounded-tr-2xl sm:rounded-tr-[0px] sm:rounded-bl-2xl"
+        className="sm:w-[320px]  object-cover rounded-tl-2xl rounded-tr-2xl sm:rounded-2xl"
         src={assignment.imageUrl}
         alt={assignment.title}
       />
-      <div className="flex flex-col gap-3 p-4 justify-center">
+      <div className="flex flex-col gap-3 justify-center">
         <div className="flex flex-col gap-1 items-start">
-        <p
-          className={`p-1 rounded-sm text-sm ${
-            assignment.level === "Easy"
-              ? "bg-green-500"
-              : assignment.level === "Medium"
-              ? "bg-yellow-500"
-              : "bg-red-500"
-          }`}
-        >
-          {assignment.level}
-        </p>
-        <p className="text-2xl sm:text-3xl font-semibold">
-          {assignment.title}
-        </p>
+          <p
+            className={`p-1 px-2 rounded-md text-gray-200 text-sm ${
+              assignment.level === "Easy"
+                ? "bg-green-500"
+                : assignment.level === "Medium"
+                ? "bg-yellow-500"
+                : "bg-red-500"
+            }`}
+          >
+            {assignment.level}
+          </p>
+          <p className="text-xl sm:text-2xl md:text-3xl font-semibold">
+            {assignment.title}
+          </p>
         </div>
-        <p>
+        <p className="text-base sm:text-lg">
           <span>Marks: </span> {assignment.marks}
         </p>
         {/* <p>{assignment.description}</p> */}
-        <div className="flex gap-2 flex-wrap">
-          <button onClick={() => handleViewAssignment(assignment._id)} className="btn">View Details</button>
+        <div className="flex gap-2 sm:gap-3 md:gap-4 flex-wrap">
+          <button
+            onClick={() => handleViewAssignment(assignment._id)}
+            className="btn bg-[#4ED7F1] dark:bg-[#03045e] text-gray-200 hover:text-white hover:bg-transparent"
+          >
+            View Details
+          </button>
           <button
             onClick={() => handleUpdateAssignment(assignment._id)}
-            className="btn"
+            className="btn bg-[#3D8D7A] dark:bg-[#155E95] text-gray-200 hover:text-white hover:bg-transparent"
           >
             Update
           </button>
           <button
             onClick={() => handleDeleteAssignment(assignment._id)}
-            className="btn"
+            className="btn bg-[#FF3F33] dark:bg-[#8E1616] text-gray-200 shadow-none hover:text-white hover:bg-transparent"
           >
             Delete
           </button>

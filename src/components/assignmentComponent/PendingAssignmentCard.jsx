@@ -6,8 +6,10 @@ const PendingAssignmentCard = ({
   openModal,
   assignment,
   closeModal,
-  handlePendingAssignment,
+  setPendingAssignments,
+  pendingAssignments
 }) => {
+
   const handleSubmitMarks = (e) => {
     e.preventDefault();
 
@@ -23,6 +25,8 @@ const PendingAssignmentCard = ({
         evaluatedAssignment
       )
       .then((res) => {
+        const remainingAssignments = pendingAssignments.filter(pendingAssignment => pendingAssignment._id !== assignment._id)
+        setPendingAssignments(remainingAssignments)
         if (res.data.modifiedCount) {
           Swal.fire({
             position: "top-end",
@@ -31,6 +35,7 @@ const PendingAssignmentCard = ({
             showConfirmButton: false,
             timer: 1500,
           });
+          closeModal()
         }
       })
       .catch((error) => {
@@ -45,7 +50,7 @@ const PendingAssignmentCard = ({
   };
   if (!openModal) return null;
   return (
-    <div className="fixed inset-0 px-4 sm:px-5 md:px-6 bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] text-gray-200 flex pt-12 md:p-16 flex-col gap-8 items-center z-50">
+    <div className="fixed inset-0 px-4 sm:px-5 md:px-6 bg-gradient-to-t from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] text-white flex pt-12 md:p-16 flex-col gap-8 items-center z-50">
       <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center">
         Assignment Evaluation Form
       </h2>
@@ -75,12 +80,12 @@ const PendingAssignmentCard = ({
             Examiner's Feedback Form
           </span>
           <form onSubmit={handleSubmitMarks}>
-            <fieldset className="fieldset bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] border-[#00b4d8] dark:border-[#03045e] rounded-box border p-4">
+            <fieldset className="fieldset bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] border-gray-200 dark:border-[#03045e] shadow-xl rounded-box border p-4">
               <label className="label">Marks</label>
               <input
                 type="number"
                 name="marks"
-                className="input w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none "
+                className="input w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none "
                 placeholder="Enter marks here"
                 required
               />
@@ -88,7 +93,7 @@ const PendingAssignmentCard = ({
               <textarea
                 type="text"
                 name="feedback"
-                className="textarea w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
+                className="textarea w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
                 placeholder="Enter feedback here"
                 required
               />
@@ -96,13 +101,13 @@ const PendingAssignmentCard = ({
                 <button
                   onClick={() => closeModal()}
                   type="button"
-                  className="btn"
+                  className="btn bg-[#FF3F33] dark:bg-[#8E1616] text-white shadow-none hover:text-white hover:bg-transparent"
                 >
                   Cancel
                 </button>
                 <button
                   type="submit"
-                  className=" btn text-[#e9e9e9] bg-[var(--color-primary)]"
+                  className=" btn bg-[#4ED7F1] dark:bg-[#03045e] shadow-none text-white hover:text-white hover:bg-transparent"
                 >
                   Submit
                 </button>

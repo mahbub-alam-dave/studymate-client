@@ -18,10 +18,14 @@ body {
 
 
 a.active {
-    color: #deff0a;
+    color:#ffffff;
     font-weight: 500;
-    /* background-color: green; */
-    text-decoration: underline;
+    background-color: #00b4d8;
+
+}
+
+.dark a.active {
+  background-color: #03045e;
 }
 
 @plugin "daisyui/theme" {
@@ -37,4 +41,15 @@ a.active {
   --logo-text: #deff0a;
   --color-border: rgba(218,218,218,0.48)
   
+}
+
+
+.no-spinner::-webkit-inner-spin-button,
+.no-spinner::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-spinner {
+  -moz-appearance: textfield;
 }
