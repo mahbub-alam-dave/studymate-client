@@ -23,7 +23,7 @@ const UseAxiosSecure = () => {
     },
     (error) => {
       if (error.status === 401 || error.status === 403) {
-        console.log("log out the user", error);
+        // logout the user
       }
       return Promise.reject(error);
     }

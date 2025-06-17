@@ -18,6 +18,7 @@ import AssignmentDetails from './pages/privatePages/AssignmentDetails'
 import { assignmentDetails } from './apis/assignmentDetails'
 import { pendingAssignments } from './apis/PendingAssignmentApi'
 import { updateAssignment } from './apis/updateAssignmentApi'
+import MyBookMark from './pages/privatePages/MyBookMark'
 // import DataLoader from './apis/DataLoader'
 
 const router = createBrowserRouter([
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
   {
     path: "my-attempted-assignment",
     element: <PrivateRoute> <AttemptedAssignments /></PrivateRoute>,
+  },
+  {
+    path: "my-bookmarked-assignment",
+    element: <PrivateRoute> <MyBookMark /></PrivateRoute>,
   }
   ]
   }
@@ -81,9 +86,3 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>,
 )
 
-/* 
-      loader: async () => {
-    const res = await fetch('https://study-mate-server-gamma.vercel.app/assignments');
-    return res.json();
-  },
-    hydrateFallbackElement: <Loader /> */

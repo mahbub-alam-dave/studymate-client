@@ -10,13 +10,11 @@ const PendingAssignments = () => {
   const pendingSubmittedAssignments = useLoaderData();
   const [openModal, setOpenModal] = useState(false);
   const { user } = useContext(ContextValue);
-  // console.log(pendingSubmittedAssignments)
   const [pendingAssignments, setPendingAssignments] = useState(
     pendingSubmittedAssignments
   );
 
   const handlePendingAssignment = (email) => {
-    // console.log("pending assignment btn")
     if (email === user?.email) {
       Swal.fire({
         position: "top-end",

@@ -17,11 +17,10 @@ const PendingAssignmentCard = ({
     const feedback = e.target.feedback.value;
     const evaluatedAssignment = { marks, feedback, status: "completed" };
 
-    console.log(evaluatedAssignment);
     // update submitted assignment to the database
     axios
       .patch(
-        `http://localhost:3000/my-submitted-assignments/${assignment._id}`,
+        `https://study-mate-server-gamma.vercel.app/my-submitted-assignments/${assignment._id}`,
         evaluatedAssignment
       )
       .then((res) => {

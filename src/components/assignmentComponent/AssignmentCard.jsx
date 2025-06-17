@@ -3,9 +3,12 @@ import { ContextValue } from "../../Contextes/AllContexts";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router";
+import { FaRegBookmark } from "react-icons/fa";
+import UseAxiosSecure from "../../hooks/UseAxiosSecure";
 
 const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
   const { user } = useContext(ContextValue);
+    const axiosSecure = UseAxiosSecure();
 
   const navigate = useNavigate();
 
@@ -23,7 +26,6 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
           axios
             .patch(`https://study-mate-server-gamma.vercel.app/assignments/${id}/delete`)
             .then((res) => {
-              console.log(res.data)
               if (res.data.modifiedCount) {
                 Swal.fire({
                   position: "top-end",
@@ -86,6 +88,23 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
       timer: 1500,
     });
   };
+
+
+  const handleAddBookmark = async (assignmentId) => {
+      if (!user) {
+    return Swal.fire("Login required!", "Please log in to bookmark.", "info");
+  }
+  await axiosSecure.post("/bookmarks", { assignmentId })
+    .then(() => Swal.fire("Bookmarked!", "", "success"))
+    .catch(err => {
+      if (err.response?.status === 400) {
+        Swal.fire("Already bookmarked", "", "info");
+      } else {
+        Swal.fire("Error", "Something went wrong", "error");
+      }
+    });
+  }
+
   return (
     <div className="w-full flex flex-col sm:flex-row bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814] text-gray-200 border border-white dark:border-[#03045e] shadow-sm rounded-2xl gap-4 relative p-4">
       <img
@@ -94,7 +113,8 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
         alt={assignment.title}
       />
       <div className="flex flex-col gap-3 justify-center">
-        <div className="flex flex-col gap-1 items-start">
+        <div className="flex flex-col gap-1">
+          <div className="flex gap-12 items-center">
           <p
             className={`p-1 px-2 rounded-md text-gray-200 text-sm ${
               assignment.level === "Easy"
@@ -106,9 +126,11 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
           >
             {assignment.level}
           </p>
-          <p className="text-xl sm:text-2xl md:text-3xl font-semibold">
+          <FaRegBookmark onClick={() => handleAddBookmark(assignment._id)} size={20}/>
+          </div>
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold">
             {assignment.title}
-          </p>
+          </h2>
         </div>
         <p className="text-base sm:text-lg">
           <span>Marks: </span> {assignment.marks}

@@ -18,7 +18,9 @@ const SubmittedAssignmentCards = () => {
       axiosSecure
         .get(`/my-submitted-assignments?email=${user?.email}`)
         .then((res) => setSubmittedAssignments(res.data))
-        .catch(console.error)
+        .catch(error =>{
+          // error occured
+        })
         .finally(() => setFetching(false));
     }
   }, [user, axiosSecure]);

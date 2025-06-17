@@ -32,7 +32,7 @@ const CreateAssignments = () => {
 
     // create assignment and store to the database
     axios
-      .post("http://localhost:3000/assignments", newAssignment)
+      .post("https://study-mate-server-gamma.vercel.app/assignments", newAssignment)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({

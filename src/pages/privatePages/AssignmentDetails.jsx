@@ -11,10 +11,8 @@ const AssignmentDetails = () => {
   const { user } = useContext(ContextValue);
 
   const assignment = useLoaderData();
-  // console.log(assignment)
 
   const handleAssignmentSubmitModal = (data) => {
-    console.log("Assignment Submitted Data:", data);
     const submittedAssignmentInfo = {
       ...data,
       assignmentId: assignment._id,

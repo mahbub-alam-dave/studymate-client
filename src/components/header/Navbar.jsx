@@ -16,8 +16,6 @@ const Navbar = () => {
   const menuButtonRef = useRef(null);
   const navigate = useNavigate();
 
-  // console.log(mode)
-
   const handleLogout = () => {
     logOutUser()
       .then(() => {
@@ -43,6 +41,11 @@ const Navbar = () => {
       <NavLink to="/my-attempted-assignment">
         <span>Attempted Assignments</span>
       </NavLink>
+        <NavLink
+          to="/my-bookmarked-assignment"
+        >
+          <span>Bookmarked Assignments</span>
+        </NavLink>
     </>
   );
 
@@ -68,6 +71,7 @@ const Navbar = () => {
           <span>Pending Assignments</span>
         </NavLink>
       )}
+      
     </>
   );
 

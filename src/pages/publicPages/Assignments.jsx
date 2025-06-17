@@ -1,33 +1,34 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router";
 import AssignmentCard from "../../components/assignmentComponent/AssignmentCard";
 import { IoFilterSharp } from "react-icons/io5";
 import axios from "axios";
 import emptyAnimation from "../../assets/emptyAinmation.json";
 import Lottie from "lottie-react";
-import { ContextValue } from "../../Contextes/AllContexts";
+// import { ContextValue } from "../../Contextes/AllContexts";
 
 const Assignments = () => {
   const allAssignments = useLoaderData();
-  const {user} = useContext(ContextValue)
+  // const {user} = useContext(ContextValue)
   const [assignments, setAssignments] = useState(allAssignments);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectByDifficulty, setSelectByDifficulty] = useState("All");
 
 useEffect(() => {
   const delaySearch = setTimeout(() => {
-    if (!user) return;
+    // if (!user) return;
     const fetchAndFilterAssignments = async () => {
       try {
         let result = [];
 
         if (searchQuery.trim() !== "") {
-          const token = await user?.getIdToken();
-          const res = await axios.get(`https://study-mate-server-gamma.vercel.app/assignments/search?searchQuery=${searchQuery}`, {
+          // const token = await user?.getIdToken();
+          /* const res = await axios.get(`https://study-mate-server-gamma.vercel.app/assignments/search?searchQuery=${searchQuery}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          });
+          }); */
+          const res = await axios.get(`https://study-mate-server-gamma.vercel.app/assignment-search?searchQuery=${searchQuery}`)
           result = res.data;
         } else {
           result = allAssignments;
@@ -40,7 +41,7 @@ useEffect(() => {
 
         setAssignments(result);
       } catch (err) {
-        console.error(err);
+        // error occured
       }
     };
 
@@ -48,7 +49,7 @@ useEffect(() => {
   }, 500);
 
   return () => clearTimeout(delaySearch);
-}, [searchQuery, selectByDifficulty, allAssignments, user]);
+}, [searchQuery, selectByDifficulty, allAssignments]);
 
 
   return (
@@ -97,9 +98,9 @@ useEffect(() => {
         </div>
       </div>
       {assignments.length < 1 ? (
-        <div className="flex flex-col gap-4 py-12 justify-center items-center">
+        <div className="flex flex-col gap-4 py-12 justify-center items-center px-4 sm:px-5 md:px-6">
           <Lottie animationData={emptyAnimation} loop={true} />
-          <h2 className="text-3xl font-bold text-[#FF3F33]  dark:text-gray-200">
+          <h2 className="text-3xl font-bold text-[#FF3F33] text-center dark:text-gray-200">
             No Assignment Found !
           </h2>
         </div>
