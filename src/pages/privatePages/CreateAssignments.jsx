@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router";
 const CreateAssignments = () => {
   const { user } = useContext(ContextValue);
   const navigate = useNavigate()
+  const [error, setError] = useState("");
 
   const [startDate, setStartDate] = useState(new Date());
   const handleCreateAssignmentForm = (e) => {
@@ -18,13 +19,16 @@ const CreateAssignments = () => {
 
     const assignmentInfo = Object.fromEntries(formData.entries());
 
+    if(assignmentInfo.description.length < 20) {
+      setError("Description should be at least 20 characters")
+      return
+    }
+
     const newAssignment = {
       ...assignmentInfo,
-      status: "pending",
       author: user?.displayName,
       email: user?.email,
     };
-    console.log(newAssignment);
 
     // create assignment and store to the database
     axios
@@ -34,7 +38,7 @@ const CreateAssignments = () => {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "Assignment Added Successfully",
+            title: "Assignment created Successfully",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -45,7 +49,7 @@ const CreateAssignments = () => {
         Swal.fire({
           position: "top-end",
           icon: "error",
-          title: {error},
+          title: error.message,
           showConfirmButton: false,
           timer: 1500,
         });
@@ -66,6 +70,7 @@ const CreateAssignments = () => {
               name="title"
               className="input w-full bg-transparent border-white dark:border-[#03045e] focus:outline-none"
               placeholder="Assignment title"
+              required
             />
 
             <label className="label mt-2">Image URL</label>
@@ -74,6 +79,7 @@ const CreateAssignments = () => {
               name="imageUrl"
               className="input w-full bg-transparent border-white dark:border-[#03045e] focus:outline-none"
               placeholder="Thumbnail image url"
+              required
             />
 
             <label className="label mt-2">Marks</label>
@@ -82,16 +88,17 @@ const CreateAssignments = () => {
               className="input w-full bg-transparent border-white dark:border-[#03045e] focus:outline-none no-spinner"
               name="marks"
               placeholder="Enter marks"
+              required
             />
 
             <div className="flex flex-col sm:flex-row gap-4 mt-2">
               <div className="flex flex-col gap-1 w-full">
                 <label className="label">Difficulty Label</label>
                 <select className="select w-full bg-transparent text-white border-white dark:border-[#03045e] focus:outline-none" name="level">
-                  <option className="bg-gray-300 text-white" disabled={true}>Select difficulty label</option>
-                  <option className="bg-gray-300 text-white">Easy</option>
-                  <option className="bg-gray-300 text-white">Medium</option>
-                  <option className="bg-gray-300 text-white">Hard</option>
+                  <option className="bg-[#00b4d8]" disabled={true}>Select difficulty label</option>
+                  <option className="bg-[#00b4d8]" value="Easy">Easy</option>
+                  <option className="bg-[#00b4d8]" value='Medium'>Medium</option>
+                  <option className="bg-[#00b4d8]" value="Hard">Hard</option>
                 </select>
               </div>
               <div className="flex flex-col gap-1 w-full">
@@ -107,11 +114,13 @@ const CreateAssignments = () => {
 
             <label className="label mt-2">Description</label>
             <textarea
-              type="number"
+              type="text"
               className="textarea w-full bg-transparent border-white dark:border-[#03045e] focus:outline-none"
               name="description"
               placeholder="Enter assignment description"
+              required
             />
+            <span className="text-[#FF3F33]">{error}</span>
             <div className="flex gap-2 sm:gap-3 md:gap-4 mt-4">
             <Link to={'/'}>
             <button
@@ -136,3 +145,10 @@ const CreateAssignments = () => {
 };
 
 export default CreateAssignments;
+
+
+// https://i.ibb.co/ymFXS70p/math.jpg
+// https://i.ibb.co/7dC5dRNJ/math-image.jpg
+// https://i.ibb.co/9kLdn5xN/recipe.jpg
+// https://i.ibb.co/QFnM8DGV/programming.jpg
+// https://i.ibb.co/vvQ54cfY/engineering.jpg

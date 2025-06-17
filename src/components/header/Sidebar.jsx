@@ -13,29 +13,38 @@ const Sidebar = ({ displayMenu, setDisplayMenu, handleLogout }) => {
         displayMenu ? "right-0" : "right-[-300px]"
       } z-10`}
     >
-      <div className="flex flex-col  gap-4 p-6 mt-10">
+      <div className="flex flex-col  gap-4 px-3 py-6 mt-10">
         <IoMdClose
           onClick={() => setDisplayMenu((display) => !display)}
           size={22}
+          className="mx-3"
         />
         <NavLink
           onClick={() => setDisplayMenu((display) => !display)}
           to={"/"}
-          className="font-semibold text-base"
+          className="hover:bg-[#00b4d8] dark:hover:bg-[#03045e] px-3"
         >
           <span>Home</span>
         </NavLink>
         <NavLink
           onClick={() => setDisplayMenu((display) => !display)}
           to={"/assignments"}
-          className="font-semibold text-base"
+          className="hover:bg-[#00b4d8] dark:hover:bg-[#03045e] px-3"
         >
           <span>Assignments</span>
         </NavLink>
-        <div>
+              {user && (
+                <NavLink
+                  to="/pending-assignments"
+                  className="hover:bg-[#00b4d8] dark:hover:bg-[#03045e] px-3"
+                >
+                  <span>Pending Assignments</span>
+                </NavLink>
+              )}
+        <div className="px-3">
         <ToggleIcon />
         </div>
-        <div className="flex flex-col gap-4 items-start">
+        <div className="flex flex-col gap-4 items-start px-3">
         {user ? (
           <button onClick={handleLogout} className="btn bg-[#FF3F33] dark:bg-[#8E1616] block sm:hidden text-gray-200 border-none shadow-none">
             Logout

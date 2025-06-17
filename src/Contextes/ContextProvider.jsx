@@ -42,21 +42,16 @@ const ContextProvider = ({children}) => {
 
     useEffect(() => {
         const unSubscribe = onAuthStateChanged(auth, currentUser => {
-            if(currentUser) {
-                setUser(currentUser)
-            }
+            setUser(currentUser)
             setLoading(false)
         })
 
-        return () => {
-            unSubscribe()
-        }
+      return () => unSubscribe();
     },[])
 
     const logOutUser = () => {
         return signOut(auth)
     }
-
 
     const value ={
         user,

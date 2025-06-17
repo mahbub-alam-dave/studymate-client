@@ -3,7 +3,8 @@ import React from 'react';
 const Footer = () => {
     return (
         <div className='bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814] p-4 sm:p-5 md:p-6'>
-<footer className="footer sm:footer-horizontal max-w-[1440px] mx-auto text-neutral-content py-10">
+          <div className='flex flex-col gap-6 max-w-[1440px] mx-auto py-10'>
+<footer className="footer md:footer-horizontal text-neutral-content ">
   <aside>
           <h2 className="rancho text-2xl text-[#FF3F33] font-bold">
             Study <span className="text-white">Mate</span>
@@ -12,7 +13,10 @@ const Footer = () => {
       Study together, study easier !!
     </p>
   </aside>
-  <nav>
+  <div className=' flex md:justify-end'>
+    <div className='flex flex-col gap-6 items-start'>
+     
+  <nav className=''>
     <h6 className="footer-title">Join Us</h6>
     <div className="grid grid-flow-col gap-4">
       <a>
@@ -50,7 +54,17 @@ const Footer = () => {
       </a>
     </div>
   </nav>
+  <nav className="grid grid-flow-col gap-4">
+    <a className="link link-hover">About us</a>
+    <a className="link link-hover">Contact</a>
+    <a className="link link-hover">Jobs</a>
+    <a className="link link-hover">Press kit</a>
+  </nav>
+  </div>
+  </div>
 </footer>
+  <p className='text-sm text-gray-200'>Copyright © {new Date().getFullYear()} - All right reserved by Study Mate</p>
+  </div>
 </div>
     );
 };

@@ -10,7 +10,8 @@ const User = ({navLinks}) => {
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle avatar"
+                className="btn btn-ghost btn-circle avatar tooltip tooltip-left"
+                data-tip={user.displayName ? user.displayName : "anonymous" }
               >
                 <div className="w-10 rounded-full">
                   <img

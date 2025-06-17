@@ -70,7 +70,12 @@ const router = createBrowserRouter([
   },
   {
     path: "my-attempted-assignment",
-    element: <PrivateRoute> <AttemptedAssignments /></PrivateRoute>
+    element: <PrivateRoute> <AttemptedAssignments /></PrivateRoute>,
+      loader: async () => {
+    const res = await fetch('http://localhost:3000/assignments');
+    return res.json();
+  },
+    hydrateFallbackElement: <Loader />
   }
   ]
   }

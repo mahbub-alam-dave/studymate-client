@@ -19,7 +19,8 @@ function currentUser() {
 export const SecureApi = async (url, options = {}) => {
 
  const user = await currentUser();
-  const token = await user.getIdToken();
+  // const token = await user.accessToken
+  const token = await user.getIdToken()
 
 const defaultHeaders = {
     Authorization: `Bearer ${token}`,

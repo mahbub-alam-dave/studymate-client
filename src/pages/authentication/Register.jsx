@@ -20,7 +20,7 @@ const Register = () => {
     setValidationError("");
     // register user using email and password
 
-    if (
+    /* if (
       !/(?=.*[a-z])/.test(password) ||
       !/(?=.*[A-Z])/.test(password) ||
       !/(.{6,}$)/.test(password)
@@ -30,7 +30,25 @@ const Register = () => {
         "Password must be in 6 characters, with at least one uppercase and lowercase"
       );
       return;
+    } */
+
+    if(!/(?=.*[a-z])/.test(password)) {
+      setValidationError("Password must include at least one lowercase character")
+      return
     }
+    else if(!/(?=.*[A-Z])/.test(password)) {
+      setValidationError("Password must include at least one uppercase character")
+      return
+    }
+    else if(!/[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+      setValidationError("Password must include at least one special character")
+      return
+    }
+    else if(!/(.{6,}$)/.test(password)) {
+      setValidationError("Password must be at least 6 character long")
+      return
+    }
+
 
     registerUser(email, password)
       .then(() => {
@@ -103,7 +121,7 @@ const Register = () => {
   };
   return (
     <div className="p-4 my-12">
-      <div className="card bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] w-full max-w-md mx-auto shrink-0 shadow-2xl border border-[#00b4d8] dark:border-[#03045e]">
+      <div className="card bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] w-full max-w-[799px] mx-auto shrink-0 shadow-lg border border-gray-200 dark:border-[#03045e]">
         <div className="card-body text-gray-200 px-4 sm:px-6 py-8">
           <h1 className="text-3xl text-center font-bold text-gray-200">
             Register now!
@@ -112,36 +130,40 @@ const Register = () => {
             <label className="label">Name</label>
             <input
               type="text"
-              className="input w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
+              className="input w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
               name="name"
               placeholder="Name"
+              required
             />
             <label className="label">Photo Url</label>
             <input
               type="text"
-              className="input w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
+              className="input w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
               name="photo"
               placeholder="Photo Url"
+              required
             />
             <label className="label">Email</label>
             <input
               type="email"
-              className="input w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
+              className="input w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
               name="email"
               placeholder="Email"
+              required
             />
             <label className="label">Password</label>
             <input
               type="password"
-              className="input w-full bg-transparent border-[#00b4d8] dark:border-[#03045e] focus:outline-none"
+              className="input w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
               name="password"
               placeholder="Password"
+              required
             />
             <div>
               <p className="text-red-500">{validationError}</p>
               <a className="link link-hover">Forgot password?</a>
             </div>
-            <button className="btn btn-neutral mt-4 bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] text-gray-200 shadow-none hover:opacity-70 border border-[#00b4d8] dark:border-[#03045e]">
+            <button className="btn btn-neutral mt-4 bg-[#00b4d8] dark:bg-[#03045e] text-gray-200 shadow-none hover:bg-transparent border border-gray-200 dark:border-[#03045e] focus:outline-none">
               Register
             </button>
           </form>
@@ -152,13 +174,13 @@ const Register = () => {
             </Link>
           </p>
           <div className="flex items-center py-3">
-            <div className="flex-grow border-t border-[#00b4d8] dark:border-[#03045e]"></div>
+            <div className="flex-grow border-t border-gray-200 dark:border-[#03045e]"></div>
             <span className="mx-4 text-sm text-gray-300">OR</span>
-            <div className="flex-grow border-t border-[#00b4d8] dark:border-[#03045e]"></div>
+            <div className="flex-grow border-t border-gray-200 dark:border-[#03045e]"></div>
           </div>
           <button
             onClick={handleGoogleSignIn}
-            className="btn bg-transparent text-gray-200 shadow-none border-[#00b4d8] dark:border-[#03045e] hover:text-green-500"
+            className="btn bg-transparent text-gray-200 shadow-none border-gray-200 dark:border-[#03045e] hover:bg-[#00b4d8] dark:hover:bg-[#03045e] focus:outline-none"
           >
             <FcGoogle size={24} className="" />
             Login with Google

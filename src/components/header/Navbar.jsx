@@ -8,7 +8,7 @@ import ToggleIcon from "./ToggleIcon";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const { user, logOutUser } = useContext(ContextValue);
+  const { user, logOutUser, loading } = useContext(ContextValue);
   const [displayMenu, setDisplayMenu] = useState(false);
   const sidebarRef = useRef(null);
   const menuButtonRef = useRef(null);
@@ -16,10 +16,10 @@ const Navbar = () => {
 
   // console.log(mode)
 
+
   const handleLogout = () => {
     logOutUser()
       .then(() => {
-        // user logged out successfully
         navigate("/");
       })
       .catch((error) => {
@@ -38,9 +38,6 @@ const Navbar = () => {
       <NavLink to="/create-assignment">
         <span>Create Assignment</span>
       </NavLink>
-      <NavLink to="/pending-assignments">
-        <span>Pending Assignments</span>
-      </NavLink>
       <NavLink to="/my-attempted-assignment">
         <span>Attempted Assignments</span>
       </NavLink>
@@ -49,12 +46,26 @@ const Navbar = () => {
 
   const navLinks2 = (
     <>
-      <NavLink to={"/"} className="h-full flex items-center hover:bg-[#00b4d8] dark:hover:bg-[#03045e] px-3">
+      <NavLink
+        to={"/"}
+        className="h-full flex items-center hover:bg-[#00b4d8] dark:hover:bg-[#03045e] px-3"
+      >
         <span>Home</span>
       </NavLink>
-      <NavLink to={"/assignments"} className="h-full flex items-center hover:bg-[#00b4d8] dark:hover:bg-[#03045e] px-3">
+      <NavLink
+        to={"/assignments"}
+        className="h-full flex items-center hover:bg-[#00b4d8] dark:hover:bg-[#03045e] px-3"
+      >
         <span>Assignments</span>
       </NavLink>
+      {user && (
+        <NavLink
+          to="/pending-assignments"
+          className="h-full flex items-center hover:bg-[#00b4d8] dark:hover:bg-[#03045e] px-3"
+        >
+          <span>Pending Assignments</span>
+        </NavLink>
+      )}
     </>
   );
 
@@ -81,7 +92,7 @@ const Navbar = () => {
   };
 
   // bg-gradient-to-br from- to-[rgb(3,5,94)] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814]
-
+if (loading) return null;
   return (
     <div className="bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814] w-full shadow-md border border-white dark:border-[#03045e]">
       <div className="h-[75px] w-full max-w-[1440px] mx-auto flex justify-between items-center gap-4 px-4 sm:px-5 md:px-6">

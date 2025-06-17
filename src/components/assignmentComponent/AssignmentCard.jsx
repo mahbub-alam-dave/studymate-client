@@ -21,26 +21,33 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           axios
-            .delete(`http://localhost:3000/assignments/${id}`)
+            .patch(`http://localhost:3000/assignments/${id}/delete`)
             .then((res) => {
-              if (res.data.deletedCount) {
+              console.log(res.data)
+              if (res.data.modifiedCount) {
                 Swal.fire({
                   position: "top-end",
                   icon: "success",
-                  title: "Assignment has deleted successfully",
+                  title: "Assignment has removed successfully",
                   showConfirmButton: false,
                   timer: 1500,
                 });
-                const remainingAssignment = assignments.filter(
-                  (assignment) => assignment._id !== id
-                );
-                setAssignments(remainingAssignment);
+                const remainingAssignments = assignments.filter(
+          (assignment) => assignment._id.toString() !== id
+        );
+        setAssignments(remainingAssignments);
               }
+            })
+            .catch((error) => {
+              Swal.fire({
+                position: "top-end",
+                icon: "error",
+                title: error.message,
+                showConfirmButton: false,
+                timer: 1500,
+              });
             });
         }
-        // else if (result.isDenied) {
-        //   Swal.fire("Changes are not saved", "", "info");
-        // }
       });
     } else {
       Swal.fire({
@@ -71,16 +78,14 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
 
   const handleViewAssignment = (id) => {
     if (user) return navigate(`/view-assignment-details/${id}`);
-      Swal.fire({
-        position: "top-end",
-        icon: "info",
-        title: "Please login to see details!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-    
+    Swal.fire({
+      position: "top-end",
+      icon: "info",
+      title: "Please login to see details!",
+      showConfirmButton: false,
+      timer: 1500,
+    });
   };
-  // bg-gradient-to-br from-[#00b4d8] to-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] text-gray-200
   return (
     <div className="w-full flex flex-col sm:flex-row bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814] text-gray-200 border border-white dark:border-[#03045e] shadow-sm rounded-2xl gap-4 relative p-4">
       <img
@@ -135,3 +140,21 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
 };
 
 export default AssignmentCard;
+
+/* axios
+            .delete(`http://localhost:3000/assignments/${id}`)
+            .then((res) => {
+              if (res.data.deletedCount) {
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Assignment has deleted successfully",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+                const remainingAssignment = assignments.filter(
+                  (assignment) => assignment._id !== id
+                );
+                setAssignments(remainingAssignment);
+              }
+            }); */
