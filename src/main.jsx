@@ -19,6 +19,7 @@ import { assignmentDetails } from './apis/assignmentDetails'
 import { pendingAssignments } from './apis/PendingAssignmentApi'
 import { updateAssignment } from './apis/updateAssignmentApi'
 import MyBookMark from './pages/privatePages/MyBookMark'
+import NotFound from './pages/NotFound'
 // import DataLoader from './apis/DataLoader'
 
 const router = createBrowserRouter([
@@ -75,6 +76,10 @@ const router = createBrowserRouter([
     element: <PrivateRoute> <MyBookMark /></PrivateRoute>,
   }
   ]
+  },
+    {
+        path: '*',
+        element: <NotFound />
   }
 ])
 
