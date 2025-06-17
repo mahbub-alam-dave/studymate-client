@@ -5,7 +5,7 @@ import FrequentQuestionSection from '../../components/homeComponents/FrequentQue
 
 const Home = () => {
     return (
-        <div>
+        <div className='w-full'>
             <Banner />
             <FeatureSection />
             <FrequentQuestionSection />

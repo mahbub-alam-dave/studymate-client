@@ -1,11 +1,13 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router";
 import { ContextValue } from "../../Contextes/AllContexts";
-import Sidebar from "./Sidebar";
+// import Sidebar from "./Sidebar";
 import { CiMenuFries } from "react-icons/ci";
 import User from "../../components/header/User";
 import ToggleIcon from "./ToggleIcon";
 import Swal from "sweetalert2";
+import { IoMdClose } from "react-icons/io";
+import Sidebar from "./Sidebar";
 
 const Navbar = () => {
   const { user, logOutUser, loading } = useContext(ContextValue);
@@ -15,7 +17,6 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   // console.log(mode)
-
 
   const handleLogout = () => {
     logOutUser()
@@ -92,10 +93,10 @@ const Navbar = () => {
   };
 
   // bg-gradient-to-br from- to-[rgb(3,5,94)] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814]
-if (loading) return null;
+  if (loading) return null;
   return (
-    <div className="bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814] w-full shadow-md border border-white dark:border-[#03045e]">
-      <div className="h-[75px] w-full max-w-[1440px] mx-auto flex justify-between items-center gap-4 px-4 sm:px-5 md:px-6">
+    <div className=" bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814] w-full shadow-md border border-white dark:border-[#03045e]">
+      <div className="h-[75px] max-w-[1440px] w-full mx-auto flex justify-between items-center gap-4 px-4 sm:px-5 md:px-6">
         <div className="">
           <h2 className="rancho text-2xl text-[#FF3F33] font-bold">
             Study <span className="text-white">Mate</span>
@@ -145,3 +146,59 @@ if (loading) return null;
 };
 
 export default Navbar;
+
+/* 
+<div
+      className={`text-gray-200 max-w-[300px] w-full bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814] shadow-lg shadow-gray-400 h-screen fixed top-0 transition-all duration-600 ease-in-out  ${
+        displayMenu ? "right-0" : "right-[-300px]"
+      } z-10`}
+    >
+      <div className="flex flex-col  gap-4 px-3 py-6 mt-10">
+        <IoMdClose
+          onClick={() => setDisplayMenu((display) => !display)}
+          size={22}
+          className="mx-3"
+        />
+        <NavLink
+          onClick={() => setDisplayMenu((display) => !display)}
+          to={"/"}
+          className="hover:bg-[#00b4d8] dark:hover:bg-[#03045e] px-3"
+        >
+          <span>Home</span>
+        </NavLink>
+        <NavLink
+          onClick={() => setDisplayMenu((display) => !display)}
+          to={"/assignments"}
+          className="hover:bg-[#00b4d8] dark:hover:bg-[#03045e] px-3"
+        >
+          <span>Assignments</span>
+        </NavLink>
+              {user && (
+                <NavLink
+                  to="/pending-assignments"
+                  className="hover:bg-[#00b4d8] dark:hover:bg-[#03045e] px-3"
+                >
+                  <span>Pending Assignments</span>
+                </NavLink>
+              )}
+        <div className="px-3">
+        <ToggleIcon />
+        </div>
+        <div className="flex flex-col gap-4 items-start px-3">
+        {user ? (
+          <button onClick={handleLogout} className="btn bg-[#FF3F33] dark:bg-[#8E1616] block sm:hidden text-gray-200 border-none shadow-none">
+            Logout
+          </button>
+        ) : (
+          <NavLink to={"/login"}>
+            <button
+              onClick={() => setDisplayMenu((display) => !display)}
+              className="btn sm:hidden bg-[#4ED7F1] dark:bg-[#03045e] text-gray-200 hover:bg-transparent hover:font-bold transition-colors hover:border-2 duration-100"
+            >
+              Login
+            </button>
+          </NavLink>
+        )}
+        </div>
+      </div>
+    </div> */

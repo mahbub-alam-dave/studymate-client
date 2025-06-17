@@ -2,7 +2,7 @@ import React from "react";
 
 const FrequentQuestionSection = () => {
   return (
-    <div className="max-w-[1440px] mx-auto py-12 flex flex-col gap-12 px-4 sm:px-5 md:px-6">
+    <div className="max-w-[1440px] w-full mx-auto py-12 flex flex-col gap-12 px-4 sm:px-5 md:px-6">
       <h2 className="text-2xl md:text-3xl font-bold text-center text-[#FF3F33] dark:text-gray-200">
         Frequently Asked Questions
       </h2>

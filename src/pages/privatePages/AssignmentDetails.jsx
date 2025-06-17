@@ -67,7 +67,7 @@ const AssignmentDetails = () => {
 
   return (
     <div className="py-12">
-      <div className="max-w-[1024px] mx-auto flex flex-col gap-8 justify-center items-start px-4 sm:px-5 md:px-6">
+      <div className="max-w-[1024px] w-full mx-auto flex flex-col gap-8 justify-center items-start px-4 sm:px-5 md:px-6">
         <Link to={'/assignments'}>
           <div className="flex gap-2 items-center text-lg text-[#FF3F33] cursor-pointer">
             <MdOutlineKeyboardDoubleArrowLeft size={20} />

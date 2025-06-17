@@ -53,3 +53,7 @@ a.active {
 .no-spinner {
   -moz-appearance: textfield;
 }
+
+html, body {
+  overflow-x: hidden;
+}

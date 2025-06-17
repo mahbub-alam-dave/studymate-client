@@ -52,7 +52,7 @@ useEffect(() => {
 
 
   return (
-    <div className="py-12 px-4 sm:px-5 md:px-6">
+    <div className="py-12 px-4 sm:px-5 md:px-6 w-full">
       <div className="flex flex-col gap-4 pb-12 justify-center items-center">
         <h2 className="text-2xl md:text-3xl font-bold text-center text-[#FF3F33] dark:text-gray-200">
           All Assignments

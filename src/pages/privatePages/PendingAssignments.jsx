@@ -34,7 +34,7 @@ const PendingAssignments = () => {
     return <EmptyComponents message={"No pending assignments"} />;
   }
   return (
-    <div className="py-12 px-4 sm:px-5 md:px-6 flex flex-col gap-8 max-w-[1440px] mx-auto">
+    <div className="py-12 px-4 sm:px-5 md:px-6 flex flex-col gap-8 max-w-[1440px] w-full mx-auto">
       <h2 className="text-2xl lg:text-3xl font-bold text-center text-[#FF3F33] dark:text-gray-200">
         All Pending Assignments
       </h2>
