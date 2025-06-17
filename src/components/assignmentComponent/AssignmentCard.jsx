@@ -21,7 +21,7 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
         /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           axios
-            .patch(`http://localhost:3000/assignments/${id}/delete`)
+            .patch(`https://study-mate-server-gamma.vercel.app/assignments/${id}/delete`)
             .then((res) => {
               console.log(res.data)
               if (res.data.modifiedCount) {

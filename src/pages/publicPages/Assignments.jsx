@@ -23,7 +23,7 @@ useEffect(() => {
 
         if (searchQuery.trim() !== "") {
           const token = await user?.getIdToken();
-          const res = await axios.get(`http://localhost:3000/assignments/search?searchQuery=${searchQuery}`, {
+          const res = await axios.get(`https://study-mate-server-gamma.vercel.app/assignments/search?searchQuery=${searchQuery}`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },

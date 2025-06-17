@@ -23,7 +23,7 @@ const AssignmentSubmitModal = ({closeModal, openModal, submitAssignment}) => {
   if (!openModal) return null;
 
     return (
-<div className="w-full bg-gradient-to-br from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] flex items-center justify-center  z-50">
+<div className="fixed inset-0 bg-gradient-to-br from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] flex items-center justify-center px-4 sm:px-5 md:px-5 z-50">
       <div className="bg-gradient-to-br from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] border border-gray-200 dark:border-[#03045e] rounded-xl p-6 w-full max-w-md space-y-4 shadow-xl">
         <h2 className="text-xl font-bold text-white">Submit Your Assignment</h2>
         <form onSubmit={handleSubmitAssignment} className="space-y-3">

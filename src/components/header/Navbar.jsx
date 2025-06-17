@@ -22,6 +22,7 @@ const Navbar = () => {
     logOutUser()
       .then(() => {
         navigate("/");
+        setDisplayMenu((display) => !display)
       })
       .catch((error) => {
         Swal.fire({
@@ -132,7 +133,7 @@ const Navbar = () => {
           />
           {/* <input type="checkbox" value="cupcake" className="toggle theme-controller" /> */}
           <div className="hidden lg:block">
-            <ToggleIcon />
+            <ToggleIcon setDisplayMenu={setDisplayMenu} displayMenu={displayMenu}/>
           </div>
         </div>
       </div>

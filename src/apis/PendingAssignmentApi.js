@@ -1,5 +1,5 @@
 import { SecureApi } from "./SecureApi";
 
 export async function pendingAssignments() {
-  return SecureApi(`http://localhost:3000/pending-assignments`);
+  return SecureApi(`https://study-mate-server-gamma.vercel.app/pending-assignments`);
 }

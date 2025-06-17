@@ -50,7 +50,7 @@ const PendingAssignmentCard = ({
   };
   if (!openModal) return null;
   return (
-    <div className="fixed inset-0 px-4 sm:px-5 md:px-6 bg-gradient-to-t from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] text-white flex pt-12 md:p-16 flex-col gap-8 items-center z-50">
+    <div className="fixed inset-0 bg-gradient-to-t from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] text-white flex justify-center flex-col gap-8 items-center z-50">
       <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-center">
         Assignment Evaluation Form
       </h2>

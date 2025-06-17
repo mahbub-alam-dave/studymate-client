@@ -32,7 +32,7 @@ const router = createBrowserRouter([
   {
     path: '/assignments',
     element: <Assignments />,
-    loader: () => fetch('http://localhost:3000/assignments'),
+    loader: () => fetch('https://study-mate-server-gamma.vercel.app/assignments'),
     hydrateFallbackElement: <Loader /> 
   },
   {
@@ -50,32 +50,24 @@ const router = createBrowserRouter([
   {
     path: "update-assignment/:id",
     element: <PrivateRoute> <UpdateAssignment /> </PrivateRoute>,
-    // loader: ({params}) => fetch(`http://localhost:3000/assignments/${params.id}`),
     loader: updateAssignment,
     hydrateFallbackElement: <Loader /> 
   },
   {
     path: "view-assignment-details/:id",
     element: <PrivateRoute> <AssignmentDetails /> </PrivateRoute>,
-    // loader: ({params}) => fetch(`http://localhost:3000/assignments/${params.id}`),
     loader: assignmentDetails,
     hydrateFallbackElement: <Loader /> 
   },
   {
     path: "pending-assignments",
     element: <PrivateRoute> <PendingAssignments /> </PrivateRoute>,
-    // loader: () => fetch('http://localhost:3000/pending-assignments'),
     loader: pendingAssignments,
     hydrateFallbackElement: <Loader /> 
   },
   {
     path: "my-attempted-assignment",
     element: <PrivateRoute> <AttemptedAssignments /></PrivateRoute>,
-      loader: async () => {
-    const res = await fetch('http://localhost:3000/assignments');
-    return res.json();
-  },
-    hydrateFallbackElement: <Loader />
   }
   ]
   }
@@ -88,3 +80,10 @@ createRoot(document.getElementById('root')).render(
     </ContextProvider>
   </StrictMode>,
 )
+
+/* 
+      loader: async () => {
+    const res = await fetch('https://study-mate-server-gamma.vercel.app/assignments');
+    return res.json();
+  },
+    hydrateFallbackElement: <Loader /> */

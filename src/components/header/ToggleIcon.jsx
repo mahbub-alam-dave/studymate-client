@@ -3,12 +3,16 @@ import { MdDarkMode } from "react-icons/md";
 import { MdOutlineLightMode } from "react-icons/md";
 import { ContextValue } from '../../Contextes/AllContexts';
 
-const ToggleIcon = () => {
+const ToggleIcon = ({setDisplayMenu, displayMenu}) => {
     const {mode, setMode}= useContext(ContextValue)
+    const handleChangeMode = () => {
+      setMode(!mode)
+      setDisplayMenu(!displayMenu)
+    }
     return (
 
         <div
-          onClick={() => setMode(!mode)}
+          onClick={handleChangeMode}
           className={`tooltip tooltip-right transition-colors duration-300 cursor-pointer ${mode ? "text-yellow-500" : "text-white"}`}
           data-tip={mode ? "toggle to light" :"toggle to dark" }
         >

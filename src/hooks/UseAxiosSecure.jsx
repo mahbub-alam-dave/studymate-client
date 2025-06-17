@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAuth } from "firebase/auth";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://study-mate-server-gamma.vercel.app",
 });
 
 const UseAxiosSecure = () => {

@@ -27,7 +27,7 @@ const UpdateAssignment = () => {
     // update data to the server using axios (patch) method
     axios
       .patch(
-        `http://localhost:3000/assignments/${assignment._id}`,
+        `https://study-mate-server-gamma.vercel.app/assignments/${assignment._id}`,
         assignmentInfo,
         {
           headers: {

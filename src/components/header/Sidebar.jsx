@@ -35,6 +35,7 @@ const Sidebar = ({ displayMenu, setDisplayMenu, handleLogout }) => {
         </NavLink>
               {user && (
                 <NavLink
+                  onClick={() => setDisplayMenu((display) => !display)}
                   to="/pending-assignments"
                   className="hover:bg-[#00b4d8] dark:hover:bg-[#03045e] px-3"
                 >
@@ -42,7 +43,7 @@ const Sidebar = ({ displayMenu, setDisplayMenu, handleLogout }) => {
                 </NavLink>
               )}
         <div className="px-3">
-        <ToggleIcon />
+        <ToggleIcon setDisplayMenu={setDisplayMenu} displayMenu={displayMenu}/>
         </div>
         <div className="flex flex-col gap-4 items-start px-3">
         {user ? (

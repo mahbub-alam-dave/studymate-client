@@ -26,7 +26,7 @@ const AssignmentDetails = () => {
     // save submitted assignment to the database
     axios
       .post(
-        "http://localhost:3000/submitted-assignments",
+        "https://study-mate-server-gamma.vercel.app/submitted-assignments",
         submittedAssignmentInfo
       )
       .then((res) => {
