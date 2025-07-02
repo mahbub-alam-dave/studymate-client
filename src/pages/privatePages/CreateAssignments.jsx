@@ -32,7 +32,7 @@ const CreateAssignments = () => {
 
     // create assignment and store to the database
     axios
-      .post("https://study-mate-server-gamma.vercel.app/assignments", newAssignment)
+      .post(`${import.meta.env.VITE_api_url}/assignments`, newAssignment)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({
@@ -58,17 +58,17 @@ const CreateAssignments = () => {
 
   return (
     <div className="px-4 sm:px-6 py-12 ">
-      <div className="flex flex-col gap-8 justify-center max-w-[799px] w-full mx-auto bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814] border border-white dark:border-[#03045e] rounded-2xl px-4 sm:px-6 py-8 shadow-md">
-      <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-200">
+      <div className="flex flex-col gap-8 justify-center max-w-[799px] w-full mx-auto text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-2xl px-4 sm:px-6 py-8 shadow-xl ">
+      <h2 className="text-2xl md:text-3xl font-bold text-center ">
         Create An Assignment
       </h2>
         <form onSubmit={handleCreateAssignmentForm}>
-          <fieldset className="fieldset text-white">
+          <fieldset className="fieldset">
             <label className="label">Title</label>
             <input
               type="text"
               name="title"
-              className="input w-full bg-transparent border-white dark:border-[#03045e] focus:outline-none"
+              className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
               placeholder="Assignment title"
               required
             />
@@ -77,7 +77,7 @@ const CreateAssignments = () => {
             <input
               type="url"
               name="imageUrl"
-              className="input w-full bg-transparent border-white dark:border-[#03045e] focus:outline-none"
+              className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
               placeholder="Thumbnail image url"
               required
             />
@@ -85,7 +85,7 @@ const CreateAssignments = () => {
             <label className="label mt-2">Marks</label>
             <input
               type="number"
-              className="input w-full bg-transparent border-white dark:border-[#03045e] focus:outline-none no-spinner"
+              className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none no-spinner"
               name="marks"
               placeholder="Enter marks"
               required
@@ -94,7 +94,7 @@ const CreateAssignments = () => {
             <div className="flex flex-col sm:flex-row gap-4 mt-2">
               <div className="flex flex-col gap-1 w-full">
                 <label className="label">Difficulty Label</label>
-                <select className="select w-full bg-transparent text-white border-white dark:border-[#03045e] focus:outline-none" name="level">
+                <select className="select w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none" name="level">
                   <option className="bg-[#00b4d8]" disabled={true}>Select difficulty label</option>
                   <option className="bg-[#00b4d8]" value="Easy">Easy</option>
                   <option className="bg-[#00b4d8]" value='Medium'>Medium</option>
@@ -107,7 +107,7 @@ const CreateAssignments = () => {
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
                   name="dueDate"
-                  className="input w-full bg-transparent border-white dark:border-[#03045e] focus:outline-none"
+                  className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
                 />
               </div>
             </div>
@@ -115,24 +115,24 @@ const CreateAssignments = () => {
             <label className="label mt-2">Description</label>
             <textarea
               type="text"
-              className="textarea w-full bg-transparent border-white dark:border-[#03045e] focus:outline-none"
+              className="textarea w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
               name="description"
               placeholder="Enter assignment description"
               required
             />
-            <span className="text-[#FF3F33]">{error}</span>
+            <span className="text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]">{error}</span>
             <div className="flex gap-2 sm:gap-3 md:gap-4 mt-4">
             <Link to={'/'}>
             <button
               
-              className="btn bg-[#FF3F33] dark:bg-[#8E1616] text-white shadow-none hover:text-white hover:bg-transparent"
+              className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary)] text-[var(--color-text-primary-dark)] shadow-none hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-text-primary-dark)]  hover:bg-transparent"
             >
               Go Back
             </button>
             </Link>
             <button
               type="submit"
-              className="btn bg-[#00b4d8] dark:bg-[#03045e] dark:hover:bg-[rgba(3,5,94,0.3)] transition-colors hover:text-gray-50 hover:bg-transparent border shadow-none text-white"
+              className="btn bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)] text-[var(--color-text-primary-dark)] transition-colors hover:bg-transparent hover:text-[var(--color-text-primary)] border shadow-none dark:hover:text-[var(--color-text-primary-dark)]"
             >
               Create Assignment
             </button>

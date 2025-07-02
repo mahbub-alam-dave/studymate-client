@@ -18,20 +18,20 @@ body {
 
 
 a.active {
-    color:#ffffff;
+    color:#FF3F33;
     font-weight: 500;
-    background-color: #00b4d8;
+    /* background-color: #FF3F33; */
 
 }
 
 .dark a.active {
-  background-color: #03045e;
+  color: #CC3228;
 }
 
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  --color-primary: blue;
+  /* --color-primary: blue;
   --color-secondary: rgba(238,238,238,0.3);
   --color-accent: #e0e0e0;
   --color-cardBg: #48cae4;
@@ -39,7 +39,36 @@ a.active {
   --color-buttonText: #ffffff;
   --color-navbarBg: #2196f3;
   --logo-text: #deff0a;
-  --color-border: rgba(218,218,218,0.48)
+  --color-border: rgba(218,218,218,0.48) */
+
+
+  /* bg color */
+  --color-bg: #f3f4f6;
+  --color-bg-dark: #0A0A23;
+  --color-bg-card: white;
+  --color-bg-card: #ffffff;
+
+  /* brand color */
+  --color-primary: #FF3F33;
+  --color-primary-dark: #CC3228; 
+
+  --color-secondary: #00b4d8;
+  --color-secondary-dark: #03045e; 
+
+
+  /* text color */
+  --color-text-primary: #0A0A23;
+  --color-text-secondary: #4a5565;
+
+/* dark mode */
+  --color-text-primary-dark: #F1F5F9;
+  --color-text-secondary-dark: #CBD5E0;
+
+
+/* border */
+--color-border: #e5e7eb;
+--color-border-dark: #99a1af 
+
   
 }
 

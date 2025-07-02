@@ -9,76 +9,94 @@ import { IoIosInformationCircleOutline } from "react-icons/io";
 const PendingAssignments = () => {
   const pendingSubmittedAssignments = useLoaderData();
   const [openModal, setOpenModal] = useState(false);
+  const [selectedAssignment, setSelectedAssignment] = useState(null);
   const { user } = useContext(ContextValue);
   const [pendingAssignments, setPendingAssignments] = useState(
     pendingSubmittedAssignments
   );
 
-  const handlePendingAssignment = (email) => {
-    if (email === user?.email) {
-      Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: "You can't evaluate own submitted Assignments",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      return;
-    }
-    setOpenModal(true);
-  };
+  const handlePendingAssignment = (assignment) => {
+  if (assignment.email === user?.email) {
+    Swal.fire({
+      position: "top-end",
+      icon: "error",
+      title: "You can't evaluate your own submitted assignment",
+      showConfirmButton: false,
+      timer: 1500,
+    });
+    return;
+  }
+  setSelectedAssignment(assignment);
+  setOpenModal(true);
+};
 
   if (pendingAssignments.length === 0) {
     return <EmptyComponents message={"No pending assignments"} />;
   }
   return (
     <div className="py-12 px-4 sm:px-5 md:px-6 flex flex-col gap-8 max-w-[1440px] w-full mx-auto">
-      <h2 className="text-2xl lg:text-3xl font-bold text-center text-[#FF3F33] dark:text-gray-200">
+      <h2 className="text-2xl lg:text-3xl font-bold text-center text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
         All Pending Assignments
       </h2>
-      <div className="flex flex-col gap-4">
-        {pendingAssignments.map((assignment, index) => {
-          return (
-            <div
-              key={assignment._id}
-              className=" p-4 sm:p-6 rounded-xl flex flex-col gap-2 items-start bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814] text-gray-200 border border-white shadow-sm dark:border-[#03045e]"
-            >
-              {
-                  assignment.availability && 
-              <div className="text-[#2980b9] flex items-center mt-2 gap-2">
-                <IoIosInformationCircleOutline  size={20}/>
-                <span className="">The assignment has removed by the assignment holder</span>
-              </div>
-                }
-              <h2 className="text-2xl sm:text-3xl font-bold">
-                <span className=" ">{index + 1}. </span>
-                {assignment.title}
-              </h2>
-              <p className="text-base sm:text-lg">
-                <span className="font-bold">Marks: </span> {assignment.marks}
-              </p>
-              <p className="text-base sm:text-lg">
-                <span className="font-bold">Examinee Name: </span>{" "}
-                {assignment.examineeName}
-              </p>
-              <button
-                onClick={() => handlePendingAssignment(assignment.email)}
-                className="btn bg-[#4ED7F1] dark:bg-[#03045e] text-gray-200 text-base"
+      <div
+        className="overflow-x-auto w-full shadow-sm rounded-xl overflow-hidden 
+  text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]
+  border border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
+      >
+        <table className="w-full border-collapse">
+          <thead>
+            <tr className="text-left border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+              <th className="p-4">#</th>
+              <th className="p-4">Title</th>
+              <th className="p-4">Marks</th>
+              <th className="p-4">Examinee Name</th>
+              <th className="p-4">Notice</th>
+              <th className="p-4">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {pendingAssignments.map((assignment, index) => (
+              <tr
+                key={assignment._id}
+                className="border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
               >
-                Evaluate{" "}
-              </button>
+                <td className="p-4">{index + 1}</td>
+                <td className="p-4">{assignment.title}</td>
+                <td className="p-4">{assignment.marks}</td>
+                <td className="p-4">{assignment.examineeName}</td>
+                <td className="p-4">
+                  {assignment.availability && (
+                    <div className="flex items-center gap-1">
+                      <IoIosInformationCircleOutline size={18} />
+                      <span>The assignment has been removed</span>
+                    </div>
+                  )}
+                </td>
+                <td className="p-4">
+                  <button
+                  onClick={() => handlePendingAssignment(assignment)}
+              className="btn btn-sm bg-[var(--color-primary)] dark:bg-[var(--color-primary)] text-[var(--color-text-primary-dark)] shadow-none hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-text-primary-dark)]  hover:bg-transparent"
+                  >
+                    Evaluate
+                  </button>
+                </td>
                 
-              <PendingAssignmentCard
-                openModal={openModal}
-                closeModal={() => setOpenModal(false)}
-                assignment={assignment}
-                // handlePendingAssignment={handlePendingAssignment}
-                pendingAssignments={pendingAssignments}
-                setPendingAssignments={setPendingAssignments}
-              />
-            </div>
-          );
-        })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        {selectedAssignment && (
+  <PendingAssignmentCard
+    openModal={openModal}
+    closeModal={() => {
+      setOpenModal(false);
+      setSelectedAssignment(null);
+    }}
+    assignment={selectedAssignment}
+    pendingAssignments={pendingAssignments}
+    setPendingAssignments={setPendingAssignments}
+  />
+)}
       </div>
     </div>
   );

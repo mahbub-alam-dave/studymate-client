@@ -8,13 +8,13 @@ const Banner = () => {
           backgroundSize: "cover",
           backgroundPosition: "center"
         }}
-        className=' bg-[#4995ec] w-full sm:h-[550px] flex justify-center items-center'>
+        className='w-full sm:h-[550px] flex justify-center items-center'>
         <div className='max-w-[1440px] w-full mx-auto px-4 sm:px-5 md:px-6 py-12 sm:py-24 md:py-32 lg:py-44 xl-py-52 flex items-start'>
             {/* <h2>STUDY WITH STUDY MATE & GRAVE YOUR POTENTIAL </h2> */}
             <div className='flex flex-col gap-5'>
-            <h2 className='text-3xl lg:text-4xl xl:text-5xl font-semibold text-white'>Worrying to study with your mates,<br /> It is easy with Study Mate</h2>
+            <h2 className='text-3xl lg:text-4xl xl:text-5xl font-semibold text-[var(--color-text-primary-dark)]'>Worrying to study with your mates,<br /> It is easy with Study Mate</h2>
             {/* Worried about studying alone? It’s easy with Study Mate. */}
-            <p className='text-[var(--color-accent)]'>Study Mate make it easier to explore, take and throw challenges, collaborate with friends and so on. Don't forget to share with your friends. Study easy with fun</p>
+            <p className='text-[var(--color-text-secondary-dark)]'>Study Mate make it easier to explore, take and throw challenges, collaborate with friends and so on. Don't forget to share with your friends. Study easy with fun</p>
             {/* <div className='w-full flex gap-4 flex-col sm:flex-row items-start'>
         <button className='btn sm:-order-1 text-white bg-[var(--color-primary)] border-none outline-none shadow-none'>Invite Now</button>
              </div> */}
@@ -26,8 +26,8 @@ const Banner = () => {
         <input
           type="text"
           placeholder="username@site.com"
-          className="input w-full input-bordered join-item dark:bg-gray-300" />
-        <button className="btn text-white border-none rounded-tr-sm rounded-br-sm shadow-none join-item bg-gradient-to-r from-[#00b4d8] to-[#10129c] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814]">Subscribe</button>
+          className="input w-full input-bordered join-item bg-[var(--color-text-primary-dark)] dark:bg-[var(--color-text-secondary-dark)]" />
+        <button className="btn text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] border-none rounded-tr-sm rounded-br-sm shadow-none join-item bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)]">Subscribe</button>
       </div>
     </fieldset>
   </form>

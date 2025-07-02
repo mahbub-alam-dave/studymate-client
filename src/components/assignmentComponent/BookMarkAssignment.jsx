@@ -24,6 +24,7 @@ const BookMarkAssignment = ({assignment, bookMarkedAssignments, setBookMarkedAss
         Swal.fire("Removed from bookmarks!", "", "success")
     })
     .catch(err => {
+      
       Swal.fire("Error", "Something went wrong", "error");
     });
     }

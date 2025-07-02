@@ -100,11 +100,11 @@ const Navbar = () => {
   // bg-gradient-to-br from- to-[rgb(3,5,94)] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814]
   if (loading) return null;
   return (
-    <div className=" bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814] w-full shadow-md border border-white dark:border-[#03045e]">
+    <div className="bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)] w-full shadow-md border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
       <div className="h-[75px] max-w-[1440px] w-full mx-auto flex justify-between items-center gap-4 px-4 sm:px-5 md:px-6">
         <div className="">
-          <h2 className="rancho text-2xl text-[#FF3F33] font-bold">
-            Study <span className="text-white">Mate</span>
+          <h2 className="rancho text-2xl text-[var(--color-primary)] dark:text-[var(--color-primary-dark)] font-bold">
+            Study <span className="text-[var(--color-text-primary-dark)]">Mate</span>
           </h2>
         </div>
         <div className="h-full lg:items-center justify-center hidden lg:flex gap-4 sm:gap-5 md:gap-6 lg:gap-8 text-white">
@@ -117,7 +117,7 @@ const Navbar = () => {
               {/* bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] */}
               <button
                 onClick={handleLogout}
-                className="btn hidden bg-[#FF3F33] dark:bg-[#8E1616] sm:block text-gray-200 border-none shadow-none"
+                className="btn hidden bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary-dark)] hover:bg-transparent hover:font-bold transition-colors hover:border-2 duration-100 sm:block shadow-none"
               >
                 Logout
               </button>
@@ -125,7 +125,7 @@ const Navbar = () => {
           ) : (
             <Link to="/login">
               {/* bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] */}
-              <button className="btn hidden sm:block bg-[#4ED7F1] dark:bg-[#03045e] text-gray-200 hover:bg-transparent hover:font-bold transition-colors hover:border-2 duration-100">
+              <button className="btn hidden sm:block bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary-dark)] hover:bg-transparent hover:font-bold transition-colors hover:border-2 duration-100">
                 Login
               </button>
             </Link>

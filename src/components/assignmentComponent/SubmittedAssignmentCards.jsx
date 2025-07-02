@@ -34,57 +34,56 @@ const SubmittedAssignmentCards = () => {
 
   return (
     <div className="py-12 px-4 sm:px-5 md:px-6 flex flex-col gap-8 max-w-[1440px] w-full mx-auto">
-      <h2 className="text-2xl md:text-3xl font-bold text-center text-[#FF3F33] dark:text-gray-200">
+      <h2 className="text-2xl md:text-3xl font-bold text-center text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
         My Submitted Assignments
       </h2>
-      <div className="flex flex-col gap-6 w-full">
-        {submittedAssignments.map((submittedAssignment, index) => {
-          return (
-            <div
-              key={submittedAssignment._id}
-              className="w-full shadow-gray-400 dark:shadow-[#000814] bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814] text-gray-200 border border-white dark:border-[#03045e] shadow-sm p-4 sm:p-6 flex flex-col gap-2 rounded-xl"
-            >
-              {submittedAssignment.availability && (
-                <div className="text-[#2980b9] flex items-center mt-2 gap-2">
-                  <IoIosInformationCircleOutline size={20} />
-                  <span className="">
-                      The assignment has removed by the assignment holder
-                  </span>
-                </div>
-              )}
-              <h2 className="font-bold text-xl sm:text-2xl md:text-3xl">
-                {index + 1}. {submittedAssignment?.title}
-              </h2>
-              <p className="text-base">
-                <span className="font-semibold">Total Marks: </span>{" "}
-                {submittedAssignment?.marks}
-              </p>
-              <p className="text-base">
-                <span className="font-semibold">Status: </span>{" "}
-                {submittedAssignment?.status}
-              </p>
-              {submittedAssignment?.examinerFeedback ? (
-                <div>
-                  <p>
-                    <span className="font-semibold">Obtained Marks:</span>{" "}
-                    {submittedAssignment?.obtainedMarks}
-                  </p>
-                  <p>
-                    <span className="font-semibold">Examiner Feedback:</span>{" "}
-                    {submittedAssignment?.examinerFeedback}
-                  </p>
-                </div>
-              ) : (
-                <div>
-                  <h2 className="text-[#ffcc00]">
-                    No marks or feedback given yet !!
-                  </h2>
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
+<div className="overflow-x-auto w-full shadow-sm border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-xl overflow-hidden">
+  <table className="w-full border-collapse">
+    <thead>
+      <tr className="text-left border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+        <th className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">#</th>
+        <th className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">Title</th>
+        <th className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">Total Marks</th>
+        <th className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">Status</th>
+        <th className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">Obtained Marks</th>
+        <th className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">Examiner Feedback</th>
+        <th className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">Notice</th>
+      </tr>
+    </thead>
+    <tbody>
+      {submittedAssignments.map((submittedAssignment, index) => (
+        <tr
+          key={submittedAssignment._id}
+          className="border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
+        >
+          <td className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{index + 1}</td>
+          <td className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{submittedAssignment.title}</td>
+          <td className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{submittedAssignment.marks}</td>
+          <td className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{submittedAssignment.status}</td>
+          <td className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+            {submittedAssignment.examinerFeedback
+              ? submittedAssignment.obtainedMarks
+              : '—'}
+          </td>
+          <td className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+            {submittedAssignment.examinerFeedback
+              ? submittedAssignment.examinerFeedback
+              : 'No feedback yet'}
+          </td>
+          <td className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+            {submittedAssignment.availability && (
+              <div className="flex items-center gap-1">
+                <IoIosInformationCircleOutline size={18} />
+                <span>The assignment has been removed</span>
+              </div>
+            )}
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
     </div>
   );
 };

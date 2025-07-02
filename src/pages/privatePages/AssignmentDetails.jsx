@@ -24,7 +24,7 @@ const AssignmentDetails = () => {
     // save submitted assignment to the database
     axios
       .post(
-        "https://study-mate-server-gamma.vercel.app/submitted-assignments",
+        `${import.meta.env.VITE_api_url}/submitted-assignments`,
         submittedAssignmentInfo
       )
       .then((res) => {
@@ -65,15 +65,15 @@ const AssignmentDetails = () => {
 
   return (
     <div className="py-12">
-      <div className="max-w-[1024px] w-full mx-auto flex flex-col gap-8 justify-center items-start px-4 sm:px-5 md:px-6">
+      <div className="max-w-[1024px] w-full mx-auto flex flex-col gap-8 justify-center items-start px-4 sm:px-5 md:px-6 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
         <Link to={'/assignments'}>
-          <div className="flex gap-2 items-center text-lg text-[#FF3F33] cursor-pointer">
+          <div className="flex gap-2 items-center text-lg text-[var(--color-primary)] dark:text-[var(--color-primary-dark)] cursor-pointer">
             <MdOutlineKeyboardDoubleArrowLeft size={20} />
             <span>Go back</span>
           </div>
         </Link>
 
-        <div className=" w-full bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] border-[#00b4d8] dark:border-[#03045e] text-gray-200 mx-auto flex flex-col justify-center border rounded-2xl relative">
+        <div className=" w-full bg-[var(--color-bg-card)] dark:bg-transparent mx-auto flex flex-col justify-center border border-[var(--color-border)] dark:border-[var(--color-border-dark)] shadow-sm rounded-2xl relative">
           <img
             className="w-full h-[450px] object-cover rounded-tl-2xl rounded-tr-2xl"
             src={assignment.imageUrl}
@@ -105,7 +105,7 @@ const AssignmentDetails = () => {
             <div className="flex gap-2 flex-wrap">
               <button
                 onClick={handleTakeAssignment}
-                className="btn text-base mt-2 bg-[#4ED7F1] dark:bg-[#03045e] text-gray-200 hover:text-white hover:bg-transparent"
+                className="btn mt-2 bg-[var(--color-primary)] dark:bg-[var(--color-primary)] text-[var(--color-text-primary-dark)] hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-text-primary-dark)] hover:bg-transparent"
               >
                 Take Assignment
               </button>

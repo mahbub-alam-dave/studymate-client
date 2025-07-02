@@ -104,19 +104,19 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
       }
     });
   }
-
+// dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814]
   return (
-    <div className="w-full flex flex-col sm:flex-row bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814] text-gray-200 border border-white dark:border-[#03045e] shadow-sm rounded-2xl gap-4 relative p-4">
+    <div className="w-full flex flex-col md:flex-row md:gap-3 bg-[var(--color-bg-card)] dark:bg-transparent text-[var(--color-text-primary)]  dark:text-[var(--color-text-primary-dark)]  shadow-sm shadow-gray-300 rounded-xl relative ">
+      {/* <div className="flex flex-col sm:flex-row gap-6 "> */}
       <img
-        className="sm:w-[320px]  object-cover rounded-tl-2xl rounded-tr-2xl sm:rounded-2xl"
+        className="w-full md:max-w-[360px] max-h-[330px] h-auto shrink-0  object-cover rounded-tl-xl rounded-tr-xl sm:rounded-tl-xl sm:rounded-bl-xl md:rounded-tr-none"
         src={assignment.imageUrl}
         alt={assignment.title}
       />
-      <div className="flex flex-col gap-3 justify-center">
-        <div className="flex flex-col gap-1">
-          <div className="flex gap-12 items-center">
+      <div className="flex flex-col justify-center gap-3 flex-1 p-4 py-8 md:py-4">
+        <div className="flex flex-col items-start gap-2">
           <p
-            className={`p-1 px-2 rounded-md text-gray-200 text-sm ${
+            className={`p-1 px-3 rounded-2xl text-gray-200 text-xm ${
               assignment.level === "Easy"
                 ? "bg-green-500"
                 : assignment.level === "Medium"
@@ -126,9 +126,7 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
           >
             {assignment.level}
           </p>
-          <FaRegBookmark onClick={() => handleAddBookmark(assignment._id)} size={20}/>
-          </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold">
+          <h2 className="text-xl sm:text-2xl font-bold">
             {assignment.title}
           </h2>
         </div>
@@ -139,25 +137,28 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
         <div className="flex gap-2 sm:gap-3 md:gap-4 flex-wrap">
           <button
             onClick={() => handleViewAssignment(assignment._id)}
-            className="btn bg-[#4ED7F1] dark:bg-[#03045e] text-gray-200 hover:text-white hover:bg-transparent"
+            className="btn bg-[var(--color-text-primary)] text-[var(--color-text-primary-dark)] dark:text-[var(--color-text-primary-dark)] hover:bg-transparent hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-text-primary-dark)] border-[var(--color-border)] dark:border-[var(--color-border-dark)] "
           >
             View Details
           </button>
           <button
             onClick={() => handleUpdateAssignment(assignment._id)}
-            className="btn bg-[#3D8D7A] dark:bg-[#155E95] text-gray-200 hover:text-white hover:bg-transparent"
+            className="btn bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] hover:bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
           >
             Update
           </button>
           <button
             onClick={() => handleDeleteAssignment(assignment._id)}
-            className="btn bg-[#FF3F33] dark:bg-[#8E1616] text-gray-200 shadow-none hover:text-white hover:bg-transparent"
+            className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] hover:bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
           >
             Delete
           </button>
         </div>
       </div>
-    </div>
+      <div onClick={() => handleAddBookmark(assignment._id)} className="absolute top-6 right-6 bg-[var(--color-bg)] dark:bg-gray-700 rounded-[50%] p-4 items-start cursor-pointer">
+        <FaRegBookmark  size={20}/>
+      </div>
+      </div>
   );
 };
 

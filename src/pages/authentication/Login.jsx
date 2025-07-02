@@ -65,17 +65,17 @@ const Login = () => {
       });
   };
   return (
-    <div className="p-4 my-12">
-    <div className="card bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] w-full max-w-[799px] shrink-0 mx-auto text-gray-200 border border-white dark:border-[#03045e] shadow-lg">
-      <div className="card-body text-gray-200 px-4 sm:px-6 py-8">
-        <h1 className="text-3xl text-center font-bold text-gray-200">
+    <div className="p-4 mt-16">
+    <div className="card text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] border border-[var(--color-border)] dark:border-[var(--color-border-dark)] w-full max-w-md shrink-0 mx-auto  shadow-lg">
+      <div className="card-body px-4 sm:px-6 py-8">
+        <h1 className="text-3xl text-center font-bold">
           Login now!
         </h1>
         <form onSubmit={handleUserLoginForm} className="fieldset">
           <label className="label">Email</label>
           <input
             type="email"
-            className="input w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
+            className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
             name="email"
             placeholder="Email"
             required
@@ -83,7 +83,7 @@ const Login = () => {
           <label className="label">Password</label>
           <input
             type="password"
-            className="input w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
+            className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
             name="password"
             placeholder="Password"
             required
@@ -91,7 +91,8 @@ const Login = () => {
           <div>
             <a className="link link-hover">Forgot password?</a>
           </div>
-          <button className="btn btn-neutral mt-4 bg-[#00b4d8] dark:bg-[#03045e] text-gray-200 text-base shadow-none hover:bg-transparent border border-gray-200 dark:border-[#03045e] focus:outline-none">
+          <button  className="btn bg-[var(--color-text-primary)] dark:bg-[var(--color-text-primary-dark)] text-[var(--color-text-primary-dark)] dark:text-[var(--color-text-primary)] hover:bg-[var(--color-primary)] dark:hover:bg-[var(--color-primary)] hover:text-[var(--color-text-primary-dark)] border-[var(--color-border)] dark:border-[var(--color-border-dark)] "
+>
             Login
           </button>
         </form>
@@ -103,9 +104,9 @@ const Login = () => {
         </p>
         {/* <div className="divider text-sm divider-success text-gray-200">OR</div> */}
         <div className="flex items-center py-3">
-          <div className="flex-grow border-t border-gray-200 dark:border-[#03045e]"></div>
-          <span className="mx-4 text-sm text-gray-300">OR</span>
-          <div className="flex-grow border-t border-gray-200 dark:border-[#03045e]"></div>
+          <div className="flex-grow border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)]"></div>
+          <span className="mx-4 text-sm ">OR</span>
+          <div className="flex-grow border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)]"></div>
         </div>
         {/*         <div className="flex gap-2 items-center">
           <span>or, Login with your</span>
@@ -114,7 +115,7 @@ const Login = () => {
         </div> */}
         <button
           onClick={handleGoogleSignIn}
-          className="btn bg-transparent text-gray-200 border shadow-none border-gray-200 dark:border-[#03045e] hover:bg-[#00b4d8] dark:hover:bg-[#03045e] focus:outline-none"
+          className="btn bg-transparent border shadow-none border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:bg-[var(--color-secondary)] dark:hover:bg-[var(--color-secondary-dark)] hover:text-[var(--color-text-primary-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] focus:outline-none"
         >
           <FcGoogle size={24} className="" />
           Login with Google

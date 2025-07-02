@@ -26,7 +26,7 @@ const UpdateAssignment = () => {
     // update data to the server using axios (patch) method
     axios
       .patch(
-        `https://study-mate-server-gamma.vercel.app/assignments/${assignment._id}`,
+        `${import.meta.env.VITE_api_url}/${assignment._id}`,
         assignmentInfo,
         {
           headers: {
@@ -68,18 +68,18 @@ const UpdateAssignment = () => {
 
   return (
     <div className="px-4 sm:px-6 py-12">
-      <div className="flex flex-col gap-8 justify-center max-w-[799px] w-full mx-auto bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] border border-gray-200 dark:border-[#03045e] rounded-2xl px-4 sm:px-6 py-8 shadow-xl ">
-        <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-200">
+      <div className="flex flex-col gap-8 justify-center max-w-[799px] w-full mx-auto text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-2xl px-4 sm:px-6 py-8 shadow-xl ">
+        <h2 className="text-2xl md:text-3xl font-bold text-center">
           Update Assignment
         </h2>
         <form onSubmit={handleUpdateAssignmentForm}>
-          <fieldset className="fieldset text-gray-200">
+          <fieldset className="fieldset ">
             <label className="label mt-2">Title</label>
             <input
               type="text"
               name="title"
               defaultValue={assignment.title}
-              className="input w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
+              className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
               placeholder="Assignment title"
               required
             />
@@ -89,7 +89,7 @@ const UpdateAssignment = () => {
               type="url"
               name="imageUrl"
               defaultValue={assignment.imageUrl}
-              className="input w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
+              className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
               placeholder="Thumbnail image url"
               required
             />
@@ -98,7 +98,7 @@ const UpdateAssignment = () => {
             <input
               type="number"
               defaultValue={assignment.marks}
-              className="input w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none no-spinner"
+              className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none no-spinner"
               name="marks"
               placeholder="Enter marks"
               required
@@ -108,20 +108,20 @@ const UpdateAssignment = () => {
               <div className="flex flex-col gap-1 w-full">
                 <label className="label">Difficulty Label</label>
                 <select
-                  className="select w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
+                  className="select w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
                   defaultValue={assignment.level}
                   name="level"
                 >
-                  <option className="bg-[#00b4d8]" disabled={true}>
+                  <option className="bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)]" disabled={true}>
                     Select difficulty label
                   </option>
-                  <option className="bg-[#00b4d8]" value="Easy">
+                  <option className="bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)]" value="Easy">
                     Easy
                   </option>
-                  <option className="bg-[#00b4d8]" value="Medium">
+                  <option className="bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)]" value="Medium">
                     Medium
                   </option>
-                  <option className="bg-[#00b4d8]" value="Hard">
+                  <option className="bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)]" value="Hard">
                     Hard
                   </option>
                 </select>
@@ -138,7 +138,7 @@ const UpdateAssignment = () => {
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
                   name="dueDate"
-                  className="input w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
+                  className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
                 />
               </div>
             </div>
@@ -147,21 +147,21 @@ const UpdateAssignment = () => {
             <textarea
               type="text"
               defaultValue={assignment.description}
-              className="textarea w-full bg-transparent border-gray-200 dark:border-[#03045e] focus:outline-none"
+              className="textarea w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
               name="description"
               placeholder="Enter assignment description"
               required
             />
-            <span className="text-[#FF3F33]">{error}</span>
+            <span className="text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]">{error}</span>
             <div className="flex gap-2 sm:gap-3 md:gap-4 mt-4">
               <Link to={"/assignments"}>
-                <button className="btn bg-[#FF3F33] dark:bg-[#8E1616] text-gray-200 shadow-none hover:text-white hover:bg-transparent">
+                <button className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary)] text-[var(--color-text-primary-dark)] shadow-none hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-text-primary-dark)]  hover:bg-transparent">
                   Cancel
                 </button>
               </Link>
               <button
                 type="submit"
-                className="btn bg-[#00b4d8] dark:bg-[#03045e] dark:hover:bg-[rgba(3,5,94,0.3)] transition-colors hover:text-gray-50 hover:bg-transparent border shadow-none text-gray-200"
+                className="btn bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)] text-[var(--color-text-primary-dark)] transition-colors hover:bg-transparent hover:text-[var(--color-text-primary)] border shadow-none dark:hover:text-[var(--color-text-primary-dark)]"
               >
                 Update Assignment
               </button>

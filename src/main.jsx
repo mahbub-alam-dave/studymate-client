@@ -34,7 +34,7 @@ const router = createBrowserRouter([
   {
     path: '/assignments',
     element: <Assignments />,
-    loader: () => fetch('https://study-mate-server-gamma.vercel.app/assignments'),
+    loader: () => fetch(`${import.meta.env.VITE_api_url}/assignments`),
     hydrateFallbackElement: <Loader /> 
   },
   {

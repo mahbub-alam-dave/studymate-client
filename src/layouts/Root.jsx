@@ -5,7 +5,7 @@ import Footer from '../components/Footer';
 
 const Root = () => {
     return (
-        <div className='bg-gray-100 dark:bg-[#000814] w-full min-height-[100vh]'>
+        <div className='bg-[var(--color-bg)] dark:bg-[var(--color-bg-dark)] w-full min-height-[100vh]'>
             <Navbar />
             <div className='min-h-[80vh] w-full'>
                 <Outlet />
