@@ -59,7 +59,7 @@ const MyBookMark = () => {
   return (
     <div className="py-12 px-4 sm:px-5 md:px-6 w-full">
       <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 pb-12 justify-center items-center">
-      <h2 className="text-2xl md:text-3xl font-bold text-center text-[#FF3F33] dark:text-gray-200">
+      <h2 className="text-2xl md:text-3xl font-bold text-center text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
         My Bookmarked Assignments
       </h2>
       {bookMarkedAssignments.length < 1 ? (
@@ -71,60 +71,61 @@ const MyBookMark = () => {
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:gap-5 md:gap-6 max-w-[1440px] w-full mx-auto">
-          <table className="w-full border border-white dark:border-[#03045e] text-gray-200">
-  <thead className="bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:from-[#03045e] dark:to-[#000814]">
-    <tr>
-      <th className="border border-white dark:border-[#03045e] p-2">Image</th>
-      <th className="border border-white dark:border-[#03045e] p-2">Title</th>
-      <th className="border border-white dark:border-[#03045e] p-2">Level</th>
-      <th className="border border-white dark:border-[#03045e] p-2">Marks</th>
-      <th className="border border-white dark:border-[#03045e] p-2">Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    {bookMarkedAssignments.map((assignment) => (
-      <tr
-        key={assignment._id}
-        className="bg-gradient-to-l from-[#A8F1FF] to-[#00b4d8] dark:from-[#03045e] dark:to-[#000814]"
-      >
-        <td className="border border-white dark:border-[#03045e] p-2">
-          <img
-            src={assignment.imageUrl}
-            alt={assignment.title}
-            className="w-[120px] h-[80px] object-cover rounded-xl"
-          />
-        </td>
-        <td className="border border-white dark:border-[#03045e] p-2">
-          <h2 className="text-lg font-semibold">{assignment.title}</h2>
-        </td>
-        <td className="border border-white dark:border-[#03045e] p-2">
-          <span
-            className={`p-1 px-2 rounded-md text-gray-200 text-sm ${
-              assignment.level === "Easy"
-                ? "bg-green-500"
-                : assignment.level === "Medium"
-                ? "bg-yellow-500"
-                : "bg-red-500"
-            }`}
-          >
-            {assignment.level}
-          </span>
-        </td>
-        <td className="border border-white dark:border-[#03045e] p-2">
-          {assignment.marks}
-        </td>
-        <td className="border border-white dark:border-[#03045e] p-2">
-          <button
-            onClick={() => handleRemoveBookmarkAssignment(assignment._id)}
-            className="btn bg-[#FF3F33] dark:bg-[#8E1616] text-gray-200 shadow-none hover:text-white hover:bg-transparent"
-          >
-            Remove
-          </button>
-        </td>
+          <div className="overflow-x-auto w-full shadow-sm rounded-xl overflow-hidden 
+  text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]
+  border border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
+>
+  <table className="w-full border-collapse">
+    <thead>
+      <tr className="text-left border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+        <th className="p-4">Image</th>
+        <th className="p-4">Title</th>
+        <th className="p-4">Level</th>
+        <th className="p-4">Marks</th>
+        <th className="p-4">Action</th>
       </tr>
-    ))}
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      {bookMarkedAssignments.map((assignment) => (
+        <tr key={assignment._id} className="border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+          <td className="p-4">
+            <img
+              src={assignment.imageUrl}
+              alt={assignment.title}
+              className="w-28 h-20 object-cover rounded-lg"
+            />
+          </td>
+          <td className="p-4 text-base font-medium">{assignment.title}</td>
+          <td className="p-4">
+            <span
+              className={`px-2 py-1 rounded-md text-sm text-white ${
+                assignment.level === "Easy"
+                  ? "bg-green-500"
+                  : assignment.level === "Medium"
+                  ? "bg-yellow-500"
+                  : "bg-red-500"
+              }`}
+            >
+              {assignment.level}
+            </span>
+          </td>
+          <td className="p-4">{assignment.marks}</td>
+          <td className="p-4">
+            <button
+              onClick={() =>
+                handleRemoveBookmarkAssignment(assignment._id)
+              }
+              className="px-3 py-1 rounded-md bg-red-500 dark:bg-[#8E1616] text-white text-sm"
+            >
+              Remove
+            </button>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
         </div>
       )}
     </div>
