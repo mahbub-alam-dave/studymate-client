@@ -33,23 +33,8 @@ const Navbar = () => {
       });
   };
 
-  const navLinks = (
-    <>
-      <NavLink to="/create-assignment">
-        <span>Create Assignment</span>
-      </NavLink>
-      <NavLink to="/my-attempted-assignment">
-        <span>Attempted Assignments</span>
-      </NavLink>
-        <NavLink
-          to="/my-bookmarked-assignment"
-        >
-          <span>Bookmarked Assignments</span>
-        </NavLink>
-    </>
-  );
 
-  const navLinks2 = (
+  const navLinks = (
     <>
       <NavLink
         to={"/"}
@@ -64,12 +49,19 @@ const Navbar = () => {
         <span>Assignments</span>
       </NavLink>
       {user && (
+        <> 
         <NavLink
-          to="/pending-assignments"
+          to="/dashboard/create-assignment"
           className="h-full flex items-center hover:bg-[#00b4d8] dark:hover:bg-[#03045e] px-3"
         >
-          <span>Pending Assignments</span>
+          <span>Create Assignment</span>
         </NavLink>
+        <NavLink
+          to="/dashboard"
+        >
+          <span>Dashboard</span>
+        </NavLink>
+        </>
       )}
       
     </>
@@ -108,12 +100,12 @@ const Navbar = () => {
           </h2>
         </div>
         <div className="h-full lg:items-center justify-center hidden lg:flex gap-4 sm:gap-5 md:gap-6 lg:gap-8 text-white">
-          {navLinks2}
+          {navLinks}
         </div>
-        <div className="flex  items-center gap-2">
+        <div className="flex items-center gap-2">
           {user ? (
             <div className="flex gap-3 items-center">
-              <User handleLogout={handleLogout} navLinks={navLinks} />
+              <User handleLogout={handleLogout} />
               {/* bg-gradient-to-br from-[#00b4d8] to-[#03045e] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814] */}
               <button
                 onClick={handleLogout}
@@ -133,10 +125,10 @@ const Navbar = () => {
 
           <CiMenuFries
             onClick={handleMenuBtn}
-            className={`text-3xl text-[#FF3F33] font-bold block lg:hidden`}
+            className={`text-3xl text-[var(--color-text-primary-dark)] dark:text-[var(--color-primary-dark)] font-bold block lg:hidden`}
           />
           {/* <input type="checkbox" value="cupcake" className="toggle theme-controller" /> */}
-          <div className="hidden lg:block">
+          <div className="hidden lg:flex items-center">
             <ToggleIcon setDisplayMenu={setDisplayMenu} displayMenu={displayMenu}/>
           </div>
         </div>

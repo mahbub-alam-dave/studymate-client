@@ -65,7 +65,7 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
 
   const handleUpdateAssignment = (id) => {
     if (user?.email === assignment.email) {
-      navigate(`/update-assignment/${id}`);
+      navigate(`/dashboard/update-assignment/${id}`);
     } else {
       Swal.fire({
         position: "top-end",

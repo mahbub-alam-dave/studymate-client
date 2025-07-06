@@ -27,7 +27,7 @@ const Banner = () => {
           type="text"
           placeholder="username@site.com"
           className="input w-full input-bordered join-item bg-[var(--color-text-primary-dark)] dark:bg-[var(--color-text-secondary-dark)]" />
-        <button className="btn text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] border-none rounded-tr-sm rounded-br-sm shadow-none join-item bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)]">Subscribe</button>
+        <button className="btn text-[var(--color-text-primary-dark)] border-none rounded-tr-sm rounded-br-sm shadow-none join-item bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)]">Subscribe</button>
       </div>
     </fieldset>
   </form>

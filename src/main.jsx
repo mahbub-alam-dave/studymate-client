@@ -20,6 +20,8 @@ import { pendingAssignments } from './apis/PendingAssignmentApi'
 import { updateAssignment } from './apis/updateAssignmentApi'
 import MyBookMark from './pages/privatePages/MyBookMark'
 import NotFound from './pages/NotFound'
+import DashboardLayout from './layouts/DashboardLayout'
+import Overview from './pages/dashboard/Overview'
 // import DataLoader from './apis/DataLoader'
 
 const router = createBrowserRouter([
@@ -69,7 +71,7 @@ const router = createBrowserRouter([
   },
   {
     path: "my-attempted-assignment",
-    element: <PrivateRoute> <AttemptedAssignments /></PrivateRoute>,
+    element: <PrivateRoute> <AttemptedAssignments /> </PrivateRoute>,
   },
   {
     path: "my-bookmarked-assignment",
@@ -80,13 +82,49 @@ const router = createBrowserRouter([
     {
         path: '*',
         element: <NotFound />
+  },
+  {
+    path: 'dashboard',
+    element: <PrivateRoute> <DashboardLayout /> </PrivateRoute>,
+    children: [
+      {
+        // index: true,
+        path: 'overview',
+        element: <Overview />
+      },
+      {
+        index: true,
+        // path: "create-assignment",
+        element: <CreateAssignments />
+      },
+      {
+        path: "update-assignment/:id",
+        element: <UpdateAssignment />,
+        loader: updateAssignment,
+        hydrateFallbackElement: <Loader />
+      },
+      {
+        path: "pending-assignments",
+        element: <PendingAssignments />,
+        loader: pendingAssignments,
+        hydrateFallbackElement: <Loader /> 
+      },
+      {
+        path: "my-attempted-assignment",
+        element: <AttemptedAssignments />
+      },
+      {
+        path: "my-bookmarked-assignments",
+        element: <MyBookMark />
+      }
+    ]
   }
 ])
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <ContextProvider>
-      <RouterProvider router={router} />
+      <RouterProvider router={router}/>
     </ContextProvider>
   </StrictMode>,
 )

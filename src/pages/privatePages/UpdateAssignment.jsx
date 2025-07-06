@@ -10,7 +10,7 @@ const UpdateAssignment = () => {
   const assignment = useLoaderData();
   const { user } = useContext(ContextValue);
   const token = user.accessToken;
-  const [startDate, setStartDate] = useState(assignment.dueDate);
+  const [startDate, setStartDate] = useState(assignment?.dueDate);
   const navigate = useNavigate();
   const [error, setError] = useState("");
 

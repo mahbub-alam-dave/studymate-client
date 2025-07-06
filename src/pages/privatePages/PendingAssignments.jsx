@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useLoaderData } from "react-router";
+import Loader from '../../components/Loader'
 import PendingAssignmentCard from "../../components/assignmentComponent/PendingAssignmentCard";
 import EmptyComponents from "../../components/EmptyComponents";
 import { ContextValue } from "../../Contextes/AllContexts";
@@ -10,7 +11,7 @@ const PendingAssignments = () => {
   const pendingSubmittedAssignments = useLoaderData();
   const [openModal, setOpenModal] = useState(false);
   const [selectedAssignment, setSelectedAssignment] = useState(null);
-  const { user } = useContext(ContextValue);
+  const { user, loading } = useContext(ContextValue);
   const [pendingAssignments, setPendingAssignments] = useState(
     pendingSubmittedAssignments
   );
@@ -33,9 +34,11 @@ const PendingAssignments = () => {
   if (pendingAssignments.length === 0) {
     return <EmptyComponents message={"No pending assignments"} />;
   }
+  if(loading) return <Loader /> 
+  
   return (
-    <div className="py-12 px-4 sm:px-5 md:px-6 flex flex-col gap-8 max-w-[1440px] w-full mx-auto">
-      <h2 className="text-2xl lg:text-3xl font-bold text-center text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+    <div className="py-12 px-4 sm:px-5 md:px-6 flex flex-col gap-6 sm:gap-8 md:gap-12 pb-12 max-w-[1440px] w-full mx-auto">
+      <h2 className="text-2xl font-bold text-center text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
         All Pending Assignments
       </h2>
       <div

@@ -57,9 +57,9 @@ const MyBookMark = () => {
   // }
 
   return (
-    <div className="py-12 px-4 sm:px-5 md:px-6 w-full">
+    <div className="py-8 px-4 sm:px-5 md:px-6 w-full">
       <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 pb-12 justify-center items-center">
-      <h2 className="text-2xl md:text-3xl font-bold text-center text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+      <h2 className="text-2xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
         My Bookmarked Assignments
       </h2>
       {bookMarkedAssignments.length < 1 ? (

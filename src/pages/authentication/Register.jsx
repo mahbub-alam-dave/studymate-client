@@ -163,7 +163,7 @@ const Register = () => {
               <p className="text-[var(--color-primary)] dark:text-[var(--color-text-primary-dark)]">{validationError}</p>
               <a className="link link-hover">Forgot password?</a>
             </div>
-            <button className="btn bg-[var(--color-text-primary)] dark:bg-[var(--color-text-primary-dark)] text-[var(--color-text-primary-dark)] dark:text-[var(--color-text-primary)] hover:bg-[var(--color-primary)] dark:hover:bg-[var(--color-primary)] hover:text-[var(--color-text-primary-dark)] border-[var(--color-border)] dark:border-[var(--color-border-dark)] ">
+            <button className="btn bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)] text-[var(--color-text-primary-dark)] hover:bg-[var(--color-primary)] dark:hover:bg-[var(--color-primary-dark)] border-[var(--color-border)] dark:border-[var(--color-border-dark)] ">
               Register
             </button>
           </form>
@@ -180,7 +180,7 @@ const Register = () => {
           </div>
           <button
             onClick={handleGoogleSignIn}
-            className="btn bg-transparent border shadow-none border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:bg-[var(--color-secondary)] dark:hover:bg-[var(--color-secondary-dark)] hover:text-[var(--color-text-primary-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] focus:outline-none"
+            className="btn bg-transparent border shadow-none border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:bg-[var(--color-primary)] dark:hover:bg-[var(--color-primary-dark)] hover:text-[var(--color-text-primary-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] focus:outline-none"
           >
             <FcGoogle size={24} className="" />
             Login with Google
