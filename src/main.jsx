@@ -89,12 +89,12 @@ const router = createBrowserRouter([
     children: [
       {
         // index: true,
-        path: 'overview',
+        // path: 'overview',
         element: <Overview />
       },
       {
-        index: true,
-        // path: "create-assignment",
+        // index: true,
+        path: "create-assignment",
         element: <CreateAssignments />
       },
       {
