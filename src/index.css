@@ -18,14 +18,14 @@ body {
 
 
 a.active {
-    color:#FF3F33;
+    color:#0D35FF;
     font-weight: 500;
     /* background-color: #FF3F33; */
 
 }
 
 .dark a.active {
-  color: #CC3228;
+  color: #4FA7FF;
 }
 
 @plugin "daisyui/theme" {
@@ -49,21 +49,26 @@ a.active {
   --color-bg-card-dark: #101828;
 
   /* brand color */
-  --color-primary: #FF3F33;
-  --color-primary-dark: #CC3228; 
+/*   --color-primary: #FF3F33;
+  --color-primary-dark: #CC3228;  */
+  --color-primary: #0D35FF;
+  --color-primary-dark: #4FA7FF; 
 
-  --color-secondary: #00b4d8;
+  --color-secondary: #0005A4;
   --color-secondary-dark: #03045e; 
 
 
   /* text color */
   --color-text-primary: #0A0A23;
-  --color-text-secondary: #4a5565;
+  --color-text-secondary: #423955;
 
 /* dark mode */
   --color-text-primary-dark: #F1F5F9;
-  --color-text-secondary-dark: #CBD5E0;
+  --color-text-secondary-dark: #9aa0a7;
 
+  /* low contrast text */
+  --color-text-low: #0a0a23be;
+  --color-text-low-dark: #f1f5f9be;
 
 /* border */
 --color-border: #e5e7eb;
@@ -85,4 +90,28 @@ a.active {
 
 html, body {
   overflow-x: hidden;
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE & Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
+
+.shadow-top {
+  box-shadow: inset 0 12px 8px -8px rgba(0, 0, 0, 0.3);
+}
+
+.shadow-bottom {
+  box-shadow: inset 0 -12px 8px -8px rgba(0, 0, 0, 0.3);
+}
+
+.dark .shadow-top {
+  box-shadow: inset 0 12px 8px -8px rgba(255, 255, 255, 0.2);
+}
+
+.dark .shadow-bottom {
+  box-shadow: inset 0 -12px 8px -8px rgba(255, 255, 255, 0.2);
 }

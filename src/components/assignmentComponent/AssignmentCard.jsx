@@ -106,7 +106,7 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
   }
 // dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814]
   return (
-    <div className="w-full flex flex-col md:flex-row md:gap-3 bg-[var(--color-bg-card)] dark:bg-transparent text-[var(--color-text-primary)]  dark:text-[var(--color-text-primary-dark)]  shadow-sm shadow-gray-300 rounded-xl relative ">
+    <div className="w-full flex flex-col md:flex-row  bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]   rounded-xl relative ">
       {/* <div className="flex flex-col sm:flex-row gap-6 "> */}
       <img
         className="w-full md:max-w-[360px] max-h-[330px] h-auto shrink-0  object-cover rounded-tl-xl rounded-tr-xl sm:rounded-tl-xl sm:rounded-bl-xl md:rounded-tr-none"
@@ -116,7 +116,7 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
       <div className="flex flex-col justify-center gap-3 flex-1 p-4 py-8 md:py-4">
         <div className="flex flex-col items-start gap-2">
           <p
-            className={`p-1 px-3 rounded-2xl text-gray-200 text-xm ${
+            className={`p-1 px-3 rounded-2xl text-gray-200 text-xs ${
               assignment.level === "Easy"
                 ? "bg-green-500"
                 : assignment.level === "Medium"
@@ -133,30 +133,33 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
         <p className="text-base sm:text-lg">
           <span>Marks: </span> {assignment.marks}
         </p>
+        <p className="text-base sm:text-lg">
+          <span>Deadline: </span> {assignment.dueDate}
+        </p>
         {/* <p>{assignment.description}</p> */}
         <div className="flex gap-2 sm:gap-3 md:gap-4 flex-wrap">
           <button
             onClick={() => handleViewAssignment(assignment._id)}
-            className="btn bg-[var(--color-text-primary)] text-[var(--color-text-primary-dark)] dark:text-[var(--color-text-primary-dark)] hover:bg-transparent hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-text-primary-dark)] border-[var(--color-border)] dark:border-[var(--color-border-dark)] "
+            className="btn btn-sm bg-[var(--color-primary)] text-[var(--color-text-primary-dark)]"
           >
             View Details
           </button>
           <button
             onClick={() => handleUpdateAssignment(assignment._id)}
-            className="btn bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] hover:bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
+            className="btn btn-sm btn-outline text-[var(--color-text-primary-)] border border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
           >
             Update
           </button>
           <button
             onClick={() => handleDeleteAssignment(assignment._id)}
-            className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] hover:bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
+            className="btn btn-sm btn-outline text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] border border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
           >
             Delete
           </button>
         </div>
       </div>
-      <div onClick={() => handleAddBookmark(assignment._id)} className="absolute top-6 right-6 bg-[var(--color-bg)] dark:bg-gray-700 rounded-[50%] p-4 items-start cursor-pointer">
-        <FaRegBookmark  size={20}/>
+      <div onClick={() => handleAddBookmark(assignment._id)} className="absolute top-4 right-4 bg-[var(--color-bg)] dark:bg-gray-700 rounded-[50%] p-[10px] items-start cursor-pointer">
+        <FaRegBookmark  size={18}/>
       </div>
       </div>
   );
@@ -181,3 +184,23 @@ export default AssignmentCard;
                 setAssignments(remainingAssignment);
               }
             }); */
+
+
+            /* <button
+            onClick={() => handleViewAssignment(assignment._id)}
+            className="btn bg-[var(--color-text-primary)] text-[var(--color-text-primary-dark)] dark:text-[var(--color-text-primary-dark)] hover:bg-transparent hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-text-primary-dark)] border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
+          >
+            View Details
+          </button>
+          <button
+            onClick={() => handleUpdateAssignment(assignment._id)}
+            className="btn bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] hover:bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
+          >
+            Update
+          </button>
+          <button
+            onClick={() => handleDeleteAssignment(assignment._id)}
+            className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] hover:bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
+          >
+            Delete
+          </button> */

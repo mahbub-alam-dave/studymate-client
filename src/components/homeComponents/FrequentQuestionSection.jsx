@@ -3,13 +3,19 @@ import React from "react";
 const FrequentQuestionSection = () => {
   return (
     <div className="max-w-[1440px] w-full mx-auto pb-12 flex flex-col gap-12 px-4 sm:px-5 md:px-6 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
-      <h2 className="text-2xl md:text-3xl font-bold text-center ">
+      <div className="space-y-4">
+        <h2 className=" text-2xl md:text-3xl font-bold text-center ">
         Frequently Asked Questions
       </h2>
+      <p className="text-center text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">Here are some questions what we frequently getting asked by our new users</p>
+      </div>
       <div className="flex flex-col gap-6 pb-6">
-        <div className="collapse collapse-arrow bg-[var(--color-bg-card)] dark:bg-transparent border border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+        <div className="collapse collapse-arrow bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)]">
+          {/* border border-[var(--color-border)] dark:border-[var(--color-border-dark)] */}
           <input type="radio" name="my-accordion-2" defaultChecked />
-          <div className="collapse-title font-semibold text-xl ">
+          <div className="collapse-title font-semibold text-xl">
+            {/* #F1F5F9;#0A0A23 */}
+            {/* #4a5565;#CBD5E0 */}
             What is Study Mate?
           </div>
           <div className="collapse-content text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
@@ -17,7 +23,7 @@ const FrequentQuestionSection = () => {
             student can join at study and enjoy learning with their friends
           </div>
         </div>
-        <div className="collapse collapse-arrow bg-[var(--color-bg-card)] dark:bg-transparent border border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+        <div className="collapse collapse-arrow bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)]">
           <input type="radio" name="my-accordion-2" />
           <div className="collapse-title font-semibold text-xl ">
             Is it free to use the app?
@@ -27,7 +33,7 @@ const FrequentQuestionSection = () => {
             subscription model
           </div>
         </div>
-        <div className="collapse collapse-arrow bg-[var(--color-bg-card)] dark:bg-transparent border border-[var(--color-border)] dark:border-[var(--color-border-dark)] ">
+        <div className="collapse collapse-arrow bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] ">
           <input type="radio" name="my-accordion-2" />
           <div className="collapse-title font-semibold text-xl ">
             Do I have to register on the app?
@@ -37,9 +43,9 @@ const FrequentQuestionSection = () => {
             in to our application
           </div>
         </div>
-        <div className="collapse collapse-arrow bg-[var(--color-bg-card)] dark:bg-transparent border border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+        <div className="collapse collapse-arrow bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)]">
           <input type="radio" name="my-accordion-2" />
-          <div className="collapse-title font-semibold text-xl ">
+          <div className="collapse-title font-semibold text-xl">
             I forgot my password. What should I do?
           </div>
           <div className="collapse-content text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
@@ -47,7 +53,7 @@ const FrequentQuestionSection = () => {
             instructions sent to your email.
           </div>
         </div>
-        <div className="collapse collapse-arrow bg-[var(--color-bg-card)] dark:bg-transparent border border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+        <div className="collapse collapse-arrow bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)]">
           <input type="radio" name="my-accordion-2" />
           <div className="collapse-title font-semibold text-xl ">
             How do I update my profile information?

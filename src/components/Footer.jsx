@@ -1,72 +1,118 @@
-import React from 'react';
+import React from "react";
+import { PiStudent } from "react-icons/pi";
+import { Link } from "react-router";
+import { FaGithub } from "react-icons/fa";
+import { FaFacebook } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { FaPhoneSquare } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { FaMapMarkerAlt } from "react-icons/fa";
 
 const Footer = () => {
-    return (
-        <div className='bg-[#00b4d8] dark:bg-[#03045e] '>
-          <div className='flex flex-col gap-6 max-w-[1440px] w-full mx-auto py-10'>
-<footer className="footer md:footer-horizontal text-neutral-content px-4 sm:px-5 md:px-6">
-  <aside>
-          <h2 className="rancho text-2xl text-[#FF3F33] font-bold">
-            Study <span className="text-white">Mate</span>
-          </h2>
-    <p>
-      Study together, study easier !!
-    </p>
-  </aside>
-  <div className=' flex md:justify-end'>
-    <div className='flex flex-col gap-6 items-start'>
-     
-  <nav className=''>
-    <h6 className="footer-title">Join Us</h6>
-    <div className="grid grid-flow-col gap-4">
-      <a>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          className="fill-current">
-          <path
-            d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path>
-        </svg>
-      </a>
-      <a>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          className="fill-current">
-          <path
-            d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"></path>
-        </svg>
-      </a>
-      <a>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          className="fill-current">
-          <path
-            d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path>
-        </svg>
-      </a>
+  return (
+    <div className="bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] px-4 sm:px-5 md:px-6">
+      <footer className="flex flex-col gap-6 max-w-[1440px] w-full mx-auto text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] py-10 ">
+        <div className="flex flex-col md:flex-row justify-between gap-6 items-center">
+          <aside className="flex flex-col gap-4">
+            <div className="flex items-center gap-2">
+              <PiStudent
+                size={36}
+                className="text-2xl text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]"
+              />
+              <span className="rancho font-medium text-3xl text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]">
+                Edumate
+              </span>
+            </div>
+            <div className="flex flex-col gap-2 text-[var(--color-text-secondary)] dark:text-[var(--color-text-primary-dark)]">
+              <p className="text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] text-lg">Learn, grow, and achieve together with EduMate — your trusted study companion <br /> that makes learning simpler, smarter, and more fun.</p>
+              <p className="flex itmes-center gap-2">
+                <span className="font-semibold"><FaMapMarkerAlt /></span> 432, Kajipara, Dhaka (near South Marraige Registry
+                office
+              </p>
+              <p className="flex items-center gap-2"><span className="font-semibold"><FaPhoneSquare /></span> +08252526</p>
+              <p className="flex items-center gap-2"><span className="font-semibold"><MdEmail /></span> studymate@gmail.com</p>
+            </div>
+          </aside>
+
+          <div className="flex flex-col md:justify-end justify-self-end gap-4 ">
+            <div className="join">
+              <div>
+                <label className="input validator join-item dark:bg-gray-800">
+                  <svg
+                    className="h-[1em] opacity-50"
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                  >
+                    <g
+                      strokeLinejoin="round"
+                      strokeLinecap="round"
+                      strokeWidth="2.5"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                    </g>
+                  </svg>
+                  <input type="email bg-transparent" placeholder="mail@site.com" required />
+                </label>
+                <div className="validator-hint hidden">
+                  Enter valid email address
+                </div>
+              </div>
+              <button className="btn text-[var(--color-text-primary-dark)] join-item bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)]">Subscribe</button>
+            </div>
+            <ul className="flex md:flex-row flex-wrap gap-4 text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
+              <li>
+                <Link className="hover:text-[var(--color-primary)] dark:hover:text-[var(--color-primary-dark)]">Home</Link>
+              </li>
+              <li className="hover:text-[var(--color-primary)] dark:hover:text-[var(--color-primary-dark)]">
+                <Link>Blogs</Link>
+              </li>
+              <li className="hover:text-[var(--color-primary)] dark:hover:text-[var(--color-primary-dark)]">
+                <Link>About Us</Link>
+              </li>
+              <li className="hover:text-[var(--color-primary)] dark:hover:text-[var(--color-primary-dark)]">
+                <Link>Contact</Link>
+              </li>
+              <li className="hover:text-[var(--color-primary)] dark:hover:text-[var(--color-primary-dark)]">
+                <Link>Privacy Policy</Link>
+              </li>
+            </ul>
+            <div className="flex gap-6 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+          <a href="https://www.linkedin.com/in/md-mahabub-alam-web-dave/">
+            <FaLinkedin size={24} />
+          </a>
+          <a href="https://github.com/mahbub-alam-dave/">
+            <FaGithub size={24} />
+          </a>
+          <a href="https://facebook.com/">
+            <FaFacebook size={24} />
+          </a>
+        </div>
+          </div>
+        </div>
+        {/* <div className="flex gap-6 border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)] md:justify-center pb-5 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+          <a href="">
+            <FaLinkedin size={24} />
+          </a>
+          <a href="">
+            <FaGithub size={24} />
+          </a>
+          <a href="">
+            <FaFacebook size={24} />
+          </a>
+        </div> */}
+        <div className="flex justify-between text-sm text-gray-500 pt-5 border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+          <p className="">
+            Copyright © {new Date().getFullYear()} - All right reserved by Study
+            Mate
+          </p>
+          <p>Powered By: Edumate</p>
+        </div>
+      </footer>
     </div>
-  </nav>
-  <nav className="grid grid-flow-col gap-4">
-    <a className="link link-hover">About us</a>
-    <a className="link link-hover">Contact</a>
-    {/* <a className="link link-hover">Jobs</a>
-    <a className="link link-hover">Press kit</a> */}
-  </nav>
-  </div>
-  </div>
-</footer>
-  <p className='text-sm text-gray-200 px-4 sm:px-5 md:px-6'>Copyright © {new Date().getFullYear()} - All right reserved by Study Mate</p>
-  </div>
-</div>
-    );
+  );
 };
 
 export default Footer;
