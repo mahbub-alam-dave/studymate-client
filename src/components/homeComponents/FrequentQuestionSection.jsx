@@ -7,7 +7,7 @@ const FrequentQuestionSection = () => {
         <h2 className=" text-2xl md:text-3xl font-bold text-center ">
         Frequently Asked Questions
       </h2>
-      <p className="text-center text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">Here are some questions what we frequently getting asked by our new users</p>
+      <p className="text-lg text-center text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">Here are some questions what we frequently getting asked by our new users</p>
       </div>
       <div className="flex flex-col gap-6 pb-6">
         <div className="collapse collapse-arrow bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)]">

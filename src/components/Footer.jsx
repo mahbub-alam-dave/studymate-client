@@ -11,8 +11,8 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 const Footer = () => {
   return (
     <div className="bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] px-4 sm:px-5 md:px-6">
-      <footer className="flex flex-col gap-6 max-w-[1440px] w-full mx-auto text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] py-10 ">
-        <div className="flex flex-col md:flex-row justify-between gap-6 items-center">
+      <footer className="flex flex-col gap-6 max-w-[1440px] w-full mx-auto text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] py-16">
+        <div className="flex flex-col md:flex-row justify-between gap-6">
           <aside className="flex flex-col gap-4">
             <div className="flex items-center gap-2">
               <PiStudent
@@ -23,7 +23,7 @@ const Footer = () => {
                 Edumate
               </span>
             </div>
-            <div className="flex flex-col gap-2 text-[var(--color-text-secondary)] dark:text-[var(--color-text-primary-dark)]">
+            <div className="flex flex-col gap-2 text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
               <p className="text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] text-lg">Learn, grow, and achieve together with EduMate — your trusted study companion <br /> that makes learning simpler, smarter, and more fun.</p>
               <p className="flex itmes-center gap-2">
                 <span className="font-semibold"><FaMapMarkerAlt /></span> 432, Kajipara, Dhaka (near South Marraige Registry

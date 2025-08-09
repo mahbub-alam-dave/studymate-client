@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from '../../components/homeComponents/Banner';
 import FeatureSection from '../../components/homeComponents/FeatureSection';
 import FrequentQuestionSection from '../../components/homeComponents/FrequentQuestionSection';
+import TestimonialsSection from '../../components/homeComponents/TestimonialsSection';
 
 const Home = () => {
     return (
@@ -9,6 +10,7 @@ const Home = () => {
             <Banner />
             <FeatureSection />
             <FrequentQuestionSection />
+            <TestimonialsSection />
         </div>
     );
 };

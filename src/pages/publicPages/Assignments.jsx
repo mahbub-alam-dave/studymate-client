@@ -111,7 +111,8 @@ useEffect(() => {
   };
 
   return (
-    <div className="py-12 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] max-w-[1440px] w-full mx-auto">
+    <div className="w-full px-4 sm:px-5 md:px-6">
+    <div className="py-12 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] max-w-[1440px] w-full mx-auto ">
       <h2 className="text-2xl md:text-3xl font-bold mb-12">All Assignments</h2>
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <motion.div
@@ -202,6 +203,7 @@ useEffect(() => {
           )}
         </div>
       </div>
+    </div>
     </div>
   );
 };
