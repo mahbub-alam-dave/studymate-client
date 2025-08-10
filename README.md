@@ -1,6 +1,6 @@
 # Study Mate — Online Study Community Application
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://fir-advance-project.web.app)  ![License](https://img.shields.io/badge/License-MIT-blue)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://brilliant-donut-fd421b.netlify.app/)  ![License](https://img.shields.io/badge/License-MIT-blue)
 
 ---
 
@@ -16,7 +16,7 @@
 
 # 🔗 Live Demo & Repositories
 
-* **Live Site:** [https://fir-advance-project.web.app](https://fir-advance-project.web.app)
+* **Live Site:** [https://fir-advance-project.web.app](https://brilliant-donut-fd421b.netlify.app/)
 * **Client Repo:** [GitHub](https://github.com/mahbub-alam-dave/studymate-client.git)
 * **Server Repo:** [GitHub](https://github.com/mahbub-alam-dave/studymate-server.git)
 
