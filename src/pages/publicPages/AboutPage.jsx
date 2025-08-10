@@ -16,7 +16,7 @@ const AboutPage = () => {
       {/* Mission & Vision */}
       <div className="px-4 sm:px-5 md:px-6">
       <section className="py-16 grid gap-10 md:grid-cols-2 max-w-[1440px] mx-auto">
-        <div className="p-6 border rounded-2xl bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] shadow">
+        <div className="p-6 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-2xl bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] shadow">
           <h2 className="text-2xl font-bold mb-3">Our Mission</h2>
           <p className="text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
             To make education accessible, engaging, and personalized for every learner —  
@@ -24,7 +24,7 @@ const AboutPage = () => {
             collaborate effectively, and achieve their academic goals.
           </p>
         </div>
-        <div className="p-6 border rounded-2xl bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] shadow">
+        <div className="p-6 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-2xl bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] shadow">
           <h2 className="text-2xl font-bold mb-3">Our Vision</h2>
           <p className="text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
             To become the go-to platform for students worldwide,  
@@ -44,7 +44,7 @@ const AboutPage = () => {
             { icon: <FaUsers size={30} />, title: "Student Community", desc: "Connect with learners worldwide and grow together." },
             { icon: <FaGlobe size={30} />, title: "Learn Anywhere", desc: "Access your study materials anytime, on any device." }
           ].map((item, idx) => (
-            <div key={idx} className="p-6 text-center border rounded-xl shadow hover:shadow-lg transition">
+            <div key={idx} className="p-6 text-center border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-xl shadow hover:shadow-lg transition">
               <div className="flex justify-center mb-4 text-[var(--color-primary)]">{item.icon}</div>
               <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
               <p className="text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">{item.desc}</p>
@@ -63,7 +63,7 @@ const AboutPage = () => {
             { name: "Jane Doe", role: "UI/UX Designer", img: "https://i.ibb.co/FLrrTVtL/man.png" },
             { name: "John Smith", role: "Backend Engineer", img: "https://i.ibb.co/FLrrTVtL/man.png" }
           ].map((member, idx) => (
-            <div key={idx} className="text-center p-6 border rounded-xl bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] shadow">
+            <div key={idx} className="text-center p-6 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-xl bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] shadow">
               <img src={member.img} alt={member.name} className="w-24 h-24 rounded-full mx-auto mb-4 object-cover" />
               <h3 className="text-xl font-semibold">{member.name}</h3>
               <p className="text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">{member.role}</p>

@@ -110,7 +110,8 @@ const Navbar = () => {
   // bg-gradient-to-br from- to-[rgb(3,5,94)] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814]
   if (loading) return null;
   return (
-    <div className="bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] w-full shadow-md border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)] px-4 sm:px-5 md:px-6">
+    <div className="h-[80px] bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] w-full shadow-md border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)] px-4 sm:px-5 md:px-6 fixed top-0 z-1000">
+
       <div className="h-[75px] max-w-[1440px] w-full mx-auto flex justify-between items-center gap-4 ">
         <div className="flex items-center gap-2">
           <PiStudent size={38} className="text-2xl text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]"/>

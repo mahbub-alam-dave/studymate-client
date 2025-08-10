@@ -64,13 +64,13 @@ const Footer = () => {
             </div>
             <ul className="flex md:flex-row flex-wrap gap-4 text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
               <li>
-                <Link className="hover:text-[var(--color-primary)] dark:hover:text-[var(--color-primary-dark)]">Home</Link>
+                <Link to={'/'} className="hover:text-[var(--color-primary)] dark:hover:text-[var(--color-primary-dark)]">Home</Link>
               </li>
               <li className="hover:text-[var(--color-primary)] dark:hover:text-[var(--color-primary-dark)]">
-                <Link>Blogs</Link>
+                <Link to={"/blogs"}>Blogs</Link>
               </li>
               <li className="hover:text-[var(--color-primary)] dark:hover:text-[var(--color-primary-dark)]">
-                <Link>About Us</Link>
+                <Link to={"/about"}>About Us</Link>
               </li>
               <li className="hover:text-[var(--color-primary)] dark:hover:text-[var(--color-primary-dark)]">
                 <Link>Contact</Link>
