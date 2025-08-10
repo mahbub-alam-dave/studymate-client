@@ -22,6 +22,8 @@ import MyBookMark from './pages/privatePages/MyBookMark'
 import NotFound from './pages/NotFound'
 import DashboardLayout from './layouts/DashboardLayout'
 import Overview from './pages/dashboard/Overview'
+import AboutPage from './pages/publicPages/AboutPage'
+import BlogPage from './pages/publicPages/BlogPage'
 // import DataLoader from './apis/DataLoader'
 
 const router = createBrowserRouter([
@@ -46,6 +48,14 @@ const router = createBrowserRouter([
   {
     path: '/register',
     element: <Register />
+  },
+  {
+    path: '/about',
+    element: <AboutPage />
+  },
+  {
+    path: "/blogs",
+    element: <BlogPage />
   },
   {
     path: "create-assignment",
