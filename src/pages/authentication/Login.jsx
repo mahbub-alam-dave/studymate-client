@@ -91,35 +91,33 @@ const Login = () => {
           <div>
             <a className="link link-hover">Forgot password?</a>
           </div>
-          <button  className="btn bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)] text-[var(--color-text-primary-dark)] hover:bg-[var(--color-primary)] dark:hover:bg-[var(--color-primary-dark)] border-[var(--color-border)] dark:border-[var(--color-border-dark)] "
+          <button  className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary-dark)] hover:bg-[var(--color-primary)] dark:hover:bg-[var(--color-primary-dark)] border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
 >
             Login
           </button>
         </form>
-        <p>
-          Don't have an account?{" "}
-          <Link to={"/register"} className="text-blue-500 hover:text-blue-300">
-            Register now!
-          </Link>
-        </p>
+
         {/* <div className="divider text-sm divider-success text-gray-200">OR</div> */}
         <div className="flex items-center py-3">
           <div className="flex-grow border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)]"></div>
           <span className="mx-4 text-sm ">OR</span>
           <div className="flex-grow border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)]"></div>
         </div>
-        {/*         <div className="flex gap-2 items-center">
-          <span>or, Login with your</span>
-          <FcGoogle onClick={handleGoogleSignIn} size={24} className="cursor-pointer" />
-          <span>account</span>
-        </div> */}
         <button
           onClick={handleGoogleSignIn}
-          className="btn bg-transparent border shadow-none border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:bg-[var(--color-primary)] dark:hover:bg-[var(--color-primary-dark)] hover:text-[var(--color-text-primary-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] focus:outline-none"
+          className="btn bg-transparent border shadow-none border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:bg-[#e4e2e29a] dark:hover:bg-[#e4e2e210] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] focus:outline-none"
+          // hover:bg-[var(--color-primary)] dark:hover:bg-[var(--color-primary-dark)] hover:text-[var(--color-text-primary-dark)]
         >
           <FcGoogle size={24} className="" />
           Login with Google
         </button>
+          
+          <p className="text-center mt-4">
+          Don't have an account?{" "}
+          <Link to={"/register"} className=" text-blue-500 hover:text-blue-300">
+            Register now!
+          </Link>
+        </p>
       </div>
     </div>
     </div>

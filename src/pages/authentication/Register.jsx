@@ -20,18 +20,6 @@ const Register = () => {
     setValidationError("");
     // register user using email and password
 
-    /* if (
-      !/(?=.*[a-z])/.test(password) ||
-      !/(?=.*[A-Z])/.test(password) ||
-      !/(.{6,}$)/.test(password)
-    ) {
-      // setValidationError("Password must contain one lowercase character")
-      setValidationError(
-        "Password must be in 6 characters, with at least one uppercase and lowercase"
-      );
-      return;
-    } */
-
     if(!/(?=.*[a-z])/.test(password)) {
       setValidationError("Password must include at least one lowercase character")
       return
@@ -55,7 +43,7 @@ const Register = () => {
         // user registered successfully
         updateUserProfile({
           displayName: profileData.name,
-          photoURL: profileData.photo,
+          photoURL: profileData.photo || "https://i.ibb.co.com/FLrrTVtL/man.png",
         })
           .then(() => {
             // user profile data updated
@@ -163,16 +151,10 @@ const Register = () => {
               <p className="text-[var(--color-primary)] dark:text-[var(--color-text-primary-dark)]">{validationError}</p>
               <a className="link link-hover">Forgot password?</a>
             </div>
-            <button className="btn bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)] text-[var(--color-text-primary-dark)] hover:bg-[var(--color-primary)] dark:hover:bg-[var(--color-primary-dark)] border-[var(--color-border)] dark:border-[var(--color-border-dark)] ">
+            <button className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary-dark)] hover:bg-[var(--color-primary)] dark:hover:bg-[var(--color-primary-dark)] border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
               Register
             </button>
           </form>
-          <p>
-            Already have an account?{" "}
-            <Link to={"/login"} className="text-blue-500 hover:text-blue-300">
-              Login here!
-            </Link>
-          </p>
           <div className="flex items-center py-3">
             <div className="flex-grow border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)]"></div>
             <span className="mx-4 text-sm ">OR</span>
@@ -180,11 +162,17 @@ const Register = () => {
           </div>
           <button
             onClick={handleGoogleSignIn}
-            className="btn bg-transparent border shadow-none border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:bg-[var(--color-primary)] dark:hover:bg-[var(--color-primary-dark)] hover:text-[var(--color-text-primary-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] focus:outline-none"
+            className="btn bg-transparent border shadow-none border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:bg-[#e4e2e29a] dark:hover:bg-[#e4e2e210] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] focus:outline-none"
           >
             <FcGoogle size={24} className="" />
             Login with Google
           </button>
+            <p className="text-center mt-4">
+            Already have an account?{" "}
+            <Link to={"/login"} className="text-blue-500 hover:text-blue-300">
+              Login here!
+            </Link>
+          </p>
         </div>
       </div>
     </div>

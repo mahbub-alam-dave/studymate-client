@@ -28,6 +28,7 @@ const CreateAssignments = () => {
       ...assignmentInfo,
       author: user?.displayName,
       email: user?.email,
+      photo: user?.photoURL
     };
 
     // create assignment and store to the database

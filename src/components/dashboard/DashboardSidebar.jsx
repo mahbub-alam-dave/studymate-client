@@ -1,6 +1,7 @@
 import { FaBook, FaPlus, FaList, FaBookmark, FaUser, FaClock } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { Link, NavLink } from "react-router";
+import { PiStudent } from "react-icons/pi";
 
 const navItems = [
   { to: "/dashboard/overview", label: "Overview", icon: <FaBook /> },
@@ -15,16 +16,14 @@ const DashboardSidebar = ({ isOpen, closeSidebar }) => {
   return (
     <>
       {/* Sidebar for large screens */}
-      <div className="hidden lg:flex flex-col w-64 bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)] text-[var(--color-text-primary-dark)] border-r border-[var(--color-border)] dark:border[var(--color-border-dark)]">
+      <div className="hidden lg:flex flex-col w-96 bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary-dark)] border-r border-[var(--color-border)] dark:border[var(--color-border-dark)] p-8">
         <Link to={'/'}>
-        {/* <div className=" text-2xl font-bold ">StudyMate</div> */}
-        <div className="p-6 border-b border-[var(--color-border)] dark:border[var(--color-border-dark)]">
-          <h2 className="rancho text-2xl text-[var(--color-primary)] dark:text-[var(--color-primary-dark)] font-bold">
-            Study <span className="text-[var(--color-text-primary-dark)]">Mate</span>
-          </h2>
-        </div>
+            <div className="flex items-center gap-2">
+              <PiStudent size={38} className="text-2xl text-[var(--color-text-primary-dark)]"/>
+              <span className="rancho font-medium text-3xl text-[var(--color-text-primary-dark)]">Edumate</span>
+            </div>
         </Link>
-        <nav className="flex-1 p-4 space-y-2">
+        <nav className="flex-1 space-y-2 mt-8">
           {navItems.map(item => (
             <NavLink
               key={item.to}
@@ -49,15 +48,16 @@ const DashboardSidebar = ({ isOpen, closeSidebar }) => {
           onClick={closeSidebar}
         >
           <div
-            className="w-64 bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] border-r border-[var(--color-border)] dark:border[var(--color-border-dark)] h-full"
+            className="w-64 bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary-dark)] h-full p-6"
             onClick={(e) => e.stopPropagation()}
           >
-            <Link to={'/'}><div className="p-6 border-b border-[var(--color-border)] dark:border[var(--color-border-dark)]">
-          <h2 className=" rancho text-2xl text-[var(--color-primary)] dark:text-[var(--color-primary-dark)] font-bold">
-            Study <span className="text-[var(--color-text-primary-dark)]">Mate</span>
-          </h2>
-        </div></Link>
-            <nav className="space-y-2 px-4">
+            <Link to={'/'}>
+<div className="flex items-center gap-2">
+              <PiStudent size={38} className="text-2xl text-[var(--color-text-primary-dark)]"/>
+              <span className="rancho font-medium text-3xl text-[var(--color-text-primary-dark)]">Edumate</span>
+            </div>
+        </Link>
+            <nav className="space-y-2 mt-6">
               {navItems.map(item => (
                 <NavLink
                   key={item.to}

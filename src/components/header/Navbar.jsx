@@ -67,12 +67,12 @@ const Navbar = () => {
       </NavLink>
       {user && (
         <> 
-        <NavLink
+        {/* <NavLink
           to="/dashboard/create-assignment"
           className="h-full flex items-center hover:bg-[#c9c9c965] dark:hover:bg-[#c2c2c21c] px-3"
         >
           <span>Create Assignment</span>
-        </NavLink>
+        </NavLink> */}
         <NavLink
         className="h-full flex items-center hover:bg-[#c9c9c965] dark:hover:bg-[#c2c2c21c] px-3"
           to="/dashboard"
@@ -116,7 +116,7 @@ const Navbar = () => {
           <PiStudent size={38} className="text-2xl text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]"/>
           <span className="rancho font-medium text-3xl text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]">Edumate</span>
         </div>
-        <div className="h-full lg:items-center justify-center hidden lg:flex gap-4 sm:gap-5 md:gap-6 lg:gap-8 font-medium text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+        <div className="h-full lg:items-center justify-center hidden lg:flex gap-4 sm:gap-5 md:gap-6 xl:gap-8 font-medium text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
           {navLinks}
         </div>
         <div className="flex items-center gap-4">

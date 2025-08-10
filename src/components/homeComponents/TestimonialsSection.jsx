@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Quote, Star, Users, TrendingUp, Award, BookOpen } from 'lucide-react';
+import { Link } from 'react-router';
 
 const TestimonialsSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -113,7 +114,7 @@ const TestimonialsSection = () => {
 
   return (
     // bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)]
-    <section className="py-20  px-4 sm:px-5 md:px-6">
+    <section className="py-16  px-4 sm:px-5 md:px-6">
       <div className="max-w-[1440px] mx-auto">
         
         {/* Section Header */}
@@ -129,11 +130,11 @@ const TestimonialsSection = () => {
             Join thousands of students who've enhanced their learning through peer collaboration, assignment sharing, and community feedback
           </p>
         </div>
-
+        <div className='grid grid-cols-1 xl:grid-cols-2 gap-6'>
         {/* Stats Section */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+        <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-2 gap-8">
           {stats.map((stat, index) => (
-            <div key={index} className="text-center group">
+            <div key={index} className="text-center group bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] rounded-2xl flex flex-col justify-center items-center p-4 sm:p-6 xl:p-5">
               <div className="inline-flex items-center justify-center w-14 h-14 bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark] rounded-2xl shadow-lg group-hover:shadow-xl transition-all duration-300 mb-4">
                 <div className={stat.color}>
                   {stat.icon}
@@ -154,7 +155,7 @@ const TestimonialsSection = () => {
             >
               {testimonials.map((testimonial) => (
                 <div key={testimonial.id} className="w-full flex-shrink-0">
-                  <div className="bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-3xl shadow-xl  p-8 md:p-12">
+                  <div className="bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-3xl shadow-xl  p-8 md:p-12 h-full">
                     <div className="flex flex-col lg:flex-row items-center gap-8">
                       
                       {/* Quote Section */}
@@ -217,7 +218,8 @@ const TestimonialsSection = () => {
           </button>
 
           {/* Dots Indicator */}
-          <div className="flex justify-center mt-8 gap-2">
+{/*           <div className='absolute bottom-0 -translate-x-1/2 translate-y-4'>
+          <div className="flex items-center justify-center gap-2 ">
             {testimonials.map((_, index) => (
               <button
                 key={index}
@@ -230,21 +232,25 @@ const TestimonialsSection = () => {
               />
             ))}
           </div>
+          </div> */}
+        </div>
         </div>
 
         {/* Call to Action */}
         <div className="text-center mt-16">
           <div className="bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] rounded-3xl p-8 md:p-12">
-            <h3 className="text-3xl md:text-4xl font-bold text-[var(--color-text-primary-dark)] mb-4">
+            <h3 className="text-2xl md:text-3xl font-bold text-[var(--color-text-primary-dark)] mb-3">
               Ready to Write Your Success Story?
             </h3>
-            <p className="text-blue-100 text-lg mb-8 max-w-2xl mx-auto">
+            <p className="text-blue-100 text-lg mb-6 max-w-2xl mx-auto">
               Join the community where students submit, review, and learn from each other's work
             </p>
+            <Link to={'/login'}>
             <button className="inline-flex items-center px-8 py-4 bg-[var(--color-text-primary-dark)] text-[var(--color-primary)] dark:text-[var(--color-primary-dark)] font-bold rounded-full hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              Start Your Journey Today
+              Start Your Journey
               <ChevronRight className="w-5 h-5 ml-2" />
             </button>
+            </Link>
           </div>
         </div>
       </div>

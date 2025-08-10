@@ -5,10 +5,11 @@ import { ContextValue } from "../../Contextes/AllContexts";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { MdOutlineKeyboardDoubleArrowLeft } from "react-icons/md";
+import Loader from "../../components/Loader"
 
 const AssignmentDetails = () => {
   const [openSubmitModal, setOpenSubmitModal] = useState(false);
-  const { user } = useContext(ContextValue);
+  const { user, loading } = useContext(ContextValue);
 
   const assignment = useLoaderData();
 
@@ -63,25 +64,26 @@ const AssignmentDetails = () => {
     setOpenSubmitModal(true);
   };
 
-  return (
-    <div className="py-12">
-      <div className="max-w-[1024px] w-full mx-auto flex flex-col gap-8 justify-center items-start px-4 sm:px-5 md:px-6 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
-        <Link to={'/assignments'}>
-          <div className="flex gap-2 items-center text-lg text-[var(--color-primary)] dark:text-[var(--color-primary-dark)] cursor-pointer">
-            <MdOutlineKeyboardDoubleArrowLeft size={20} />
-            <span>Go back</span>
-          </div>
-        </Link>
+  if(loading) {
+    return <Loader />
+  }
 
-        <div className=" w-full bg-[var(--color-bg-card)] dark:bg-transparent mx-auto flex flex-col justify-center border border-[var(--color-border)] dark:border-[var(--color-border-dark)] shadow-sm rounded-2xl relative">
+  console.log(loading)
+
+  return (
+    <div className="py-16 px-4 sm:px-5 md:px-6">
+      <div className="max-w-[1440px] w-full mx-auto flex flex-col gap-8 justify-center items-start text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+
+        <div className=" w-full bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] mx-auto flex  flex-col lg:flex-row gap-6  rounded-2xl relative">
           <img
-            className="w-full h-[450px] object-cover rounded-tl-2xl rounded-tr-2xl"
+            className="lg:w-[50%] h-[450px] object-cover rounded-tl-2xl rounded-tr-2xl lg:rounded-tr-none lg:rounded-bl-2xl flex-1"
             src={assignment.imageUrl}
             alt={assignment.title}
           />
-          <div className="flex flex-col gap-2 p-4 relative">
+          <div className="flex flex-col justify-center items-start gap-2 p-4 relative flex-1/2">
             <p
-              className={`absolute top-2 left-4 p-1 rounded-sm text-sm text-[#e9e9e9] mb-4 ${
+            // absolute top-2 left-4
+              className={` p-1 rounded-sm text-sm text-[#e9e9e9]  ${
                 assignment.level === "Easy"
                   ? "bg-green-500"
                   : assignment.level === "Medium"
@@ -91,17 +93,27 @@ const AssignmentDetails = () => {
             >
               {assignment.level}
             </p>
-            <p className="mt-5 text-2xl sm:text-3xl font-semibold">
+            <p className=" text-2xl sm:text-3xl font-semibold">
               {assignment.title}
             </p>
             <p>
-              <span>Due Date: </span>
+              <span className="font-semibold">Due Date: </span>
               {assignment.dueDate}
             </p>
             <p>
-              <span>Marks: </span> {assignment.marks}
+              <span className="font-semibold">Marks: </span> {assignment.marks}
             </p>
-            <p>{assignment.description}</p>
+            <div>
+              <p>Author,</p>
+              <div className="flex items-center gap-2">
+                <img src={assignment.photo || "https://i.ibb.co.com/FLrrTVtL/man.png"} className="w-14 h-14 bg-gray-400 p-2 rounded-full" />
+                <div>
+                  <h2 className="text-lg font-semibold">{assignment.author}</h2>
+                  <p>{assignment.email}</p>
+                </div>
+              </div>
+            </div>
+            <p className="text-lg ">{assignment.description}</p>
             <div className="flex gap-2 flex-wrap">
               <button
                 onClick={handleTakeAssignment}
@@ -117,6 +129,12 @@ const AssignmentDetails = () => {
             </div>
           </div>
         </div>
+                <Link to={'/assignments'}>
+          <div className="flex gap-2 items-center text-lg text-[var(--color-primary)] dark:text-[var(--color-primary-dark)] cursor-pointer">
+            <MdOutlineKeyboardDoubleArrowLeft size={20} />
+            <span>Go back</span>
+          </div>
+        </Link>
       </div>
     </div>
   );
