@@ -56,7 +56,7 @@ const DashboardSidebar = ({ isOpen, closeSidebar }) => {
           onClick={closeSidebar}
         >
           <div
-            className="w-64 bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary-dark)] h-full p-6"
+            className="w-74 bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary-dark)] h-full p-6"
             onClick={(e) => e.stopPropagation()}
           >
             <Link to={'/'}>
@@ -65,7 +65,7 @@ const DashboardSidebar = ({ isOpen, closeSidebar }) => {
               <span className="rancho font-medium text-3xl text-[var(--color-text-primary-dark)]">Edumate</span>
             </div>
         </Link>
-            <nav className="space-y-2 mt-6">
+            <nav className="space-y-2 flex flex-col mt-6 dashboardNavLink">
               {navItems.map(item => (
                 <NavLink
                   key={item.to}
@@ -78,8 +78,8 @@ const DashboardSidebar = ({ isOpen, closeSidebar }) => {
                 </NavLink>
               ))}
 
-              <button>Logout</button>
-              <ToggleIcon />
+            <button onClick={() => logOutUser()} className=" btn btn-outline mb-3 text-[var(--color-text-primary-dark)] hover:bg-white/10 ">Logout</button>
+          <ToggleIcon className="mt-4" />
             </nav>
           </div>
         </motion.div>

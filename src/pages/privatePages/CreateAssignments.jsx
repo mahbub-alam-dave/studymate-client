@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ContextValue } from "../../Contextes/AllContexts";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router";
+import assignmentCreate from "../../assets/OnlineWork.json"
+import Lottie from "lottie-react";
 
 const CreateAssignments = () => {
   const { user } = useContext(ContextValue);
@@ -58,18 +60,22 @@ const CreateAssignments = () => {
   };
 
   return (
-    <div className="px-4 sm:px-6 py-12 ">
-      <div className="flex flex-col gap-8 justify-center max-w-[799px] w-full mx-auto text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-2xl px-4 sm:px-6 py-8 shadow-xl ">
-      <h2 className="text-2xl font-bold ">
+    <div className=" py-12 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+      <div className="flex flex-col mb-12 gap-4">
+        <h2 className="text-2xl font-bold ">
         Create An Assignment
       </h2>
-        <form onSubmit={handleCreateAssignmentForm}>
-          <fieldset className="fieldset">
-            <label className="label">Title</label>
+      <p className="text-lg text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">Showcase your thought as a study challenge for others. Give all the information needed</p>
+      </div>
+      <div className="flex flex-col lg:flex-row gap-6">
+      <div className="flex flex-col gap-8 justify-center bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] rounded-2xl px-4 sm:px-6 py-8 flex-1">
+        <form onSubmit={handleCreateAssignmentForm} className="">
+          <fieldset className="fieldset text-base">
+            <label className="label">Assignment Title</label>
             <input
               type="text"
               name="title"
-              className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
+              className="input w-full bg-transparent text-base border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
               placeholder="Assignment title"
               required
             />
@@ -78,7 +84,7 @@ const CreateAssignments = () => {
             <input
               type="url"
               name="imageUrl"
-              className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
+              className="input w-full bg-transparent text-base border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
               placeholder="Thumbnail image url"
               required
             />
@@ -86,7 +92,7 @@ const CreateAssignments = () => {
             <label className="label mt-2">Marks</label>
             <input
               type="number"
-              className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none no-spinner"
+              className="input w-full bg-transparent text-base border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none no-spinner"
               name="marks"
               placeholder="Enter marks"
               required
@@ -108,7 +114,7 @@ const CreateAssignments = () => {
                   selected={startDate}
                   onChange={(date) => setStartDate(date)}
                   name="dueDate"
-                  className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
+                  className="input w-full bg-transparent text-base border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
                 />
               </div>
             </div>
@@ -116,7 +122,7 @@ const CreateAssignments = () => {
             <label className="label mt-2">Description</label>
             <textarea
               type="text"
-              className="textarea w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
+              className="textarea text-base w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
               name="description"
               placeholder="Enter assignment description"
               required
@@ -140,6 +146,10 @@ const CreateAssignments = () => {
             </div>
           </fieldset>
         </form>
+      </div>
+          <div className="lg:w-[50%] ">
+            <Lottie animationData={assignmentCreate} loop={true} />
+          </div>
       </div>
     </div>
   );

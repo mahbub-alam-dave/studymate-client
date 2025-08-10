@@ -29,7 +29,7 @@ const DashboardLayout = () => {
         {/* Page Content */}
         <div
           onClick={closeSidebar}
-          className="flex-1 p-4 overflow-y-auto bg-[var(--color-bg-card)] dark:bg-gray-900"
+          className="flex-1 px-4 sm:px-5 md:px-6 overflow-y-auto bg-[var(--color-bg)] dark:bg-[var(--color-bg-dark)] "
         >
           <Outlet />
         </div>

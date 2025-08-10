@@ -57,13 +57,16 @@ const MyBookMark = () => {
   // }
 
   return (
-    <div className="py-8 px-4 sm:px-5 md:px-6 w-full">
-      <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 pb-12 justify-center items-center">
+    <div className="py-12 w-full">
+      <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 pb-12 justify-center ">
+        <div className="flex flex-col gap-4">
       <h2 className="text-2xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
         My Bookmarked Assignments
       </h2>
+      <p className="text-lg text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">All the assignments bookmarked by yourselves. You can navigate to any assignment details page or remove any assignments</p>
+        </div>
       {bookMarkedAssignments.length < 1 ? (
-        <div className="flex flex-col gap-4 py-12 justify-center items-center px-4 sm:px-5 md:px-6">
+        <div className="flex flex-col gap-4 py-12 justify-center items-center">
           <Lottie animationData={emptyAnimation} loop={true} />
           <h2 className="text-3xl font-bold text-[#FF3F33] text-center dark:text-gray-200">
             You haven't bookmark any assignments !
@@ -73,7 +76,7 @@ const MyBookMark = () => {
         <div className="grid grid-cols-1 gap-4 sm:gap-5 md:gap-6 max-w-[1440px] w-full mx-auto">
           <div className="overflow-x-auto w-full shadow-sm rounded-xl overflow-hidden 
   text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]
-  border border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
+  border border-[var(--color-border)] dark:border-[var(--color-border-dark)] bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)]"
 >
   <table className="w-full border-collapse">
     <thead>
