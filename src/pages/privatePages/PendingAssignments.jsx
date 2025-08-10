@@ -6,6 +6,7 @@ import EmptyComponents from "../../components/EmptyComponents";
 import { ContextValue } from "../../Contextes/AllContexts";
 import Swal from "sweetalert2";
 import { IoIosInformationCircleOutline } from "react-icons/io";
+import { SecureApi } from "../../apis/SecureApi"; // adjust path
 
 const PendingAssignments = () => {
   const pendingSubmittedAssignments = useLoaderData();
@@ -18,8 +19,9 @@ const PendingAssignments = () => {
 
   const [pendingAssignments, setPendingAssignments] = useState([]);
 
+
   // Simulate loading delay or processing
-  useEffect(() => {
+/*   useEffect(() => {
     setIsLoading(true);
     // mimic fetch / processing delay
     const timeout = setTimeout(() => {
@@ -28,7 +30,22 @@ const PendingAssignments = () => {
     }, 500); // 0.5 sec, adjust if needed
 
     return () => clearTimeout(timeout);
-  }, [pendingSubmittedAssignments]);
+  }, [pendingSubmittedAssignments]); */
+
+    useEffect(() => {
+    async function fetchPending() {
+      setIsLoading(true);
+      try {
+        const res = await SecureApi(
+          "https://study-mate-server-gamma.vercel.app/pending-assignments"
+        );
+        setPendingAssignments(res);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchPending();
+  }, []);
 
   const handlePendingAssignment = (assignment) => {
     if (assignment.email === user?.email) {
@@ -53,7 +70,7 @@ const PendingAssignments = () => {
   }
 
   return (
-    <div className="py-12 flex flex-col gap-6 sm:gap-8 md:gap-12 pb-12 w-full text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+    <div className="py-8 flex flex-col gap-6 sm:gap-8 md:gap-12 pb-12 w-full text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
       <div className="flex flex-col gap-4">
         <h2 className="text-2xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
           All Pending Assignments

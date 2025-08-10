@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DashboardNavbar from "../components/dashboard/DashboardNavbar";
 import DashboardSidebar from "../components/dashboard/DashboardSidebar";
-import { Outlet } from "react-router";
+import { Outlet, useLocation, useNavigate } from "react-router";
 
 const DashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -14,6 +14,15 @@ const DashboardLayout = () => {
   const openSidebar = () => {
     setIsSidebarOpen(true)
   }
+
+    const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.pathname === "/dashboard") {
+      navigate("/dashboard/overview", { replace: true });
+    }
+  }, [location, navigate]);
 
   return (
     <div className="bg-[var(--color-bg)] dark:bg-[var(--color-bg-dark)]">

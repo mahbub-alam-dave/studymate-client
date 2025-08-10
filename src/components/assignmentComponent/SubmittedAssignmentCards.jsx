@@ -33,14 +33,14 @@ const SubmittedAssignmentCards = () => {
   }
 
   return (
-    <div className="py-12 flex flex-col gap-6 sm:gap-8 md:gap-12 pb-12 max-w-[1440px] w-full mx-auto">
+    <div className="py-8 flex flex-col gap-6 sm:gap-8 md:gap-12 pb-12 max-w-[1440px] w-full mx-auto">
       <div className="flex flex-col gap-4">
       <h2 className="text-2xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
         My Submitted Assignments
       </h2>
       <p className="text-lg text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">All the assignments you have participated in. You can check whether the assignments is evaluated or not</p>
       </div>
-<div className="overflow-x-auto w-full shadow-sm border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-xl overflow-hidden">
+<div className="bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] overflow-x-auto w-full border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-xl overflow-hidden">
   <table className="w-full border-collapse">
     <thead>
       <tr className="text-left border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
@@ -57,7 +57,7 @@ const SubmittedAssignmentCards = () => {
       {submittedAssignments.map((submittedAssignment, index) => (
         <tr
           key={submittedAssignment._id}
-          className="border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
+          className="border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
         >
           <td className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{index + 1}</td>
           <td className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{submittedAssignment.title}</td>

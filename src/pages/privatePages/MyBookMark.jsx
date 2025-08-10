@@ -57,8 +57,8 @@ const MyBookMark = () => {
   // }
 
   return (
-    <div className="py-12 w-full">
-      <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 pb-12 justify-center ">
+    <div className="py-8 w-full">
+      <div className="flex flex-col gap-6 sm:gap-8 md:gap-12 pb-12 justify-center">
         <div className="flex flex-col gap-4">
       <h2 className="text-2xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
         My Bookmarked Assignments
@@ -73,14 +73,14 @@ const MyBookMark = () => {
           </h2>
         </div>
       ) : (
-        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:gap-6 max-w-[1440px] w-full mx-auto">
-          <div className="overflow-x-auto w-full shadow-sm rounded-xl overflow-hidden 
+        <div className="grid grid-cols-1 gap-4 sm:gap-5 md:gap-6 w-full">
+          <div className="overflow-x-auto w-full rounded-xl overflow-hidden 
   text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]
   border border-[var(--color-border)] dark:border-[var(--color-border-dark)] bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)]"
 >
   <table className="w-full border-collapse">
     <thead>
-      <tr className="text-left border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+      <tr className="text-left border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
         <th className="p-4">Image</th>
         <th className="p-4">Title</th>
         <th className="p-4">Level</th>
@@ -90,7 +90,7 @@ const MyBookMark = () => {
     </thead>
     <tbody>
       {bookMarkedAssignments.map((assignment) => (
-        <tr key={assignment._id} className="border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+        <tr key={assignment._id} className="border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
           <td className="p-4">
             <img
               src={assignment.imageUrl}

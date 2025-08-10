@@ -66,8 +66,8 @@ const router = createBrowserRouter([
   {
     path: "pending-assignments",
     element: <PrivateRoute> <PendingAssignments /> </PrivateRoute>,
-    loader: pendingAssignments,
-    hydrateFallbackElement: <Loader /> 
+    // loader: pendingAssignments,
+    // hydrateFallbackElement: <Loader /> 
   },
   {
     path: "my-attempted-assignment",
@@ -89,7 +89,7 @@ const router = createBrowserRouter([
     children: [
       {
         // index: true,
-        // path: 'overview',
+        path: 'overview',
         element: <Overview />
       },
       {

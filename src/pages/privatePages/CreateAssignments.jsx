@@ -60,7 +60,7 @@ const CreateAssignments = () => {
   };
 
   return (
-    <div className=" py-12 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+    <div className=" py-8 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
       <div className="flex flex-col mb-12 gap-4">
         <h2 className="text-2xl font-bold ">
         Create An Assignment
@@ -68,7 +68,7 @@ const CreateAssignments = () => {
       <p className="text-lg text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">Showcase your thought as a study challenge for others. Give all the information needed</p>
       </div>
       <div className="flex flex-col lg:flex-row gap-6">
-      <div className="flex flex-col gap-8 justify-center bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] rounded-2xl px-4 sm:px-6 py-8 flex-1">
+      <div className="flex flex-col gap-8 justify-center bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] rounded-2xl px-4 sm:px-6 py-8 flex-1 border border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
         <form onSubmit={handleCreateAssignmentForm} className="">
           <fieldset className="fieldset text-base">
             <label className="label">Assignment Title</label>
@@ -132,14 +132,14 @@ const CreateAssignments = () => {
             <Link to={'/'}>
             <button
               
-              className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary)] text-[var(--color-text-primary-dark)] shadow-none hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-text-primary-dark)]  hover:bg-transparent"
+              className="btn btn-outline shadow-none text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] hover:bg-gray-200 dark:hover:bg-gray-600"
             >
               Go Back
             </button>
             </Link>
             <button
               type="submit"
-              className="btn bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)] text-[var(--color-text-primary-dark)] transition-colors hover:bg-transparent hover:text-[var(--color-text-primary)] border shadow-none dark:hover:text-[var(--color-text-primary-dark)]"
+              className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary-dark)] transition-colors shadow-none hover:opacity-90"
             >
               Create Assignment
             </button>
