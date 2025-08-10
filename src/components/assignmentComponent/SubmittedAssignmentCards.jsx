@@ -34,7 +34,7 @@ const SubmittedAssignmentCards = () => {
 
   return (
     <div className="py-12 px-4 sm:px-5 md:px-6 flex flex-col gap-6 sm:gap-8 md:gap-12 pb-12 max-w-[1440px] w-full mx-auto">
-      <h2 className="text-2xl font-bold text-center text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+      <h2 className="text-2xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
         My Submitted Assignments
       </h2>
 <div className="overflow-x-auto w-full shadow-sm border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-xl overflow-hidden">

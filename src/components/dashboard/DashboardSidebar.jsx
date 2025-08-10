@@ -2,6 +2,9 @@ import { FaBook, FaPlus, FaList, FaBookmark, FaUser, FaClock } from "react-icons
 import { motion } from "framer-motion";
 import { Link, NavLink } from "react-router";
 import { PiStudent } from "react-icons/pi";
+import ToggleIcon from "../../components/header/ToggleIcon"
+import { useContext } from "react";
+import { ContextValue } from "../../Contextes/AllContexts";
 
 const navItems = [
   { to: "/dashboard/overview", label: "Overview", icon: <FaBook /> },
@@ -13,6 +16,9 @@ const navItems = [
 ];
 
 const DashboardSidebar = ({ isOpen, closeSidebar }) => {
+  const {logOutUser} = useContext(ContextValue)
+
+
   return (
     <>
       {/* Sidebar for large screens */}
@@ -23,7 +29,7 @@ const DashboardSidebar = ({ isOpen, closeSidebar }) => {
               <span className="rancho font-medium text-3xl text-[var(--color-text-primary-dark)]">Edumate</span>
             </div>
         </Link>
-        <nav className="flex-1 space-y-2 mt-8">
+        <nav className="flex-1 flex flex-col space-y-2 mt-8 dashboardNavLink">
           {navItems.map(item => (
             <NavLink
               key={item.to}
@@ -34,6 +40,8 @@ const DashboardSidebar = ({ isOpen, closeSidebar }) => {
               {item.label}
             </NavLink>
           ))}
+          <button onClick={() => logOutUser()} className="btn btn-outline mb-3 text-[var(--color-text-primary-dark)] hover:bg-white/10 ">Logout</button>
+          <ToggleIcon />
         </nav>
       </div>
 
@@ -69,6 +77,9 @@ const DashboardSidebar = ({ isOpen, closeSidebar }) => {
                   {item.label}
                 </NavLink>
               ))}
+
+              <button>Logout</button>
+              <ToggleIcon />
             </nav>
           </div>
         </motion.div>

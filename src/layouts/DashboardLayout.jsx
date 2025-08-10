@@ -5,9 +5,12 @@ import { Outlet } from "react-router";
 
 const DashboardLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  // const [openNavbar, setOpenNavbar] = useState(true)
+  const [openNavbar, setOpenNavbar] = useState(false)
 
-  const closeSidebar = () => setIsSidebarOpen(false);
+  const closeSidebar = () => {
+    setIsSidebarOpen(false)
+    setOpenNavbar(false)
+  };
   const openSidebar = () => {
     setIsSidebarOpen(true)
   }
@@ -21,7 +24,7 @@ const DashboardLayout = () => {
       {/* Main Content */}
       <div className="flex-1 flex flex-col">
         {/* Mobile Navbar */}
-        <DashboardNavbar openSidebar={openSidebar} />
+        <DashboardNavbar openSidebar={openSidebar} openNavbar={openNavbar} setOpenNavbar={setOpenNavbar} />
         
         {/* Page Content */}
         <div

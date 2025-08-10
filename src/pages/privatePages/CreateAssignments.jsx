@@ -60,7 +60,7 @@ const CreateAssignments = () => {
   return (
     <div className="px-4 sm:px-6 py-12 ">
       <div className="flex flex-col gap-8 justify-center max-w-[799px] w-full mx-auto text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-2xl px-4 sm:px-6 py-8 shadow-xl ">
-      <h2 className="text-2xl font-bold text-center ">
+      <h2 className="text-2xl font-bold ">
         Create An Assignment
       </h2>
         <form onSubmit={handleCreateAssignmentForm}>

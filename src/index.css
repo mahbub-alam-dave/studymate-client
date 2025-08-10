@@ -28,19 +28,19 @@ a.active {
   color: #4FA7FF;
 }
 
+.dashboardNavLink a.active {
+  /* color: #4FA7FF; */
+  color: #F1F5F9;
+  background: #1c8af8;
+}
+.dark .dashboardNavLink a.active {
+  color: #F1F5F9;
+  background: #2991fa;
+}
+
 @plugin "daisyui/theme" {
   name: "light";
   default: true;
-  /* --color-primary: blue;
-  --color-secondary: rgba(238,238,238,0.3);
-  --color-accent: #e0e0e0;
-  --color-cardBg: #48cae4;
-  --color-buttonBg: #f94144;
-  --color-buttonText: #ffffff;
-  --color-navbarBg: #2196f3;
-  --logo-text: #deff0a;
-  --color-border: rgba(218,218,218,0.48) */
-
 
   /* bg color */
   --color-bg: #f3f4f6;
@@ -48,9 +48,10 @@ a.active {
   --color-bg-card: white;
   --color-bg-card-dark: #101828;
 
+  --color-accent: #FF3F33;
+  --color-accent-dark: #CC3228; 
+  
   /* brand color */
-/*   --color-primary: #FF3F33;
-  --color-primary-dark: #CC3228;  */
   --color-primary: #0D35FF;
   --color-primary-dark: #4FA7FF; 
 

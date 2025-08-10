@@ -2,11 +2,11 @@ import { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { PiStudent } from "react-icons/pi";
 
-const DashboardNavbar = ({ openSidebar }) => {
-  const [openNavbar, setOpenNavbar] = useState(true)
+const DashboardNavbar = ({ openSidebar, openNavbar, setOpenNavbar }) => {
+  
   const handleDashboardMenu = ()=> {
 openSidebar()
-setOpenNavbar(false)
+setOpenNavbar(true)
   }
   return (
     <div className={`${openNavbar ? "hidden" : "flex"} lg:hidden flex items-center gap-6 bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] p-6 border-b`}>
