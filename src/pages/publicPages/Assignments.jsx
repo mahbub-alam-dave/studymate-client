@@ -7,108 +7,74 @@ import Bubbles from "../../assets/Bubbles.json";
 import { motion } from "framer-motion";
 import Pagination from "../../components/assignmentComponent/Pagination";
 
+import { useQuery } from "@tanstack/react-query";
+import Loader from "../../components/Loader";
+const API_URL = import.meta.env.VITE_api_url;
+
+// Fetch function for TanStack Query
+const fetchAssignments = async ({ queryKey }) => {
+  const [_key, { page, limit, category, searchQuery }] = queryKey;
+  const params = {};
+  if(limit) params.limit = limit;
+  if(page) params.page = page;
+  if (category) params.category = category;
+  if (searchQuery.trim()) params.searchQuery = searchQuery.trim();
+  console.log(params)
+  const { data } = await axios.get(`${API_URL}/assignments`, { params });
+  return data;
+};
+
 const Assignments = () => {
-  const [assignments, setAssignments] = useState([]);
-  const [totalAssignments, setTotalAssignments] = useState(0);
+
+  const [category, setCategory] = useState("All");
+  const [searchInput, setSearchInput] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectByDifficulty, setSelectByDifficulty] = useState("All");
-  const [currentPage, setCurrentPage] = useState(1);
-  const [itemsPerPage, setItemsPerPage] = useState(5);
-  const [showTopShadow, setShowTopShadow] = useState(false);
-  const [showBottomShadow, setShowBottomShadow] = useState(true);
-  const scrollContainerRef = useRef(null);
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(5);
 
-useEffect(() => {
-    const delaySearch = setTimeout(() => {
-      const fetchAndFilterAssignments = async () => {
-        try {
-          let url = `${import.meta.env.VITE_api_url}/assignments?page=${currentPage}&limit=${itemsPerPage}`;
-          if (searchQuery.trim() !== "") {
-            url = `${import.meta.env.VITE_api_url}/assignment-search?searchQuery=${searchQuery}&page=${currentPage}&limit=${itemsPerPage}`;
-          }
-          if (selectByDifficulty !== "All") {
-            url += `&difficulty=${selectByDifficulty}`;
-          }
 
-          // Fetch assignments
-          const res = await axios.get(url);
-          let fetchedAssignments, total;
 
-          if (Array.isArray(res.data)) {
-            fetchedAssignments = res.data;
-            // Fetch total separately
-            let countUrl = `${import.meta.env.VITE_api_url}/assignments`;
-            if (searchQuery.trim() !== "") {
-              countUrl += `?searchQuery=${searchQuery}`;
-            }
-            if (selectByDifficulty !== "All") {
-              countUrl += `${searchQuery.trim() !== "" ? "&" : "?"}difficulty=${selectByDifficulty}`;
-            }
-            const countRes = await axios.get(countUrl);
-            total = countRes.data.total || fetchedAssignments.length;
-          } else if (res.data.assignments && typeof res.data.total === "number") {
-            fetchedAssignments = res.data.assignments;
-            total = res.data.total;
-          } else {
-            console.error("Invalid API response:", res.data);
-            fetchedAssignments = [];
-            total = 0;
-          }
-
-          setAssignments(fetchedAssignments);
-          setTotalAssignments(total);
-        } catch (err) {
-          console.error("Error fetching assignments:", err);
-          setAssignments([]);
-          setTotalAssignments(0);
-        }
-      };
-
-      fetchAndFilterAssignments();
-    }, 500);
-
-    return () => clearTimeout(delaySearch);
-  }, [searchQuery, selectByDifficulty, currentPage, itemsPerPage]);
-
+ // Debounce search input
   useEffect(() => {
-    const handleScroll = () => {
-      const container = scrollContainerRef.current;
-      if (container) {
-        const { scrollTop, scrollHeight, clientHeight } = container;
-        setShowTopShadow(scrollTop > 1);
-        setShowBottomShadow(scrollTop + clientHeight < scrollHeight - 10);
-      }
-    };
+    const delay = setTimeout(() => {
+      setSearchQuery(searchInput);
+    }, 400); // wait 400ms after last keystroke
+    return () => clearTimeout(delay);
+  }, [searchInput]);
 
-    const container = scrollContainerRef.current;
-    if (container) {
-      handleScroll();
-      container.addEventListener("scroll", handleScroll);
-    }
+  const {
+    data,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["assignments", { page, limit, category, searchQuery }],
+    queryFn: fetchAssignments,
+    keepPreviousData: true,
+  });
 
-    return () => {
-      if (container) {
-        container.removeEventListener("scroll", handleScroll);
-      }
-    };
-  }, [assignments]);
+  console.log(data)
+
+
 
   const handleDifficulty = (difficulty) => {
-    setSelectByDifficulty(difficulty);
-    setCurrentPage(1); // Reset to page 1 on filter change
+    // setCategory(difficulty === "All" ? "" : difficulty)
+    setCategory(difficulty)
   };
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-    if (scrollContainerRef.current) {
-      scrollContainerRef.current.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  };
+  console.log(category)
 
-  const handleItemsPerPageChange = (newItemsPerPage) => {
-    setItemsPerPage(newItemsPerPage);
-    setCurrentPage(1); // Reset to page 1 when changing items per page
-  };
+  // Example data (replace with API data)
+  // const assignments = Array.from({ length: 42 }, (_, i) => ({
+  //   id: i + 1,
+  //   title: `Assignment ${i + 1}`,
+  // }));
+
+  // const indexOfLastItem = currentPage * itemsPerPage;
+  // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  // const currentAssignments = assignments.slice(
+  //   indexOfFirstItem,
+  //   indexOfLastItem
+  // );
 
   return (
     <div className="w-full px-4 sm:px-5 md:px-6">
@@ -140,8 +106,8 @@ useEffect(() => {
             </svg>
             <input
               type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
               className="text-sm focus:outline-none focus:ring-0 focus:border-none"
               required
               placeholder="Search assignment..."
@@ -155,7 +121,7 @@ useEffect(() => {
                 key={level}
                 onClick={() => handleDifficulty(level)}
                 className={`${
-                  selectByDifficulty === level
+                  category === level 
                     ? "bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary-dark)]"
                     : "bg-transparent"
                 } px-[12px] py-[6px] border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-sm`}
@@ -168,14 +134,16 @@ useEffect(() => {
             <Lottie animationData={Bubbles} loop={true} />
           </div>
         </motion.div>
+          
         <div
-          ref={scrollContainerRef}
-          className={`lg:col-span-3 overflow-y-auto h-screen relative ${
-            showTopShadow ? "shadow-top" : ""
-          } ${showBottomShadow ? "shadow-bottom" : ""}`}
+          className={`lg:col-span-3 overflow-y-auto h-screen relative`}
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
-        >
-          {assignments.length < 1 ? (
+          >
+          {
+            isLoading ? <Loader /> 
+              :
+          <div>
+          {data.assignments.length < 1 ? (
             <div className="flex flex-col gap-4 py-12 justify-center items-center px-4 sm:px-5 md:gap-6">
               <Lottie animationData={emptyAnimation} loop={true} />
               <h2 className="text-3xl font-bold text-[#FF3F33] text-center dark:text-gray-200">
@@ -184,24 +152,39 @@ useEffect(() => {
             </div>
           ) : (
             <div className="grid grid-cols-1 gap-4 sm:gap-5 md:gap-6 pb-16">
-              {assignments.map((assignment) => (
+              {data.assignments.map((assignment) => (
                 <AssignmentCard
                   key={assignment._id}
                   assignment={assignment}
-                  assignments={assignments}
-                  setAssignments={setAssignments}
+                  // assignments={assignments}
+                  // setAssignments={setAssignments}
                 />
               ))}
-              <Pagination
-                currentPage={currentPage}
-                totalItems={totalAssignments}
-                itemsPerPage={itemsPerPage}
-                onPageChange={handlePageChange}
-                onItemsPerPageChange={handleItemsPerPageChange}
-              />
+              
             </div>
           )}
+          </div>
+          
+        }
         </div>
+      </div>
+      {/* pagination */}
+      <div>
+      {/* Page Size Selector */}
+      <select value={limit} onChange={(e) => setLimit(Number(e.target.value))}>
+        {[5, 10, 15].map((n) => (
+          <option key={n} value={n}>
+            {n} per page
+          </option>
+        ))}
+      </select>
+
+      {/* Pagination */}
+      <Pagination
+        totalPages={data?.totalPages}
+        currentPage={data?.currentPage}
+        onPageChange={setPage}
+      />
       </div>
     </div>
     </div>

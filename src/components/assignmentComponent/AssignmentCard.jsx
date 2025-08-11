@@ -6,10 +6,10 @@ import { useNavigate } from "react-router";
 import { FaRegBookmark } from "react-icons/fa";
 import UseAxiosSecure from "../../hooks/UseAxiosSecure";
 
-const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
+// 
+const AssignmentCard = ({assignment}) => {
   const { user } = useContext(ContextValue);
     const axiosSecure = UseAxiosSecure();
-
   const navigate = useNavigate();
 
   const handleDeleteAssignment = (id) => {
@@ -63,7 +63,7 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
     }
   };
 
-  const handleUpdateAssignment = (id) => {
+/*   const handleUpdateAssignment = (id) => {
     if (user?.email === assignment.email) {
       navigate(`/dashboard/update-assignment/${id}`);
     } else {
@@ -76,9 +76,9 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
       });
       return;
     }
-  };
+  }; */
 
-  const handleViewAssignment = (id) => {
+/*   const handleViewAssignment = (id) => {
     if (user) return navigate(`/view-assignment-details/${id}`);
     Swal.fire({
       position: "top-end",
@@ -87,10 +87,10 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
       showConfirmButton: false,
       timer: 1500,
     });
-  };
+  }; */
 
 
-  const handleAddBookmark = async (assignmentId) => {
+/*   const handleAddBookmark = async (assignmentId) => {
       if (!user) {
     return Swal.fire("Login required!", "Please log in to bookmark.", "info");
   }
@@ -103,7 +103,7 @@ const AssignmentCard = ({ assignment, assignments, setAssignments }) => {
         Swal.fire("Error", "Something went wrong", "error");
       }
     });
-  }
+  } */
 // dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814]
   return (
     <div className="w-full flex flex-col md:flex-row  bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]   rounded-xl relative ">
