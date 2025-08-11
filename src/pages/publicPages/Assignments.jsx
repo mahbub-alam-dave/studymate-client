@@ -52,29 +52,13 @@ const Assignments = () => {
     keepPreviousData: true,
   });
 
-  console.log(data)
-
-
 
   const handleDifficulty = (difficulty) => {
     // setCategory(difficulty === "All" ? "" : difficulty)
     setCategory(difficulty)
   };
 
-  console.log(category)
 
-  // Example data (replace with API data)
-  // const assignments = Array.from({ length: 42 }, (_, i) => ({
-  //   id: i + 1,
-  //   title: `Assignment ${i + 1}`,
-  // }));
-
-  // const indexOfLastItem = currentPage * itemsPerPage;
-  // const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  // const currentAssignments = assignments.slice(
-  //   indexOfFirstItem,
-  //   indexOfLastItem
-  // );
 
   return (
     <div className="w-full px-4 sm:px-5 md:px-6">
@@ -107,7 +91,8 @@ const Assignments = () => {
             <input
               type="text"
               value={searchInput}
-              onChange={(e) => setSearchInput(e.target.value)}
+              onChange={(e) => {setSearchInput(e.target.value) 
+                                setPage(1)}}
               className="text-sm focus:outline-none focus:ring-0 focus:border-none"
               required
               placeholder="Search assignment..."
@@ -119,7 +104,8 @@ const Assignments = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 key={level}
-                onClick={() => handleDifficulty(level)}
+                onClick={() => {handleDifficulty(level) 
+                  setPage(1)}}
                 className={`${
                   category === level 
                     ? "bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary-dark)]"
@@ -136,7 +122,7 @@ const Assignments = () => {
         </motion.div>
           
         <div
-          className={`lg:col-span-3 overflow-y-auto h-screen relative`}
+          className={`lg:col-span-3 overflow-y-auto lg:h-screen relative`}
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
           >
           {
@@ -156,8 +142,6 @@ const Assignments = () => {
                 <AssignmentCard
                   key={assignment._id}
                   assignment={assignment}
-                  // assignments={assignments}
-                  // setAssignments={setAssignments}
                 />
               ))}
               
@@ -169,9 +153,9 @@ const Assignments = () => {
         </div>
       </div>
       {/* pagination */}
-      <div>
+      <div className="mt-12 flex flex-col gap-4 sm:flex-row justify-between items-center">
       {/* Page Size Selector */}
-      <select value={limit} onChange={(e) => setLimit(Number(e.target.value))}>
+      <select value={limit} onChange={(e) => setLimit(Number(e.target.value))} className="border cursor-pointer select border-[var(--color-border)] text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)] max-w-[150px] focus:outline-none bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)]">
         {[5, 10, 15].map((n) => (
           <option key={n} value={n}>
             {n} per page
@@ -180,7 +164,7 @@ const Assignments = () => {
       </select>
 
       {/* Pagination */}
-      <Pagination
+        <Pagination
         totalPages={data?.totalPages}
         currentPage={data?.currentPage}
         onPageChange={setPage}
