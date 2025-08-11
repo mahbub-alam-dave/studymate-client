@@ -1,4 +1,5 @@
 import { FaBook, FaPlus, FaList, FaBookmark, FaUser, FaClock } from "react-icons/fa";
+import { RiTaskLine } from "react-icons/ri";
 import { motion } from "framer-motion";
 import { Link, NavLink } from "react-router";
 import { PiStudent } from "react-icons/pi";
@@ -10,7 +11,7 @@ const navItems = [
   { to: "/dashboard/overview", label: "Overview", icon: <FaBook /> },
   { to: "/dashboard/create-assignment", label: "Create Assignment", icon: <FaPlus /> },
   { to: "/dashboard/pending-assignments", label: "Pending Assignments", icon: <FaClock /> },
-  { to: "/dashboard/pending-assignments", label: "My Assignments", icon: <FaClock /> },
+  { to: "/dashboard/my-assignments", label: "My Assignments", icon: <RiTaskLine /> },
   { to: "/dashboard/my-attempted-assignment", label: "Attempted Assignments", icon: <FaList /> },
   { to: "/dashboard/my-bookmarked-assignments", label: "My Bookmarks", icon: <FaBookmark /> },
   { to: "/dashboard/profile", label: "Profile", icon: <FaUser /> },

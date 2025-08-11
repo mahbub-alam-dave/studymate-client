@@ -80,12 +80,13 @@ const PendingAssignments = () => {
         </p>
       </div>
 
+<div className="grid grid-cols-1 gap-4 sm:gap-5 md:gap-6 w-full">
       <div
         className="overflow-x-auto w-full rounded-xl overflow-hidden 
         text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]
         border border-[var(--color-border)] dark:border-[var(--color-border-dark)] bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)]"
       >
-        <table className="w-full border-collapse">
+        <table className="w-full min-w-[600px] border-collapse">
           <thead>
             <tr className="text-left border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
               <th className="p-4">#</th>
@@ -139,6 +140,7 @@ const PendingAssignments = () => {
             setPendingAssignments={setPendingAssignments}
           />
         )}
+      </div>
       </div>
     </div>
   );

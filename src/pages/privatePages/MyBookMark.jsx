@@ -27,7 +27,7 @@ const MyBookMark = () => {
         })
         .finally(() => setFetching(false));
 
-  }, [ axiosSecure]);
+  }, [user.email, axiosSecure]);
 
   console.log(bookMarkedAssignments)
 
@@ -81,7 +81,7 @@ const MyBookMark = () => {
   text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]
   border border-[var(--color-border)] dark:border-[var(--color-border-dark)] bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)]"
 >
-  <table className="w-full border-collapse">
+  <table className="w-full min-w-[600px] border-collapse">
     <thead>
       <tr className="text-left border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
         <th className="p-4">Image</th>

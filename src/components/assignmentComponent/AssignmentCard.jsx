@@ -12,55 +12,6 @@ const AssignmentCard = ({assignment}) => {
     const axiosSecure = UseAxiosSecure();
   const navigate = useNavigate();
 
-/*   const handleDeleteAssignment = (id) => {
-    if (assignment.email === user?.email) {
-      Swal.fire({
-        title: "Do you want to delete the assignment?",
-        showDenyButton: false,
-        showCancelButton: true,
-        confirmButtonText: "Delete",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          axios
-            .patch(`https://study-mate-server-gamma.vercel.app/assignments/${id}/delete`)
-            .then((res) => {
-              if (res.data.modifiedCount) {
-                Swal.fire({
-                  position: "top-end",
-                  icon: "success",
-                  title: "Assignment has removed successfully",
-                  showConfirmButton: false,
-                  timer: 1500,
-                });
-                const remainingAssignments = assignments.filter(
-          (assignment) => assignment._id.toString() !== id
-        );
-        setAssignments(remainingAssignments);
-              }
-            })
-            .catch((error) => {
-              Swal.fire({
-                position: "top-end",
-                icon: "error",
-                title: error.message,
-                showConfirmButton: false,
-                timer: 1500,
-              });
-            });
-        }
-      });
-    } else {
-      Swal.fire({
-        position: "top-end",
-        icon: "error",
-        title: "You can't delete this assignment",
-        showConfirmButton: false,
-        timer: 1500,
-      });
-      return;
-    }
-  }; */
-
 /*   const handleUpdateAssignment = (id) => {
     if (user?.email === assignment.email) {
       navigate(`/dashboard/update-assignment/${id}`);

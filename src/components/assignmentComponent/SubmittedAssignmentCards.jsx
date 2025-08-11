@@ -40,8 +40,11 @@ const SubmittedAssignmentCards = () => {
       </h2>
       <p className="text-lg text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">All the assignments you have participated in. You can check whether the assignments is evaluated or not</p>
       </div>
-<div className="bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] overflow-x-auto w-full border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-xl overflow-hidden">
-  <table className="w-full border-collapse">
+      <div className="grid grid-cols-1 gap-4 sm:gap-5 md:gap-6 w-full">
+<div className="overflow-x-auto w-full rounded-xl overflow-hidden 
+  text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]
+  border border-[var(--color-border)] dark:border-[var(--color-border-dark)] bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] ">
+  <table className="w-full min-w-[600px] border-collapse">
     <thead>
       <tr className="text-left border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
         <th className="p-4 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">#</th>
@@ -85,6 +88,7 @@ const SubmittedAssignmentCards = () => {
       ))}
     </tbody>
   </table>
+</div>
 </div>
 
     </div>

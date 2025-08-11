@@ -25,6 +25,7 @@ import Overview from './pages/dashboard/Overview'
 import AboutPage from './pages/publicPages/AboutPage'
 import BlogPage from './pages/publicPages/BlogPage'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import MyAssignments from './pages/privatePages/MyAssignments'
 // import DataLoader from './apis/DataLoader'
 
 const queryClient = new QueryClient();
@@ -121,6 +122,11 @@ const router = createBrowserRouter([
         element: <PendingAssignments />,
         loader: pendingAssignments,
         hydrateFallbackElement: <Loader /> 
+      },
+      {
+        path: "my-assignments",
+        element: <MyAssignments />
+
       },
       {
         path: "my-attempted-assignment",
