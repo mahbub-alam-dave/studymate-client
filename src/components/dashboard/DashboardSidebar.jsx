@@ -9,9 +9,10 @@ import { ContextValue } from "../../Contextes/AllContexts";
 const navItems = [
   { to: "/dashboard/overview", label: "Overview", icon: <FaBook /> },
   { to: "/dashboard/create-assignment", label: "Create Assignment", icon: <FaPlus /> },
-  { to: "/dashboard/my-attempted-assignment", label: "Attempted Assignments", icon: <FaList /> },
   { to: "/dashboard/pending-assignments", label: "Pending Assignments", icon: <FaClock /> },
-  { to: "/dashboard/my-bookmarked-assignments", label: "Bookmarked", icon: <FaBookmark /> },
+  { to: "/dashboard/pending-assignments", label: "My Assignments", icon: <FaClock /> },
+  { to: "/dashboard/my-attempted-assignment", label: "Attempted Assignments", icon: <FaList /> },
+  { to: "/dashboard/my-bookmarked-assignments", label: "My Bookmarks", icon: <FaBookmark /> },
   { to: "/dashboard/profile", label: "Profile", icon: <FaUser /> },
 ];
 

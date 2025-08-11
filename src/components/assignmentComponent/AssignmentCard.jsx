@@ -12,16 +12,14 @@ const AssignmentCard = ({assignment}) => {
     const axiosSecure = UseAxiosSecure();
   const navigate = useNavigate();
 
-  const handleDeleteAssignment = (id) => {
+/*   const handleDeleteAssignment = (id) => {
     if (assignment.email === user?.email) {
       Swal.fire({
         title: "Do you want to delete the assignment?",
         showDenyButton: false,
         showCancelButton: true,
         confirmButtonText: "Delete",
-        // denyButtonText: `Don't Delete`,
       }).then((result) => {
-        /* Read more about isConfirmed, isDenied below */
         if (result.isConfirmed) {
           axios
             .patch(`https://study-mate-server-gamma.vercel.app/assignments/${id}/delete`)
@@ -61,7 +59,7 @@ const AssignmentCard = ({assignment}) => {
       });
       return;
     }
-  };
+  }; */
 
 /*   const handleUpdateAssignment = (id) => {
     if (user?.email === assignment.email) {
@@ -78,7 +76,7 @@ const AssignmentCard = ({assignment}) => {
     }
   }; */
 
-/*   const handleViewAssignment = (id) => {
+  const handleViewAssignment = (id) => {
     if (user) return navigate(`/view-assignment-details/${id}`);
     Swal.fire({
       position: "top-end",
@@ -87,10 +85,10 @@ const AssignmentCard = ({assignment}) => {
       showConfirmButton: false,
       timer: 1500,
     });
-  }; */
+  };
 
 
-/*   const handleAddBookmark = async (assignmentId) => {
+  const handleAddBookmark = async (assignmentId) => {
       if (!user) {
     return Swal.fire("Login required!", "Please log in to bookmark.", "info");
   }
@@ -103,7 +101,7 @@ const AssignmentCard = ({assignment}) => {
         Swal.fire("Error", "Something went wrong", "error");
       }
     });
-  } */
+  }
 // dark:bg-gradient-to-bl dark:from-[#03045e] dark:to-[#000814]
   return (
     <div className="w-full flex flex-col md:flex-row  bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]   rounded-xl relative ">
@@ -144,7 +142,7 @@ const AssignmentCard = ({assignment}) => {
           >
             View Details
           </button>
-          <button
+{/*           <button
             onClick={() => handleUpdateAssignment(assignment._id)}
             className="btn btn-sm btn-outline text-[var(--color-text-primary-)] border border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
           >
@@ -155,7 +153,7 @@ const AssignmentCard = ({assignment}) => {
             className="btn btn-sm btn-outline text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] border border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
           >
             Delete
-          </button>
+          </button> */}
         </div>
       </div>
       <div onClick={() => handleAddBookmark(assignment._id)} className="absolute top-4 right-4 bg-[var(--color-bg)] dark:bg-gray-700 rounded-[50%] p-[10px] items-start cursor-pointer">

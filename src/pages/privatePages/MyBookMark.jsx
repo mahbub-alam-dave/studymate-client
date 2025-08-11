@@ -6,6 +6,7 @@ import BookMarkAssignment from "../../components/assignmentComponent/BookMarkAss
 import emptyAnimation from "../../assets/emptyAinmation.json";
 import Lottie from "lottie-react";
 import Swal from "sweetalert2";
+import { Link } from "react-router";
 
 const MyBookMark = () => {
   const [bookMarkedAssignments, setBookMarkedAssignments] = useState([]);
@@ -15,21 +16,23 @@ const MyBookMark = () => {
   const axiosSecure = UseAxiosSecure();
 
   useEffect(() => {
-    if (user) {
       setFetching(true);
       axiosSecure
-        .get("/my-bookmarks")
-        .then((res) => setBookMarkedAssignments(res.data))
+        .get(`/my-bookmarks?email=${user.email}`)
+        .then((res) => {setBookMarkedAssignments(res.data) 
+          console.log(res)
+         }) 
         .catch(error => {
           // error occured
         })
         .finally(() => setFetching(false));
-    }
-  }, [user, axiosSecure]);
 
+  }, [ axiosSecure]);
+
+  console.log(bookMarkedAssignments)
 
     const handleRemoveBookmarkAssignment = async(assignmentId) => {
-        if (!user) {
+    if (!user) {
     return Swal.fire("Login required!", "Please log in to manage bookmarks.", "info");
   }
 
@@ -65,7 +68,7 @@ const MyBookMark = () => {
       </h2>
       <p className="text-lg text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">All the assignments bookmarked by yourselves. You can navigate to any assignment details page or remove any assignments</p>
         </div>
-      {bookMarkedAssignments.length < 1 ? (
+      {bookMarkedAssignments.length === 0 ? (
         <div className="flex flex-col gap-4 py-12 justify-center items-center">
           <Lottie animationData={emptyAnimation} loop={true} />
           <h2 className="text-3xl font-bold text-[#FF3F33] text-center dark:text-gray-200">
@@ -113,7 +116,7 @@ const MyBookMark = () => {
             </span>
           </td>
           <td className="p-4">{assignment.marks}</td>
-          <td className="p-4">
+          <td className="p-4 flex flex-wrap gap-2">
             <button
               onClick={() =>
                 handleRemoveBookmarkAssignment(assignment._id)
@@ -122,6 +125,13 @@ const MyBookMark = () => {
             >
               Remove
             </button>
+            <Link to={`/view-assignment-details/${assignment._id}`}>
+            <button
+              className="px-3 py-1 bg-[var(--color-primary)] rounded-md dark:bg-[var(--color-primary-dark)] text-white text-sm"
+            >
+              View
+            </button>
+            </Link>
           </td>
         </tr>
       ))}
