@@ -5,35 +5,32 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ContextValue } from "../../Contextes/AllContexts";
 import Swal from "sweetalert2";
 import { Link, useNavigate } from "react-router";
-import assignmentCreate from "../../assets/OnlineWork.json"
+import assignmentCreate from "../../assets/OnlineWork.json";
 import Lottie from "lottie-react";
 
 const CreateAssignments = () => {
   const { user } = useContext(ContextValue);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [error, setError] = useState("");
-
   const [startDate, setStartDate] = useState(new Date());
+
   const handleCreateAssignmentForm = (e) => {
     e.preventDefault();
-
     const formData = new FormData(e.target);
-
     const assignmentInfo = Object.fromEntries(formData.entries());
 
-    if(assignmentInfo.description.length < 20) {
-      setError("Description should be at least 20 characters")
-      return
+    if (assignmentInfo.description.length < 20) {
+      setError("Description should be at least 20 characters");
+      return;
     }
 
     const newAssignment = {
       ...assignmentInfo,
       author: user?.displayName,
       email: user?.email,
-      photo: user?.photoURL
+      photo: user?.photoURL,
     };
 
-    // create assignment and store to the database
     axios
       .post(`${import.meta.env.VITE_api_url}/assignments`, newAssignment)
       .then((res) => {
@@ -41,11 +38,11 @@ const CreateAssignments = () => {
           Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "Assignment created Successfully",
+            title: "Assignment created successfully",
             showConfirmButton: false,
             timer: 1500,
           });
-          navigate('/assignments')
+          navigate("/assignments");
         }
       })
       .catch((error) => {
@@ -60,106 +57,125 @@ const CreateAssignments = () => {
   };
 
   return (
-    <div className=" py-8 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
-      <div className="flex flex-col mb-12 gap-4">
-        <h2 className="text-2xl font-bold ">
-        Create An Assignment
-      </h2>
-      <p className="text-lg text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">Showcase your thought as a study challenge for others. Give all the information needed</p>
-      </div>
-      <div className="flex flex-col lg:flex-row gap-6">
-      <div className="flex flex-col gap-8 justify-center bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] rounded-2xl px-4 sm:px-6 py-8 flex-1 border border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
-        <form onSubmit={handleCreateAssignmentForm} className="">
-          <fieldset className="fieldset text-base">
-            <label className="label">Assignment Title</label>
-            <input
-              type="text"
-              name="title"
-              className="input w-full bg-transparent text-base border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
-              placeholder="Assignment title"
-              required
-            />
+    <div className="py-8 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+      <div className=" ">
+        {/* Header */}
+        <div className="mb-8">
+          <h2 className="text-3xl font-bold mb-3">Create an Assignment</h2>
+          <p className="text-lg text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
+            Turn your idea into a challenge for others. Fill out the details below.
+          </p>
+        </div>
 
-            <label className="label mt-2">Image URL</label>
-            <input
-              type="url"
-              name="imageUrl"
-              className="input w-full bg-transparent text-base border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
-              placeholder="Thumbnail image url"
-              required
-            />
-
-            <label className="label mt-2">Marks</label>
-            <input
-              type="number"
-              className="input w-full bg-transparent text-base border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none no-spinner"
-              name="marks"
-              placeholder="Enter marks"
-              required
-            />
-
-            <div className="flex flex-col sm:flex-row gap-4 mt-2">
-              <div className="flex flex-col gap-1 w-full">
-                <label className="label">Difficulty Label</label>
-                <select className="select w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none" name="level">
-                  <option className="bg-[#00b4d8]" disabled={true}>Select difficulty label</option>
-                  <option className="bg-[#00b4d8]" value="Easy">Easy</option>
-                  <option className="bg-[#00b4d8]" value='Medium'>Medium</option>
-                  <option className="bg-[#00b4d8]" value="Hard">Hard</option>
-                </select>
-              </div>
-              <div className="flex flex-col gap-1 w-full">
-                <label className="label">Due date</label>
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
-                  name="dueDate"
-                  className="input w-full bg-transparent text-base border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
+        <div className="flex flex-col xl:flex-row gap-6">
+          {/* Form Section */}
+          <div className="flex-1 bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] rounded-2xl shadow-lg  p-6 md:p-8 border border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
+            <form onSubmit={handleCreateAssignmentForm} className="space-y-6 text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
+              
+              {/* Title */}
+              <div>
+                <label className="block font-semibold mb-1">Assignment Title</label>
+                <input
+                  type="text"
+                  name="title"
+                  placeholder="Enter title"
+                  className="w-full p-3 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg bg-transparent focus:ring-1 focus:ring-[var(--color-primary)] dark:focus:ring-[var(--color-primary-dark)] outline-none"
+                  required
                 />
               </div>
-            </div>
 
-            <label className="label mt-2">Description</label>
-            <textarea
-              type="text"
-              className="textarea text-base w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
-              name="description"
-              placeholder="Enter assignment description"
-              required
-            />
-            <span className="text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]">{error}</span>
-            <div className="flex gap-2 sm:gap-3 md:gap-4 mt-4">
-            <Link to={'/'}>
-            <button
-              
-              className="btn btn-outline shadow-none text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] hover:bg-gray-200 dark:hover:bg-gray-600"
-            >
-              Go Back
-            </button>
-            </Link>
-            <button
-              type="submit"
-              className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary-dark)] transition-colors shadow-none hover:opacity-90"
-            >
-              Create Assignment
-            </button>
-            </div>
-          </fieldset>
-        </form>
-      </div>
-          <div className="lg:w-[50%] ">
+              {/* Image URL */}
+              <div>
+                <label className="block font-semibold mb-1">Image URL</label>
+                <input
+                  type="url"
+                  name="imageUrl"
+                  placeholder="Thumbnail image link"
+                  className="w-full p-3 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg bg-transparent focus:ring-1 focus:ring-[var(--color-primary)] dark:focus:ring-[var(--color-primary-dark)] outline-none"
+                  required
+                />
+              </div>
+
+              {/* Marks */}
+              <div>
+                <label className="block font-semibold mb-1">Marks</label>
+                <input
+                  type="number"
+                  name="marks"
+                  placeholder="Enter marks"
+                  className="w-full p-3 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg bg-transparent focus:ring-1 focus:ring-[var(--color-primary)] dark:focus:ring-[var(--color-primary-dark)] outline-none no-spinner"
+                  required
+                />
+              </div>
+
+              {/* Difficulty & Due Date */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block font-semibold mb-1">Difficulty</label>
+                  <select
+                    name="level"
+                    className="w-full p-3 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg bg-transparent focus:ring-1 focus:ring-[var(--color-primary)] dark:focus:ring-[var(--color-primary-dark)] outline-none"
+                  >
+                    <option disabled>Select difficulty</option>
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block font-semibold mb-1">Due Date</label>
+                  <div className="w-full block rounded-lg border border-[var(--color-border)] dark:border-[var(--color-border-dark)] bg-transparent px-4 py-2 focus:ring-2 focus:ring-[var(--color-primary)] outline-none">
+                  <DatePicker
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                    name="dueDate"
+                    className="focus:outline-none"
+                  />
+                  </div>
+                </div>
+              </div>
+
+              {/* Description */}
+              <div>
+                <label className="block font-semibold mb-1">Description</label>
+                <textarea
+                  name="description"
+                  placeholder="Enter assignment details..."
+                  className="w-full p-3 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg bg-transparent focus:ring-1 focus:ring-[var(--color-primary)] dark:focus:ring-[var(--color-primary-dark)] outline-none min-h-[120px]"
+                  required
+                />
+                {error && <p className="text-[var(--color-primary)] mt-1">{error}</p>}
+              </div>
+
+              {/* Buttons */}
+              <div className="flex gap-3">
+                <Link to="/">
+                  <button
+                    type="button"
+                    className="px-5 py-2 rounded-lg border border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:bg-gray-200 dark:hover:bg-gray-600 transition"
+                  >
+                    Go Back
+                  </button>
+                </Link>
+                <button
+                  type="submit"
+                  className="px-5 py-2 rounded-lg bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-white hover:opacity-90 transition"
+                >
+                  Create Assignment
+                </button>
+              </div>
+            </form>
+          </div>
+
+          {/* Animation Section */}
+          <div className="xl:w-[50%] flex justify-center items-center -order-1 xl:order-1">
             <Lottie animationData={assignmentCreate} loop={true} />
           </div>
+        </div>
       </div>
     </div>
   );
 };
 
 export default CreateAssignments;
-
-
-// https://i.ibb.co/ymFXS70p/math.jpg
-// https://i.ibb.co/7dC5dRNJ/math-image.jpg
-// https://i.ibb.co/9kLdn5xN/recipe.jpg
-// https://i.ibb.co/QFnM8DGV/programming.jpg
-// https://i.ibb.co/vvQ54cfY/engineering.jpg

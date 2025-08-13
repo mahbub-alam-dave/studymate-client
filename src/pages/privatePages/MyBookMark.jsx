@@ -122,13 +122,13 @@ const MyBookMark = () => {
               onClick={() =>
                 handleRemoveBookmarkAssignment(assignment._id)
               }
-              className="cursor-pointer px-3 py-1 rounded-md bg-red-500 dark:bg-[#8E1616] text-white text-sm"
+              className="cursor-pointer btn rounded-md bg-red-500 dark:bg-[#8E1616] text-[var(--color-text-primary-dark)] text-sm"
             >
               Remove
             </button>
             <Link to={`/view-assignment-details/${assignment._id}`}>
             <button
-              className="cursor-pointer px-3 py-1 bg-[var(--color-primary)] rounded-md dark:bg-[var(--color-primary-dark)] text-white text-sm"
+              className="cursor-pointer btn bg-[var(--color-primary)] rounded-md dark:bg-[var(--color-primary-dark)] text-white text-sm"
             >
               View
             </button>

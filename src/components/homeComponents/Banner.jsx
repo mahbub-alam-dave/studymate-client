@@ -8,8 +8,8 @@ const Banner = () => {
           backgroundSize: "cover",
           backgroundPosition: "center"
         }}
-        className='w-full min-h-[70vh] flex justify-center items-center'>
-        <div className='max-w-[1440px] w-full mx-auto px-4 sm:px-5 md:px-6 py-12 sm:py-24 md:py-32 lg:py-44 xl-py-52 flex items-start'>
+        className='w-full min-h-[70vh] flex justify-center items-center px-4 sm:px-5 md:px-6'>
+        <div className='max-w-[1440px] w-full mx-auto  py-12 sm:py-24 md:py-32 lg:py-44 xl-py-52 flex items-start'>
             {/* <h2>STUDY WITH STUDY MATE & GRAVE YOUR POTENTIAL </h2> */}
             <div className='flex flex-col gap-5'>
             <h2 className='text-3xl lg:text-4xl xl:text-5xl font-semibold md:leading-14 text-[var(--color-text-primary-dark)]'>Worrying to study with your mates,<br /> It is easy with Edu Mate</h2>

@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
 import { Link, useLoaderData, useNavigate } from "react-router";
 import { ContextValue } from "../../Contextes/AllContexts";
-import assignmentCreate from "../../assets/OnlineWork.json"
+import assignmentCreate from "../../assets/OnlineWork.json";
 import Lottie from "lottie-react";
 
 const UpdateAssignment = () => {
@@ -20,160 +20,190 @@ const UpdateAssignment = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const assignmentInfo = Object.fromEntries(formData.entries());
-    
+
     if (assignmentInfo.description.length < 20) {
       setError("Description should be at least 20 characters");
       return;
     }
-    // update data to the server using axios (patch) method
+
     axios
       .patch(
-        `${import.meta.env.VITE_api_url}/${assignment._id}`,
+        `${import.meta.env.VITE_api_url}/assignments/${assignment._id}`,
         assignmentInfo,
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
+          headers: { Authorization: `Bearer ${token}` },
         }
       )
       .then((res) => {
         if (res.data.modifiedCount) {
           Swal.fire({
-            position: "top-end",
             icon: "success",
             title: "Assignment Updated Successfully",
-            showConfirmButton: false,
             timer: 1500,
+            showConfirmButton: false,
           });
           navigate("/assignments");
         } else if (res.data.matchedCount) {
           Swal.fire({
-            position: "top-end",
             icon: "info",
-            title: "Assignment updated with the previous value",
-            showConfirmButton: false,
+            title: "No changes detected",
             timer: 1500,
+            showConfirmButton: false,
           });
           navigate("/assignments");
         }
       })
       .catch((error) => {
         Swal.fire({
-          position: "top-end",
           icon: "error",
           title: error.message,
-          showConfirmButton: false,
           timer: 1500,
+          showConfirmButton: false,
         });
       });
   };
 
   return (
-    <div className="py-12 flex flex-col md:flex-row">
-      <div className="flex flex-col gap-8 justify-center max-w-[799px] w-full mx-auto text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-2xl px-4 sm:px-6 py-8 shadow-xl ">
-        <h2 className="text-2xl md:text-3xl font-bold text-center">
-          Update Assignment
-        </h2>
-        <form onSubmit={handleUpdateAssignmentForm}>
-          <fieldset className="fieldset ">
-            <label className="label mt-2">Title</label>
-            <input
-              type="text"
-              name="title"
-              defaultValue={assignment.title}
-              className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
-              placeholder="Assignment title"
-              required
-            />
+    <div className="py-12">
+      {/* Form Section */}
+      <div className="space-y-3 mb-8 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+        <h2 className="text-3xl font-bold ">✏️ Update Assignment</h2>
+        <p className="text-base md:text-lg text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
+          Here you have the option to easily update your own submitted
+          assignments. Just change and update
+        </p>
+      </div>
+      <div className="flex flex-col xl:flex-row items-center gap-6">
+        <div className="flex-1 bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] w-full p-8 rounded-2xl shadow-lg border border-[var(--color-border)] dark:border-[var(--color-border-dark)] ">
+          <form
+            onSubmit={handleUpdateAssignmentForm}
+            className="space-y-5 text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]"
+          >
+            {/* Title */}
+            <div>
+              <label className="block font-semibold mb-1">Title</label>
+              <input
+                type="text"
+                name="title"
+                defaultValue={assignment.title}
+                className="w-full p-3 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg bg-transparent focus:ring-1 focus:ring-[var(--color-primary)] dark:focus:ring-[var(--color-primary-dark)] outline-none"
+                placeholder="Assignment title"
+                required
+              />
+            </div>
 
-            <label className="label mt-2">Image URL</label>
-            <input
-              type="url"
-              name="imageUrl"
-              defaultValue={assignment.imageUrl}
-              className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
-              placeholder="Thumbnail image url"
-              required
-            />
+            {/* Image URL */}
+            <div>
+              <label className="block font-semibold mb-1">Image URL</label>
+              <input
+                type="url"
+                name="imageUrl"
+                defaultValue={assignment.imageUrl}
+                className="w-full p-3 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg bg-transparent focus:ring-1 focus:ring-[var(--color-primary)] dark:focus:ring-[var(--color-primary-dark)] outline-none"
+                placeholder="Thumbnail image url"
+                required
+              />
+            </div>
 
-            <label className="label mt-2">Marks</label>
-            <input
-              type="number"
-              defaultValue={assignment.marks}
-              className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none no-spinner"
-              name="marks"
-              placeholder="Enter marks"
-              required
-            />
+            {/* Marks */}
+            <div>
+              <label className="block font-semibold mb-1">Marks</label>
+              <input
+                type="number"
+                defaultValue={assignment.marks}
+                className="w-full p-3 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg bg-transparent focus:ring-1 focus:ring-[var(--color-primary)] dark:focus:ring-[var(--color-primary-dark)] outline-none no-spinner"
+                name="marks"
+                placeholder="Enter marks"
+                required
+              />
+            </div>
 
-            <div className="flex flex-col sm:flex-row gap-2 mt-2">
-              <div className="flex flex-col gap-1 w-full">
-                <label className="label">Difficulty Label</label>
+            {/* Difficulty & Date */}
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label className="block font-semibold mb-1">
+                  Difficulty Label
+                </label>
                 <select
-                  className="select w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
+                  className="w-full p-3 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg bg-transparent focus:ring-1 focus:ring-[var(--color-primary)] dark:focus:ring-[var(--color-primary-dark)] outline-none"
                   defaultValue={assignment.level}
                   name="level"
                 >
-                  <option className="bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)]" disabled={true}>
-                    Select difficulty label
-                  </option>
-                  <option className="bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)]" value="Easy">
-                    Easy
-                  </option>
-                  <option className="bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)]" value="Medium">
-                    Medium
-                  </option>
-                  <option className="bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)]" value="Hard">
-                    Hard
-                  </option>
+                  <option disabled>Select difficulty label</option>
+                  <option value="Easy">Easy</option>
+                  <option value="Medium">Medium</option>
+                  <option value="Hard">Hard</option>
                 </select>
               </div>
-              <div className="flex flex-col gap-1 w-full">
-                <label className="label">Due date</label>
-                {/* <input
-              type="number"
-              className="input w-full"
-              name="dueDate"
-              placeholder="Due date"
-            /> */}
-                <DatePicker
-                  selected={startDate}
-                  onChange={(date) => setStartDate(date)}
-                  name="dueDate"
-                  className="input w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
-                />
+              <div>
+                <label className="block font-semibold mb-1">Due Date</label>
+                <div className="w-full p-3 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg bg-transparent focus:ring-1 focus:ring-[var(--color-primary)] dark:focus:ring-[var(--color-primary-dark)] outline-none">
+                  <DatePicker
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                    name="dueDate"
+                    className="focus:outline-none"
+                  />
+                </div>
               </div>
             </div>
 
-            <label className="label mt-2">Description</label>
-            <textarea
-              type="text"
-              defaultValue={assignment.description}
-              className="textarea w-full bg-transparent border-[var(--color-border)] dark:border-[var(--color-border-dark)] focus:outline-none"
-              name="description"
-              placeholder="Enter assignment description"
-              required
-            />
-            <span className="text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]">{error}</span>
-            <div className="flex gap-2 sm:gap-3 md:gap-4 mt-4">
-              <Link to={"/assignments"}>
-                <button className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary)] text-[var(--color-text-primary-dark)] shadow-none hover:text-[var(--color-text-primary)] dark:hover:text-[var(--color-text-primary-dark)]  hover:bg-transparent">
-                  Cancel
+            {/* Description */}
+            <div>
+              <label className="block font-semibold mb-1">Description</label>
+              <textarea
+                defaultValue={assignment.description}
+                className="w-full p-3 border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-lg bg-transparent focus:ring-1 focus:ring-[var(--color-primary)] dark:focus:ring-[var(--color-primary-dark)] outline-none"
+                name="description"
+                placeholder="Enter assignment description"
+                rows={4}
+                required
+              />
+              {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
+            </div>
+
+            {/* Buttons */}
+            {/*<div className="flex justify-between gap-4 pt-4">
+            <Link to={"/assignments"} className="w-full">
+              <button
+                type="button"
+                className="w-full py-3 bg-gray-200 dark:bg-gray-600 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] font-semibold rounded-lg transition"
+              >
+                Cancel
+              </button>
+            </Link>
+            <button
+              type="submit"
+              className="w-full py-3 bg-gradient-to-r from-blue-500 to-indigo-500 hover:opacity-90 text-white font-semibold rounded-lg transition"
+            >
+              Update Assignment
+            </button>
+          </div> */}
+            {/* Buttons */}
+            <div className="flex gap-3">
+              <Link to="/dashboard/my-assignments">
+                <button
+                  type="button"
+                  className="px-5 py-2 rounded-lg border border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:bg-gray-200 dark:hover:bg-gray-600 transition"
+                >
+                  Go Back
                 </button>
               </Link>
               <button
                 type="submit"
-                className="btn bg-[var(--color-secondary)] dark:bg-[var(--color-secondary-dark)] text-[var(--color-text-primary-dark)] transition-colors hover:bg-transparent hover:text-[var(--color-text-primary)] border shadow-none dark:hover:text-[var(--color-text-primary-dark)]"
+                className="px-5 py-2 rounded-lg bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-white hover:opacity-90 transition"
               >
                 Update Assignment
               </button>
             </div>
-          </fieldset>
-        </form>
+          </form>
+        </div>
+
+        {/* Animation Section */}
+        <div className="xl:w-[50%] -order-1 xl:order-1 flex-1">
+          <Lottie animationData={assignmentCreate} loop={true} />
+        </div>
       </div>
-      <div className="lg:w-[50%] ">
-                  <Lottie animationData={assignmentCreate} loop={true} />
-                </div>
     </div>
   );
 };

@@ -2,7 +2,8 @@ import React from "react";
 
 const FrequentQuestionSection = () => {
   return (
-    <div className="max-w-[1440px] w-full mx-auto pb-12 flex flex-col gap-12 px-4 sm:px-5 md:px-6 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
+    <div className="px-4 sm:px-5 md:px-6">
+    <div className="max-w-[1440px] w-full mx-auto pb-12 flex flex-col gap-12 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
       <div className="space-y-4">
         <h2 className=" text-2xl md:text-3xl font-bold text-center ">
         Frequently Asked Questions
@@ -64,6 +65,7 @@ const FrequentQuestionSection = () => {
           </div>
         </div>
       </div>
+    </div>
     </div>
   );
 };

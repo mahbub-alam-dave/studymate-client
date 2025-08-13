@@ -11,7 +11,8 @@ import { Fade } from 'react-awesome-reveal';
 
 const FeatureSection = () => {
     return (
-        <div className='my-12 sm:my-16 flex flex-col gap-12 justify-center items-center max-w-[1440px] w-full mx-auto p-4 sm:p-5 md:p-6 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]'>
+        <div className='px-4 sm:px-5 md:px-6'>
+        <div className='my-12 sm:my-16 flex flex-col gap-12 justify-center items-center max-w-[1440px] w-full mx-auto text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]'>
             <div className='space-y-3'>
                 <h2 className='text-2xl md:text-3xl font-bold text-center text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]'>Our Latest Features</h2>
                 <p className='text-lg text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]'>Explore our latest features, enjoy learning with zero percent of distractions</p>
@@ -68,6 +69,7 @@ const FeatureSection = () => {
                     <p className='text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]'>Connect with study partners, exchange ideas, and stay motivated through group chats.</p>
                 </motion.div>
             </div>
+        </div>
         </div>
     );
 };

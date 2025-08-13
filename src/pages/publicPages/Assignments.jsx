@@ -19,7 +19,6 @@ const fetchAssignments = async ({ queryKey }) => {
   if(page) params.page = page;
   if (category) params.category = category;
   if (searchQuery.trim()) params.searchQuery = searchQuery.trim();
-  console.log(params)
   const { data } = await axios.get(`${API_URL}/assignments`, { params });
   return data;
 };
@@ -31,9 +30,6 @@ const Assignments = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
   const [limit, setLimit] = useState(5);
-
-
-  console.log(page)
 
  // Debounce search input
   useEffect(() => {
