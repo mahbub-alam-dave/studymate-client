@@ -65,9 +65,9 @@ const Login = () => {
       });
   };
   return (
-    <div className="p-4 mt-16">
-    <div className="card text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] border border-[var(--color-border)] dark:border-[var(--color-border-dark)] w-full max-w-md shrink-0 mx-auto  shadow-lg">
-      <div className="card-body px-4 sm:px-6 py-8">
+    <div className="px-4 sm:px-5 md:px-6 py-32">
+    <div className="card bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] w-full max-w-md shrink-0 mx-auto  shadow-sm">
+      <div className="card-body px-4 sm:px-6 md:px-8 py-8">
         <h1 className="text-3xl text-center font-bold">
           Login now!
         </h1>
@@ -91,7 +91,7 @@ const Login = () => {
           <div>
             <a className="link link-hover">Forgot password?</a>
           </div>
-          <button  className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary-dark)] hover:bg-[var(--color-primary)] dark:hover:bg-[var(--color-primary-dark)] border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
+          <button  className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-[var(--color-text-primary-dark)] hover:bg-[var(--color-primary)] dark:hover:bg-[var(--color-primary-dark)] border-none shadow-none hover:opacity-90"
 >
             Login
           </button>
@@ -105,8 +105,8 @@ const Login = () => {
         </div>
         <button
           onClick={handleGoogleSignIn}
-          className="btn bg-transparent border shadow-none border-[var(--color-border)] dark:border-[var(--color-border-dark)] hover:bg-[#e4e2e29a] dark:hover:bg-[#e4e2e210] text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] focus:outline-none"
-          // hover:bg-[var(--color-primary)] dark:hover:bg-[var(--color-primary-dark)] hover:text-[var(--color-text-primary-dark)]
+          className="btn shadow-none border-none bg-blue-100 dark:bg-gray-800 hover:bg-blue-200 dark:hover:bg-gray-700 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] focus:outline-none"
+          // border shadow-none border-[var(--color-border)] dark:border-[var(--color-border-dark)]
         >
           <FcGoogle size={24} className="" />
           Login with Google

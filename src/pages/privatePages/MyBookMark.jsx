@@ -116,22 +116,24 @@ const MyBookMark = () => {
             </span>
           </td>
           <td className="p-4">{assignment.marks}</td>
-          <td className="p-4 flex flex-wrap gap-2">
+          <td className="p-4 ">
+            <div className="flex flex-wrap items-center gap-2">
             <button
               onClick={() =>
                 handleRemoveBookmarkAssignment(assignment._id)
               }
-              className="px-3 py-1 rounded-md bg-red-500 dark:bg-[#8E1616] text-white text-sm"
+              className="cursor-pointer px-3 py-1 rounded-md bg-red-500 dark:bg-[#8E1616] text-white text-sm"
             >
               Remove
             </button>
             <Link to={`/view-assignment-details/${assignment._id}`}>
             <button
-              className="px-3 py-1 bg-[var(--color-primary)] rounded-md dark:bg-[var(--color-primary-dark)] text-white text-sm"
+              className="cursor-pointer px-3 py-1 bg-[var(--color-primary)] rounded-md dark:bg-[var(--color-primary-dark)] text-white text-sm"
             >
               View
             </button>
             </Link>
+            </div>
           </td>
         </tr>
       ))}

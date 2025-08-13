@@ -67,12 +67,6 @@ const Navbar = () => {
       </NavLink>
       {user && (
         <> 
-        {/* <NavLink
-          to="/dashboard/create-assignment"
-          className="h-full flex items-center hover:bg-[#c9c9c965] dark:hover:bg-[#c2c2c21c] px-3"
-        >
-          <span>Create Assignment</span>
-        </NavLink> */}
         <NavLink
         className="h-full flex items-center hover:bg-[#c9c9c965] dark:hover:bg-[#c2c2c21c] px-3"
           to="/dashboard"
@@ -85,6 +79,7 @@ const Navbar = () => {
     </>
   );
 
+  // menu hidden code
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -107,12 +102,24 @@ const Navbar = () => {
     setDisplayMenu((prev) => !prev);
   };
 
+  // navbar shadow 
+    const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 0); // true if page is scrolled down
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   // bg-gradient-to-br from- to-[rgb(3,5,94)] dark:bg-gradient-to-br dark:from-[#03045e] dark:to-[#000814]
   if (loading) return null;
   return (
-    <div className="h-[80px] bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] w-full shadow-md border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)] px-4 sm:px-5 md:px-6 fixed top-0 z-1000">
+    <div className={`h-[80px] bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] w-full   px-4 sm:px-5 md:px-6 fixed top-0 z-1000 ${scrolled ? "shadow-sm dark:shadow-gray-800" : ""}`}>
+      {/* border-b border-[var(--color-border)] dark:border-[var(--color-border-dark)] shadow-md */}
 
-      <div className="h-[75px] max-w-[1440px] w-full mx-auto flex justify-between items-center gap-4 ">
+      <div className="h-full max-w-[1440px] w-full mx-auto flex justify-between items-center gap-4 ">
         <div className="flex items-center gap-2">
           <PiStudent size={38} className="text-2xl text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]"/>
           <span className="rancho font-medium text-3xl text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]">Edumate</span>

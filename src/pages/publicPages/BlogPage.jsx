@@ -103,8 +103,8 @@ const BlogPage = () => {
     <div className="bg-gray-50 dark:bg-gray-900 min-h-screen transition-colors duration-300">
         <div className="max-w-[1440px] mx-auto px-4 py-10">
       <div className="flex flex-col gap-3 mb-8">
-        <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary)]">Edumate Blogs</h2>
-        <p className="text-lg text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary)]">Read the latest blogs published by the students on various study topic and enjoy reading</p>
+        <h2 className="text-2xl md:text-3xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">Edumate Blogs</h2>
+        <p className="text-lg text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">Read the latest blogs published by the students on various study topic and enjoy reading</p>
       </div>
       {/* Blog Grid */}
       <main className=" grid gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">

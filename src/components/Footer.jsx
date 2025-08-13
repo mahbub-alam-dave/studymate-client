@@ -37,7 +37,7 @@ const Footer = () => {
           <div className="flex flex-col md:justify-end justify-self-end gap-4 ">
             <div className="join">
               <div>
-                <label className="input validator join-item dark:bg-gray-800">
+                <label className="input validator join-item dark:bg-gray-800 focus-within:outline-none border border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
                   <svg
                     className="h-[1em] opacity-50"
                     xmlns="http://www.w3.org/2000/svg"

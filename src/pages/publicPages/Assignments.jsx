@@ -33,6 +33,7 @@ const Assignments = () => {
   const [limit, setLimit] = useState(5);
 
 
+  console.log(page)
 
  // Debounce search input
   useEffect(() => {
@@ -63,7 +64,10 @@ const Assignments = () => {
   return (
     <div className="w-full px-4 sm:px-5 md:px-6">
     <div className="py-12 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] max-w-[1440px] w-full mx-auto ">
-      <h2 className="text-2xl md:text-3xl font-bold mb-12">All Assignments</h2>
+      <div className="mb-12 space-y-3">
+      <h2 className="text-2xl md:text-3xl font-bold ">All Assignments</h2>
+      <p className="text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)] text-base md:text-lg">Explore the latest assignments published by students. Search by title or select by category</p>
+      </div>
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
         <motion.div
           initial={{ x: -50, opacity: 0 }}

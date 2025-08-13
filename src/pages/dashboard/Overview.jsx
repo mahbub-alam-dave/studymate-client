@@ -281,19 +281,19 @@ const Overview = () => {
         <div className="bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] rounded-xl p-6">
           <h3 className="text-xl font-semibold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] mb-4">Quick Actions</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                        <button onClick={() => navigate('/')} className="bg-gradient-to-r from-orange-500 to-orange-600 text-[var(--color-text-primary-dark)] p-4 rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all transform hover:scale-105">
+                        <button onClick={() => navigate('/')} className="cursor-pointer bg-gradient-to-r from-orange-500 to-orange-600 text-[var(--color-text-primary-dark)] p-4 rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all transform hover:scale-105">
               <PiStudent className="h-8 w-8 mx-auto mb-2" />
               <span className="text-base f font-medium">Go Home</span>
             </button>
-                        <button onClick={() => navigate('/dashboard/profile')} className="bg-gradient-to-r from-green-500 to-green-600 text-[var(--color-text-primary-dark)] p-4 rounded-lg hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105">
+                        <button onClick={() => navigate('/dashboard/profile')} className="cursor-pointer bg-gradient-to-r from-green-500 to-green-600 text-[var(--color-text-primary-dark)] p-4 rounded-lg hover:from-green-600 hover:to-green-700 transition-all transform hover:scale-105">
               <Users className="h-8 w-8 mx-auto mb-2" />
               <span className="text-base fm font-medium">Go To Profile</span>
             </button>
-            <button onClick={() => navigate('/dashboard/create-assignment')} className="bg-gradient-to-r from-blue-500 to-blue-600 text-[var(--color-text-primary-dark)] p-8 rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all transform hover:scale-105">
+            <button onClick={() => navigate('/dashboard/create-assignment')} className="cursor-pointer bg-gradient-to-r from-blue-500 to-blue-600 text-[var(--color-text-primary-dark)] p-8 rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all transform hover:scale-105">
               <BookOpen className="h-8 w-8 mx-auto mb-2" />
               <span className="text-base font-medium">Create Assignment</span>
             </button>
-            <button onClick={() => navigate('/dashboard/my-bookmarked-assignments')} className="bg-gradient-to-r from-purple-500 to-purple-600 text-[var(--color-text-primary-dark)] p-4 rounded-lg hover:from-purple-600 hover:to-purple-700 transition-all transform hover:scale-105">
+            <button onClick={() => navigate('/dashboard/my-bookmarked-assignments')} className="cursor-pointer bg-gradient-to-r from-purple-500 to-purple-600 text-[var(--color-text-primary-dark)] p-4 rounded-lg hover:from-purple-600 hover:to-purple-700 transition-all transform hover:scale-105">
               <Bookmark className="h-8 w-8 mx-auto mb-2" />
               <span className="text-base font-medium">My Bookmark</span>
             </button>

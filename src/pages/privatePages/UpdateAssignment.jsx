@@ -5,6 +5,8 @@ import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
 import { Link, useLoaderData, useNavigate } from "react-router";
 import { ContextValue } from "../../Contextes/AllContexts";
+import assignmentCreate from "../../assets/OnlineWork.json"
+import Lottie from "lottie-react";
 
 const UpdateAssignment = () => {
   const assignment = useLoaderData();
@@ -67,7 +69,7 @@ const UpdateAssignment = () => {
   };
 
   return (
-    <div className="px-4 sm:px-6 py-12">
+    <div className="py-12 flex flex-col md:flex-row">
       <div className="flex flex-col gap-8 justify-center max-w-[799px] w-full mx-auto text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] border border-[var(--color-border)] dark:border-[var(--color-border-dark)] rounded-2xl px-4 sm:px-6 py-8 shadow-xl ">
         <h2 className="text-2xl md:text-3xl font-bold text-center">
           Update Assignment
@@ -169,6 +171,9 @@ const UpdateAssignment = () => {
           </fieldset>
         </form>
       </div>
+      <div className="lg:w-[50%] ">
+                  <Lottie animationData={assignmentCreate} loop={true} />
+                </div>
     </div>
   );
 };

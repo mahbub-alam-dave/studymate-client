@@ -6,14 +6,18 @@ import BookMarkAssignment from "../../components/assignmentComponent/BookMarkAss
 import emptyAnimation from "../../assets/emptyAinmation.json";
 import Lottie from "lottie-react";
 import Swal from "sweetalert2";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { MdOutlineDeleteOutline, MdOutlineUpdate } from "react-icons/md";
+import { GrFormView } from "react-icons/gr";
+
 
 const MyAssignments = () => {
   const { user } = useContext(ContextValue);
   const queryClient = useQueryClient();
   const axiosSecure = UseAxiosSecure();
+  const navigate = useNavigate()
 
   const {
     data: myAssignments = [],
@@ -85,6 +89,21 @@ const handleDeleteAssignment = (id, email) => {
     });
   }
 };
+
+  const handleUpdateAssignment = (id, email) => {
+    if (user?.email === email) {
+      navigate(`/dashboard/update-assignment/${id}`);
+    } else {
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "You can't update this assignment",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      return;
+    }
+  };
 
   if (isLoading) return <Loader />;
 
@@ -161,15 +180,23 @@ const handleDeleteAssignment = (id, email) => {
                             onClick={() =>
                               handleDeleteAssignment(assignment._id, assignment.email)
                             }
-                            className="px-3 py-1 rounded-md bg-red-500 dark:bg-[#8E1616] text-white text-sm"
+                            className="cursor-pointer px-3 py-1 rounded-md bg-red-500 dark:bg-[#8E1616] text-white text-sm"
                           >
-                            Delete
+                            <MdOutlineDeleteOutline />
+                          </button>
+                          <button
+                            onClick={() =>
+                              handleUpdateAssignment(assignment._id, assignment.email)
+                            }
+                            className="cursor-pointer px-3 py-1 rounded-md bg-red-500 dark:bg-[#8E1616] text-white text-sm"
+                          >
+                            <MdOutlineUpdate />
                           </button>
                           <Link
                             to={`/view-assignment-details/${assignment._id}`}
                           >
-                            <button className="px-3 py-1 bg-[var(--color-primary)] rounded-md dark:bg-[var(--color-primary-dark)] text-white text-sm">
-                              View
+                            <button className="cursor-pointer px-3 py-1 bg-[var(--color-primary)] rounded-md dark:bg-[var(--color-primary-dark)] text-white text-sm">
+                              <GrFormView />
                             </button>
                           </Link>
                         </div>

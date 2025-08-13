@@ -50,10 +50,10 @@ const Sidebar = ({ displayMenu, setDisplayMenu, handleLogout }) => {
         {user && (
           <NavLink
             onClick={() => setDisplayMenu((display) => !display)}
-            to="/pending-assignments"
+            to="/dashboard"
             className="hover:bg-[#00b4d8] dark:hover:bg-[#03045e] px-3"
           >
-            <span>Pending Assignments</span>
+            <span>Dashboard</span>
           </NavLink>
         )}
         <div className="px-3">

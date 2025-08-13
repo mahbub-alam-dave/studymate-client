@@ -120,8 +120,8 @@ const router = createBrowserRouter([
       {
         path: "pending-assignments",
         element: <PendingAssignments />,
-        loader: pendingAssignments,
-        hydrateFallbackElement: <Loader /> 
+        // loader: pendingAssignments,
+        // hydrateFallbackElement: <Loader /> 
       },
       {
         path: "my-assignments",

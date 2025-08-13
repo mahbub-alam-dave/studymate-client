@@ -33,7 +33,7 @@ const SubmittedAssignmentCards = () => {
   }
 
   return (
-    <div className="py-8 flex flex-col gap-6 sm:gap-8 md:gap-12 pb-12 max-w-[1440px] w-full mx-auto">
+    <div className="py-8 flex flex-col gap-6 sm:gap-8 md:gap-12 pb-12 ">
       <div className="flex flex-col gap-4">
       <h2 className="text-2xl font-bold text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
         My Submitted Assignments
