@@ -3,21 +3,13 @@ import { Link, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import { ContextValue } from "../../Contextes/AllContexts";
-import axios from "axios";
+import { saveUserToDB } from "../../hooks/utilities/saveUserToDb";
 
 const Register = () => {
   const { user, setUser, registerUser, updateUserProfile, loginWithGoogle } =
     useContext(ContextValue);
   const navigate = useNavigate();
   const [validationError, setValidationError] = useState("");
-
-      const saveUserToDB = async (userData) => {
-  try {
-    await axios.post(`${import.meta.VITE_api_url}/users`, userData);
-  } catch (err) {
-    console.error("Error saving user:", err);
-  }
-};
 
   const handleUserRegisterForm = (e) => {
     e.preventDefault();
@@ -54,7 +46,7 @@ const Register = () => {
           displayName: profileData.name,
           photoURL: profileData.photo || "https://i.ibb.co.com/FLrrTVtL/man.png",
         })
-          .then(() => {
+          .then(async() => {
             // user profile data updated
             setUser({
               ...user,
@@ -65,11 +57,13 @@ const Register = () => {
             const newUser = {
       name: profileData.name,
       email: email,
+      role: "student",
       photo: profileData.photo || "https://i.ibb.co.com/FLrrTVtL/man.png",
       createdAt: new Date(),
     };
-    saveUserToDB(newUser)
-    navigate("/");
+    await saveUserToDB(newUser);
+navigate("/");
+
           })
           .catch((error) => {
             Swal.fire({
@@ -101,16 +95,18 @@ const Register = () => {
 
   const handleGoogleSignIn = () => {
     loginWithGoogle()
-      .then((result) => {
+      .then(async(result) => {
         // successfully logged in with google
         const googleUser = result.user;
     const newUser = {
       name: googleUser.displayName,
       email: googleUser.email,
       photo: googleUser.photoURL,
+      role: "student",
       createdAt: new Date(),
     };
-    saveUserToDB(newUser)
+        await saveUserToDB(newUser);
+navigate("/");
         Swal.fire({
           position: "top-end",
           icon: "success",

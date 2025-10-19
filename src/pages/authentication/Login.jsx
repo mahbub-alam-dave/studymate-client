@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from "react-router";
 import { FcGoogle } from "react-icons/fc";
 import Swal from "sweetalert2";
 import { ContextValue } from "../../Contextes/AllContexts";
+import { saveUserToDB } from "../../hooks/utilities/saveUserToDb";
 
 const Login = () => {
   const { loginUser, loginWithGoogle } = useContext(ContextValue);
@@ -17,8 +18,13 @@ const Login = () => {
 
     // login user
     loginUser(email, password)
-      .then(() => {
+      .then( async(result) => {
         // user logged in successfully
+        const userData = {
+          email: result.user.email,
+          lastSignedIn: new Date()
+        }
+        await saveUserToDB(userData)
         Swal.fire({
           position: "top-end",
           icon: "success",
@@ -42,8 +48,20 @@ const Login = () => {
 
   const handleGoogleSignIn = () => {
     loginWithGoogle()
-      .then(() => {
+      .then( async(result) => {
         // successfully logged in with google
+        const googleUser = result.user;
+    const newUser = {
+      name: googleUser.displayName,
+      email: googleUser.email,
+      photo: googleUser.photoURL,
+      role: "student",
+      createdAt: new Date(),
+    };
+        await saveUserToDB(newUser);
+navigate("/");
+
+        // show success alert
         Swal.fire({
           position: "top-end",
           icon: "success",

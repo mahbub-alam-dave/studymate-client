@@ -26,6 +26,7 @@ import AboutPage from './pages/publicPages/AboutPage'
 import BlogPage from './pages/publicPages/BlogPage'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import MyAssignments from './pages/privatePages/MyAssignments'
+import BeATutor from './pages/privatePages/BeATutor'
 // import DataLoader from './apis/DataLoader'
 
 const queryClient = new QueryClient();
@@ -135,6 +136,10 @@ const router = createBrowserRouter([
       {
         path: "my-bookmarked-assignments",
         element: <MyBookMark />
+      },
+      {
+        path: "be-a-tutor",
+        element: <BeATutor />
       }
     ]
   }
