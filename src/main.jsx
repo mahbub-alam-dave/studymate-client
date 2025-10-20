@@ -16,7 +16,6 @@ import Loader from './components/Loader'
 import UpdateAssignment from './pages/privatePages/UpdateAssignment'
 import AssignmentDetails from './pages/privatePages/AssignmentDetails'
 import { assignmentDetails } from './apis/assignmentDetails'
-import { pendingAssignments } from './apis/PendingAssignmentApi'
 import { updateAssignment } from './apis/updateAssignmentApi'
 import MyBookMark from './pages/privatePages/MyBookMark'
 import NotFound from './pages/NotFound'
@@ -27,6 +26,7 @@ import BlogPage from './pages/publicPages/BlogPage'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import MyAssignments from './pages/privatePages/MyAssignments'
 import BeATutor from './pages/privatePages/BeATutor'
+import FindTutorPage from './pages/publicPages/FindTutors'
 // import DataLoader from './apis/DataLoader'
 
 const queryClient = new QueryClient();
@@ -61,6 +61,10 @@ const router = createBrowserRouter([
   {
     path: "/blogs",
     element: <BlogPage />
+  },
+  {
+    path: "/find-tutor",
+    element: <FindTutorPage />
   },
   {
     path: "create-assignment",

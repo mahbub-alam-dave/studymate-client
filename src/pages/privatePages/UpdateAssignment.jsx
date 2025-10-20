@@ -28,7 +28,7 @@ const UpdateAssignment = () => {
 
     axios
       .patch(
-        `${import.meta.env.VITE_api_url}/assignments/${assignment._id}`,
+        `${import.meta.env.VITE_api_url}/api/assignments/${assignment._id}`,
         assignmentInfo,
         {
           headers: { Authorization: `Bearer ${token}` },

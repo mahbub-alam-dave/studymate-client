@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { FaBars } from "react-icons/fa";
 import { PiStudent } from "react-icons/pi";
 

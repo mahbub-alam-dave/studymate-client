@@ -18,7 +18,7 @@ const MyBookMark = () => {
   useEffect(() => {
       setFetching(true);
       axiosSecure
-        .get(`/my-bookmarks?email=${user.email}`)
+        .get(`${import.meta.env.VITE_api_url}/api/bookmarks/my-bookmarks?email=${user.email}`)
         .then((res) => {setBookMarkedAssignments(res.data) 
           console.log(res)
          }) 
@@ -36,7 +36,7 @@ const MyBookMark = () => {
     return Swal.fire("Login required!", "Please log in to manage bookmarks.", "info");
   }
 
-  await axiosSecure.delete(`/bookmarks/${assignmentId}`)
+  await axiosSecure.delete(`${import.meta.env.VITE_api_url}/api/bookmarks/${assignmentId}`)
     .then(() => { 
     //     setBookMarkedAssignments(prev =>
     //     prev.filter(item => item.assignmentId !== assignmentId)

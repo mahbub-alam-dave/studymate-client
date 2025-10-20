@@ -43,7 +43,7 @@ const AssignmentCard = ({assignment}) => {
       if (!user) {
     return Swal.fire("Login required!", "Please log in to bookmark.", "info");
   }
-  await axiosSecure.post("/bookmarks", { assignmentId })
+  await axiosSecure.post(`${import.meta.env.VITE_api_url}/api/bookmarks`, { assignmentId })
     .then(() => Swal.fire("Bookmarked!", "", "success"))
     .catch(err => {
       if (err.response?.status === 400) {

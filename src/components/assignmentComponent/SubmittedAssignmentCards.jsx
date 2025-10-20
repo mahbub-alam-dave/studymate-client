@@ -16,7 +16,7 @@ const SubmittedAssignmentCards = () => {
     if (user) {
       setFetching(true);
       axiosSecure
-        .get(`/my-submitted-assignments?email=${user?.email}`)
+        .get(`${import.meta.env.VITE_api_url}/api/submissions/my-submitted-assignments?email=${user?.email}`)
         .then((res) => setSubmittedAssignments(res.data))
         .catch(error =>{
           // error occured

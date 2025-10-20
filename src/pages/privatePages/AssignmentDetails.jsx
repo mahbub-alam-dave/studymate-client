@@ -25,7 +25,7 @@ const AssignmentDetails = () => {
     // save submitted assignment to the database
     axios
       .post(
-        `${import.meta.env.VITE_api_url}/submitted-assignments`,
+        `${import.meta.env.VITE_api_url}/api/assignments/submitted-assignments`,
         submittedAssignmentInfo
       )
       .then((res) => {

@@ -32,7 +32,7 @@ const CreateAssignments = () => {
     };
 
     axios
-      .post(`${import.meta.env.VITE_api_url}/assignments`, newAssignment)
+      .post(`${import.meta.env.VITE_api_url}/api/assignments`, newAssignment)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({

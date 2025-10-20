@@ -19,7 +19,7 @@ const fetchAssignments = async ({ queryKey }) => {
   if(page) params.page = page;
   if (category) params.category = category;
   if (searchQuery.trim()) params.searchQuery = searchQuery.trim();
-  const { data } = await axios.get(`${API_URL}/assignments`, { params });
+  const { data } = await axios.get(`${API_URL}/api/assignments`, { params });
   return data;
 };
 

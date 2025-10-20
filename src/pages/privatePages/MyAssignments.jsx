@@ -26,10 +26,10 @@ const MyAssignments = () => {
     error,
     refetch
   } = useQuery({
-    queryKey: ["my-created-assignments"], // cache key
+    queryKey: ["api/assignments/my-created-assignments"], // cache key
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `${import.meta.env.VITE_api_url}/my-created-assignments?email=${user.email}`
+        `${import.meta.env.VITE_api_url}/api/assignments/my-created-assignments?email=${user.email}`
       );
       return res.data;
     },
@@ -39,7 +39,7 @@ const MyAssignments = () => {
 const deleteAssignmentMutation = useMutation({
   mutationFn: async (id) => {
     const res = await axios.delete(
-      `${import.meta.env.VITE_api_url}/assignments/${id}/delete`
+      `${import.meta.env.VITE_api_url}/api/assignments/${id}/delete`
     );
     return res.data;
   },

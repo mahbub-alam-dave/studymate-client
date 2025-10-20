@@ -65,6 +65,12 @@ const Navbar = () => {
       >
         <span>Blogs</span>
       </NavLink>
+      <NavLink
+        to={"/find-tutor"}
+        className="h-full flex items-center hover:bg-[#c9c9c965] dark:hover:bg-[#c2c2c21c] px-3"
+      >
+        <span>Find Tutor</span>
+      </NavLink>
       {user && (
         <> 
         <NavLink

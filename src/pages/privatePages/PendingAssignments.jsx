@@ -19,7 +19,7 @@ const PendingAssignments = () => {
     enabled: !!user?.email,
     queryFn: async () => {
       const res = await axiosSecure.get(
-        `${import.meta.env.VITE_api_url}/pending-assignments`
+        `${import.meta.env.VITE_api_url}/api/submissions/pending-assignments`
       );
       return res.data;
     },
