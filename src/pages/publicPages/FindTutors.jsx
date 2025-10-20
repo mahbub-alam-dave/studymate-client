@@ -100,15 +100,60 @@ export default function FindTutorPage() {
 
   // Reset to page 1 when filters change
   useEffect(() => {
-    if (currentPage !== 1) {
+  /*   if (currentPage !== 1) {
       setCurrentPage(1);
-    }
-  }, [debouncedSearchQuery, currentPage, selectedSubject, experienceFilter, feeRange]);
+    } */
+   setCurrentPage(1);
+  }, [debouncedSearchQuery, selectedSubject, experienceFilter, feeRange]);
 
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+const handlePageChange = (newPage) => {
+  if (newPage < 1 || newPage > pagination.totalPages) return;
+  setCurrentPage(newPage);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
+
+
+/*   const handlePageChange = async (newPage) => {
+  if (newPage < 1 || newPage > pagination.totalPages) return;
+
+  
+
+  setLoading(true);
+  try {
+
+      const params = new URLSearchParams();
+      
+      if (debouncedSearchQuery) params.append('search', debouncedSearchQuery);
+      if (selectedSubject) params.append('subject', selectedSubject);
+      if (experienceFilter) params.append('experience', experienceFilter);
+      params.append('minFee', feeRange[0]);
+      params.append('maxFee', feeRange[1]);
+      params.append('page', newPage);
+      params.append('limit', ITEMS_PER_PAGE);
+
+
+      const response = await fetch(`${API_BASE_URL}/api/tutors/find-tutors?${params.toString()}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          // Add auth token if needed
+          // 'Authorization': `Bearer ${localStorage.getItem('token')}`
+        }
+      });
+    const data = await response.json();
+
+    if (data.success) {
+      setTutors(data.data);
+      setPagination(data.pagination);
+      setCurrentPage(newPage);
+    }
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+}; */
+
 
   const resetFilters = () => {
     setSearchQuery('');
@@ -119,31 +164,31 @@ export default function FindTutorPage() {
   };
 
   return (
-    <div className="min-h-screen bg-base-200 py-8 px-4">
+    <div className="min-h-screen bg-[var(--color-bg)] dark:bg-[var(--color-bg-dark)] py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-2">Find Your Perfect Tutor</h1>
-          <p className="text-gray-600">Browse through our qualified tutors and find the best match for your learning needs</p>
+          <h1 className="text-4xl font-bold mb-2 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">Find Your Perfect Tutor</h1>
+          <p className="text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">Browse through our qualified tutors and find the best match for your learning needs</p>
         </div>
 
         {/* Search and Filter Section */}
-        <div className="bg-base-100 rounded-lg shadow-md p-6 mb-6">
+        <div className="bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] rounded-lg shadow-md p-6 mb-6 text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">
           {/* Search Bar */}
-          <div className="flex gap-4 mb-4">
+          <div className="flex gap-4 mb-4 ">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]" size={20} />
               <input
                 type="text"
                 placeholder="Search by name, subject, or qualification..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="input input-bordered w-full pl-10"
+                className="input input-bordered w-full pl-10 bg-transparent border border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
               />
             </div>
             <button 
               onClick={() => setShowFilters(!showFilters)}
-              className="btn btn-outline gap-2"
+              className="btn btn-outline hover:bg-[var(--color-primary)] dark:hover:bg-[var(--color-primary-dark)] hover:text-[var(--color-text-primary-dark)] gap-2 border border-[var(--color-border)] dark:border-[var(--color-border-dark)]  text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]"
             >
               <Filter size={20} />
               Filters
@@ -152,18 +197,18 @@ export default function FindTutorPage() {
 
           {/* Filter Options */}
           {showFilters && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-[var(--color-border)] dark:border-[var(--color-border-dark)]">
               {/* Subject Filter */}
               <div>
                 <label className="block text-sm font-medium mb-2">Subject</label>
                 <select
                   value={selectedSubject}
                   onChange={(e) => setSelectedSubject(e.target.value)}
-                  className="select select-bordered w-full"
+                  className="select select-bordered w-full bg-transparent border border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
                 >
-                  <option value="">All Subjects</option>
+                  <option value="" className='bg-gray-100 dark:bg-gray-700'>All Subjects</option>
                   {subjects.map(subject => (
-                    <option key={subject} value={subject}>{subject}</option>
+                    <option key={subject} value={subject} className='bg-gray-100 dark:bg-gray-700'>{subject}</option>
                   ))}
                 </select>
               </div>
@@ -174,13 +219,13 @@ export default function FindTutorPage() {
                 <select
                   value={experienceFilter}
                   onChange={(e) => setExperienceFilter(e.target.value)}
-                  className="select select-bordered w-full"
+                  className="select select-bordered w-full bg-transparent border border-[var(--color-border)] dark:border-[var(--color-border-dark)]"
                 >
-                  <option value="">All Experience</option>
-                  <option value="0-2">0-2 years</option>
-                  <option value="3-5">3-5 years</option>
-                  <option value="6-10">6-10 years</option>
-                  <option value="10+">10+ years</option>
+                  <option value="" className='bg-gray-100 dark:bg-gray-700'>All Experience</option>
+                  <option value="0-2" className='bg-gray-100 dark:bg-gray-700'>0-2 years</option>
+                  <option value="3-5" className='bg-gray-100 dark:bg-gray-700'>3-5 years</option>
+                  <option value="6-10" className='bg-gray-100 dark:bg-gray-700'>6-10 years</option>
+                  <option value="10+" className='bg-gray-100 dark:bg-gray-700'>10+ years</option>
                 </select>
               </div>
 
@@ -238,7 +283,7 @@ export default function FindTutorPage() {
         {!loading && !error && tutors.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
             {tutors.map((tutor) => (
-              <div key={tutor._id} className="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow">
+              <div key={tutor._id} className="card bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] shadow-lg hover:shadow-xl transition-shadow">
                 <figure className="px-6 pt-6">
                   <img
                     src={tutor.photo}
@@ -247,27 +292,27 @@ export default function FindTutorPage() {
                   />
                 </figure>
                 <div className="card-body">
-                  <h2 className="card-title text-xl">{tutor.name}</h2>
-                  <p className="text-sm text-gray-600 line-clamp-2">{tutor.description}</p>
+                  <h2 className="card-title text-xl text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)]">{tutor.name}</h2>
+                  <p className="text-sm  line-clamp-2 text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">{tutor.description}</p>
                   
-                  <div className="space-y-2 my-2">
+                  <div className="space-y-2 my-2 text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
                     <div className="flex items-center gap-2 text-sm">
-                      <Award size={16} className="text-primary" />
+                      <Award size={16} className="text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]" />
                       <span className="font-medium">{tutor.qualification}</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
-                      <Clock size={16} className="text-primary" />
+                      <Clock size={16} className="text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]" />
                       <span>{tutor.experience} experience</span>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
-                      <DollarSign size={16} className="text-primary" />
+                      <DollarSign size={16} className="text-[var(--color-primary)] dark:text-[var(--color-primary-dark)]" />
                       <span className="font-semibold">৳{tutor.fee}/hour</span>
                     </div>
                   </div>
 
                   <div className="flex flex-wrap gap-1 my-2">
                     {tutor.expertise.slice(0, 3).map((subject, idx) => (
-                      <span key={idx} className="badge badge-primary badge-sm">
+                      <span key={idx} className="badge bg-transparent border border-[var(--color-border)] dark:border-[var(--color-border-dark)] badge-sm text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
                         {subject}
                       </span>
                     ))}
@@ -279,8 +324,8 @@ export default function FindTutorPage() {
                   </div>
 
                   <div className="card-actions justify-end mt-4">
-                    <button className="btn btn-primary btn-sm">View Profile</button>
-                    <button className="btn btn-outline btn-sm">Book Session</button>
+                    <button className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-gray-100 border-none btn-sm">View Profile</button>
+                    <button className="btn bg-transparent border border-[var(--color-border)] dark:border-[var(--color-border-dark)] shadow-none text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] btn-sm dark:hover:text-gray-300">Book Session</button>
                   </div>
                 </div>
               </div>
@@ -298,7 +343,7 @@ export default function FindTutorPage() {
 
         {/* Pagination */}
         {!loading && !error && pagination.totalPages > 1 && (
-          <div className="flex justify-center items-center gap-2">
+          <div className="flex justify-center items-center gap-2 text-[var(--color-text-secondary)] dark:text-[var(--color-text-secondary-dark)]">
             <button
               onClick={() => handlePageChange(currentPage - 1)}
               disabled={!pagination.hasPrevPage}
@@ -319,7 +364,7 @@ export default function FindTutorPage() {
                   <button
                     key={page}
                     onClick={() => handlePageChange(page)}
-                    className={`btn btn-sm ${currentPage === page ? 'btn-primary' : 'btn-ghost'}`}
+                    className={`btn btn-sm ${currentPage === page ? 'bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-gray-100' : 'btn-ghost'}`}
                   >
                     {page}
                   </button>
@@ -343,3 +388,6 @@ export default function FindTutorPage() {
     </div>
   );
 }
+
+
+/* assalmu alaikum vai, I am from End Game Warriors team. Our team member Abu Bokor Siddik is not working concentrically.  He is not attending scrum regularly. Even was not present on the last presentation */
