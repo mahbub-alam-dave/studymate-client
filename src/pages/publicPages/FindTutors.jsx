@@ -1,170 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { Search, Filter, DollarSign, Clock, Award } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { Search, Filter, DollarSign, Clock, Award, Loader2 } from 'lucide-react';
 
-// Mock data - replace with actual API call
-const mockTutors = [
-  {
-    _id: "1",
-    name: "Mahbub Alam",
-    email: "koolman@gmail.com",
-    role: "tutor",
-    photo: "https://i.postimg.cc/cJ6DGJh2/man-1.png",
-    createdAt: "2025-10-19T05:21:34.886Z",
-    availability: {
-      weekdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      weekdayStartTime: "11:19",
-      weekdayEndTime: "00:20",
-      weekends: ["Saturday", "Sunday"]
-    },
-    description: "Expert in computer science and programming fundamentals.",
-    experience: "2 years",
-    expertise: ["English", "Programming", "Physics"],
-    fee: "5000",
-    qualification: "BSC in Computer Science"
-  },
-  {
-    _id: "2",
-    name: "Sarah Johnson",
-    email: "sarah.johnson@gmail.com",
-    role: "tutor",
-    photo: "https://via.placeholder.com/150/FF6B6B/ffffff?text=SJ",
-    createdAt: "2025-10-18T08:15:22.456Z",
-    availability: {
-      weekdays: ["Monday", "Wednesday", "Friday"],
-      weekdayStartTime: "14:00",
-      weekdayEndTime: "18:00",
-      weekends: ["Saturday"]
-    },
-    description: "Passionate mathematics tutor with a focus on making complex concepts simple and engaging.",
-    experience: "5 years",
-    expertise: ["Mathematics", "Physics", "Science"],
-    fee: "3500",
-    qualification: "MSc in Mathematics Education"
-  },
-  {
-    _id: "3",
-    name: "David Chen",
-    email: "david.chen@outlook.com",
-    role: "tutor",
-    photo: "https://via.placeholder.com/150/4ECDC4/ffffff?text=DC",
-    createdAt: "2025-10-17T12:30:45.789Z",
-    availability: {
-      weekdays: ["Tuesday", "Thursday"],
-      weekdayStartTime: "16:00",
-      weekdayEndTime: "20:00",
-      weekends: ["Sunday"]
-    },
-    description: "Full-stack developer turned educator. Specializing in web development.",
-    experience: "3 years",
-    expertise: ["Web Development", "Programming"],
-    fee: "4500",
-    qualification: "BSc in Software Engineering"
-  },
-  {
-    _id: "4",
-    name: "Emily Rodriguez",
-    email: "emily.rod@yahoo.com",
-    role: "tutor",
-    photo: "https://via.placeholder.com/150/95E1D3/ffffff?text=ER",
-    createdAt: "2025-10-16T09:45:12.123Z",
-    availability: {
-      weekdays: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-      weekdayStartTime: "09:00",
-      weekdayEndTime: "12:00",
-      weekends: []
-    },
-    description: "Literature enthusiast and English language expert.",
-    experience: "7 years",
-    expertise: ["English", "Literature"],
-    fee: "3000",
-    qualification: "MA in English Literature"
-  },
-  {
-    _id: "5",
-    name: "Ahmed Hassan",
-    email: "ahmed.hassan@gmail.com",
-    role: "tutor",
-    photo: "https://via.placeholder.com/150/F38181/ffffff?text=AH",
-    createdAt: "2025-10-15T14:20:33.567Z",
-    availability: {
-      weekdays: ["Wednesday", "Thursday", "Friday"],
-      weekdayStartTime: "17:00",
-      weekdayEndTime: "21:00",
-      weekends: ["Saturday", "Sunday"]
-    },
-    description: "Physics professor with a knack for breaking down complex concepts.",
-    experience: "10 years",
-    expertise: ["Physics", "Mathematics", "Science"],
-    fee: "6000",
-    qualification: "PhD in Physics"
-  },
-  {
-    _id: "6",
-    name: "Lisa Park",
-    email: "lisa.park@hotmail.com",
-    role: "tutor",
-    photo: "https://via.placeholder.com/150/AA96DA/ffffff?text=LP",
-    createdAt: "2025-10-14T11:00:00.890Z",
-    availability: {
-      weekdays: ["Monday", "Friday"],
-      weekdayStartTime: "15:00",
-      weekdayEndTime: "19:00",
-      weekends: ["Saturday"]
-    },
-    description: "Science educator specializing in biology and chemistry.",
-    experience: "4 years",
-    expertise: ["Science", "Mathematics"],
-    fee: "3800",
-    qualification: "BSc in Biology, BEd"
-  },
-  {
-    _id: "7",
-    name: "James Miller",
-    email: "james.miller@gmail.com",
-    role: "tutor",
-    photo: "https://via.placeholder.com/150/FCBAD3/ffffff?text=JM",
-    createdAt: "2025-10-13T16:35:28.234Z",
-    availability: {
-      weekdays: ["Tuesday", "Wednesday", "Thursday"],
-      weekdayStartTime: "18:00",
-      weekdayEndTime: "22:00",
-      weekends: ["Sunday"]
-    },
-    description: "Coding bootcamp instructor with industry experience.",
-    experience: "6 years",
-    expertise: ["Programming", "Web Development"],
-    fee: "5500",
-    qualification: "BSc in Computer Science, AWS Certified"
-  },
-  {
-    _id: "8",
-    name: "Nina Patel",
-    email: "nina.patel@gmail.com",
-    role: "tutor",
-    photo: "https://via.placeholder.com/150/FFFFD2/333333?text=NP",
-    createdAt: "2025-10-12T07:50:15.345Z",
-    availability: {
-      weekdays: ["Monday", "Tuesday", "Wednesday"],
-      weekdayStartTime: "13:00",
-      weekdayEndTime: "17:00",
-      weekends: ["Saturday", "Sunday"]
-    },
-    description: "Experienced tutor in mathematics and English with patient approach.",
-    experience: "8 years",
-    expertise: ["Mathematics", "English", "Science"],
-    fee: "4200",
-    qualification: "MSc in Education"
-  }
-];
-
+const API_BASE_URL = import.meta.env.VITE_api_url || 'http://localhost:3000/api';
 const ITEMS_PER_PAGE = 6;
 
 const subjects = ["English", "Mathematics", "Web Development", "Literature", "Science", "Programming", "Physics"];
 
+// Debounce hook
+function useDebounce(value, delay) {
+  const [debouncedValue, setDebouncedValue] = useState(value);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedValue(value);
+    }, delay);
+
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [value, delay]);
+
+  return debouncedValue;
+}
+
 export default function FindTutorPage() {
   const [tutors, setTutors] = useState([]);
-  const [filteredTutors, setFilteredTutors] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [pagination, setPagination] = useState({
+    totalPages: 0,
+    totalTutors: 0,
+    hasNextPage: false,
+    hasPrevPage: false
+  });
   
   // Filter states
   const [searchQuery, setSearchQuery] = useState('');
@@ -173,65 +42,68 @@ export default function FindTutorPage() {
   const [feeRange, setFeeRange] = useState([0, 10000]);
   const [showFilters, setShowFilters] = useState(false);
 
-  // Simulated API call - Replace with actual fetch
-  useEffect(() => {
-    // In real app: fetch from your API
-    // const response = await fetch('/api/tutors');
-    // const data = await response.json();
-    setTutors(mockTutors);
-    setFilteredTutors(mockTutors);
-  }, []);
+  // Debounce search query to avoid too many API calls
+  const debouncedSearchQuery = useDebounce(searchQuery, 500);
 
-  // Apply filters
-  useEffect(() => {
-    let result = [...tutors];
+  // Fetch tutors from API
+  const fetchTutors = useCallback(async () => {
+    setLoading(true);
+    setError(null);
 
-    // Search filter (name, expertise, qualification)
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      result = result.filter(tutor => 
-        tutor.name.toLowerCase().includes(query) ||
-        tutor.expertise.some(exp => exp.toLowerCase().includes(query)) ||
-        tutor.qualification.toLowerCase().includes(query)
-      );
-    }
+    try {
+      // Build query parameters
+      const params = new URLSearchParams();
+      
+      if (debouncedSearchQuery) params.append('search', debouncedSearchQuery);
+      if (selectedSubject) params.append('subject', selectedSubject);
+      if (experienceFilter) params.append('experience', experienceFilter);
+      params.append('minFee', feeRange[0]);
+      params.append('maxFee', feeRange[1]);
+      params.append('page', currentPage);
+      params.append('limit', ITEMS_PER_PAGE);
 
-    // Subject filter
-    if (selectedSubject) {
-      result = result.filter(tutor => 
-        tutor.expertise.includes(selectedSubject)
-      );
-    }
-
-    // Experience filter
-    if (experienceFilter) {
-      result = result.filter(tutor => {
-        const years = parseInt(tutor.experience);
-        switch(experienceFilter) {
-          case '0-2': return years <= 2;
-          case '3-5': return years >= 3 && years <= 5;
-          case '6-10': return years >= 6 && years <= 10;
-          case '10+': return years > 10;
-          default: return true;
+      const response = await fetch(`${API_BASE_URL}/api/tutors/find-tutors?${params.toString()}`, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          // Add auth token if needed
+          // 'Authorization': `Bearer ${localStorage.getItem('token')}`
         }
       });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (data.success) {
+        setTutors(data.data);
+        setPagination(data.pagination);
+      } else {
+        throw new Error(data.message || 'Failed to fetch tutors');
+      }
+
+    } catch (err) {
+      console.error('Error fetching tutors:', err);
+      setError(err.message || 'Failed to load tutors. Please try again.');
+      setTutors([]);
+    } finally {
+      setLoading(false);
     }
+  }, [debouncedSearchQuery, selectedSubject, experienceFilter, feeRange, currentPage]);
 
-    // Fee range filter
-    result = result.filter(tutor => {
-      const fee = parseInt(tutor.fee);
-      return fee >= feeRange[0] && fee <= feeRange[1];
-    });
+  // Fetch tutors when filters or page changes
+  useEffect(() => {
+    fetchTutors();
+  }, [fetchTutors]);
 
-    setFilteredTutors(result);
-    setCurrentPage(1); // Reset to first page on filter change
-  }, [searchQuery, selectedSubject, experienceFilter, feeRange, tutors]);
-
-  // Pagination
-  const totalPages = Math.ceil(filteredTutors.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
-  const currentTutors = filteredTutors.slice(startIndex, endIndex);
+  // Reset to page 1 when filters change
+  useEffect(() => {
+    if (currentPage !== 1) {
+      setCurrentPage(1);
+    }
+  }, [debouncedSearchQuery, currentPage, selectedSubject, experienceFilter, feeRange]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -243,6 +115,7 @@ export default function FindTutorPage() {
     setSelectedSubject('');
     setExperienceFilter('');
     setFeeRange([0, 10000]);
+    setCurrentPage(1);
   };
 
   return (
@@ -340,14 +213,31 @@ export default function FindTutorPage() {
         </div>
 
         {/* Results Count */}
-        <div className="mb-4 text-gray-600">
-          Showing {currentTutors.length} of {filteredTutors.length} tutors
-        </div>
+        {!loading && !error && (
+          <div className="mb-4 text-gray-600">
+            Showing {tutors.length} of {pagination.totalTutors} tutors
+          </div>
+        )}
+
+        {/* Loading State */}
+        {loading && (
+          <div className="flex justify-center items-center py-20">
+            <Loader2 className="animate-spin text-primary" size={48} />
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && (
+          <div className="alert alert-error mb-6">
+            <span>{error}</span>
+            <button onClick={fetchTutors} className="btn btn-sm">Retry</button>
+          </div>
+        )}
 
         {/* Tutor Cards Grid */}
-        {currentTutors.length > 0 ? (
+        {!loading && !error && tutors.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-            {currentTutors.map((tutor) => (
+            {tutors.map((tutor) => (
               <div key={tutor._id} className="card bg-base-100 shadow-lg hover:shadow-xl transition-shadow">
                 <figure className="px-6 pt-6">
                   <img
@@ -396,7 +286,10 @@ export default function FindTutorPage() {
               </div>
             ))}
           </div>
-        ) : (
+        )}
+
+        {/* No Results */}
+        {!loading && !error && tutors.length === 0 && (
           <div className="text-center py-16">
             <p className="text-2xl text-gray-500 mb-2">No tutors found</p>
             <p className="text-gray-400">Try adjusting your filters</p>
@@ -404,22 +297,22 @@ export default function FindTutorPage() {
         )}
 
         {/* Pagination */}
-        {totalPages > 1 && (
+        {!loading && !error && pagination.totalPages > 1 && (
           <div className="flex justify-center items-center gap-2">
             <button
               onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
+              disabled={!pagination.hasPrevPage}
               className="btn btn-sm"
             >
               Previous
             </button>
             
-            {[...Array(totalPages)].map((_, index) => {
+            {[...Array(pagination.totalPages)].map((_, index) => {
               const page = index + 1;
               // Show first page, last page, current page, and pages around current
               if (
                 page === 1 ||
-                page === totalPages ||
+                page === pagination.totalPages ||
                 (page >= currentPage - 1 && page <= currentPage + 1)
               ) {
                 return (
@@ -439,7 +332,7 @@ export default function FindTutorPage() {
             
             <button
               onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPages}
+              disabled={!pagination.hasNextPage}
               className="btn btn-sm"
             >
               Next
