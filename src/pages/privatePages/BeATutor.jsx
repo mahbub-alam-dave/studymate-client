@@ -8,7 +8,59 @@ const BeATutor = () => {
   const {user} = useContext(ContextValue);
   const [uploading, setUploading] = useState(false);
   const [photoURL, setPhotoURL] = useState(user.photoURL || "https://i.ibb.co.com/kYjMzH0/user-5.png");
-  const { register, handleSubmit, reset } = useForm();
+  const { register, handleSubmit, reset, watch } = useForm();
+
+     const watchSessionTypes = watch("sessionTypes") || [];
+  const sessionTypesArray = Array.isArray(watchSessionTypes) ? watchSessionTypes : [];
+
+  const [personalSlots, setPersonalSlots] = useState([]);
+  const [batchSlots, setBatchSlots] = useState([]);
+  const [personalSlotName, setPersonalSlotName] = useState("");
+  const [personalSlotTime, setPersonalSlotTime] = useState("");
+  const [batchSlotName, setBatchSlotName] = useState("");
+  const [batchSlotTime, setBatchSlotTime] = useState("");
+
+  // Add personal slot
+  const addPersonalSlot = () => {
+    if (personalSlotName && personalSlotTime) {
+      const newSlot = {
+        id: Date.now(),
+        name: personalSlotName,
+        time: personalSlotTime
+      };
+      setPersonalSlots([...personalSlots, newSlot]);
+      setPersonalSlotName("");
+      setPersonalSlotTime("");
+    } else {
+      Swal.fire("Warning", "Please enter both slot name and time.", "warning");
+    }
+  };
+
+  // Remove personal slot
+  const removePersonalSlot = (id) => {
+    setPersonalSlots(personalSlots.filter(slot => slot.id !== id));
+  };
+
+  // Add batch slot
+  const addBatchSlot = () => {
+    if (batchSlotName && batchSlotTime) {
+      const newSlot = {
+        id: Date.now(),
+        name: batchSlotName,
+        time: batchSlotTime
+      };
+      setBatchSlots([...batchSlots, newSlot]);
+      setBatchSlotName("");
+      setBatchSlotTime("");
+    } else {
+      Swal.fire("Warning", "Please enter both batch name and time.", "warning");
+    }
+  };
+
+    // Remove batch slot
+  const removeBatchSlot = (id) => {
+    setBatchSlots(batchSlots.filter(slot => slot.id !== id));
+  };
 
   const imgbbAPIKey = import.meta.env.VITE_IMGBB_KEY;
   const apiURL = import.meta.env.VITE_api_url; // e.g. http://localhost:5000/api
@@ -62,6 +114,21 @@ const BeATutor = () => {
         weekdayEndTime: formData.weekdayEndTime,
         weekends: formData.weekends
       },
+         sessionTypes: formData.sessionTypes || [],
+      sessions: {
+        personal: {
+          enabled: formData.sessionTypes?.includes("personal"),
+          slots: personalSlots,
+          fee: formData.personalFee || 0,
+          maxStudents: 1
+        },
+        batch: {
+          enabled: formData.sessionTypes?.includes("batch"),
+          slots: batchSlots,
+          fee: formData.batchFee || 0,
+          maxStudents: formData.batchMaxStudents || 10
+        }
+      },
       role: "tutor",
       createdAt: new Date(),
     };
@@ -77,7 +144,7 @@ const BeATutor = () => {
     if (!confirmed.isConfirmed) return;
 
     try {
-      const res = await axios.patch(`${apiURL}/users/${user?.email}`, tutorData);
+      const res = await axios.patch(`${apiURL}/api/users/${user?.email}`, tutorData);
       if (res.data.modifiedCount > 0) {
         Swal.fire("Success", "Your tutor profile has been created!", "success");
         reset();
@@ -90,6 +157,22 @@ const BeATutor = () => {
       Swal.fire("Error", "Failed to update tutor profile.", "error");
     }
   };
+
+  const timeSlots = [
+    "8:00 AM - 9:00 AM",
+    "9:00 AM - 10:00 AM",
+    "10:00 AM - 11:00 AM",
+    "11:00 AM - 12:00 PM",
+    "12:00 PM - 1:00 PM",
+    "1:00 PM - 2:00 PM",
+    "2:00 PM - 3:00 PM",
+    "3:00 PM - 4:00 PM",
+    "4:00 PM - 5:00 PM",
+    "5:00 PM - 6:00 PM",
+    "6:00 PM - 7:00 PM",
+    "7:00 PM - 8:00 PM",
+    "8:00 PM - 9:00 PM"
+  ];
 
   return (
     <div className="max-w-5xl mx-auto bg-[var(--color-bg-card)] dark:bg-[var(--color-bg-card-dark)] shadow-md rounded-2xl p-8 xl:p-12 my-10">
@@ -272,6 +355,207 @@ const BeATutor = () => {
     </div>
   </div>
 </div>
+
+        {/* Session Types */}
+        <div className="border-2 border-dashed border-[var(--color-border)] rounded-lg p-6 space-y-4">
+          <h3 className="text-lg font-semibold">Session Booking Configuration</h3>
+          
+          {/* Session Type Selection */}
+          <div>
+            <label className="block font-medium mb-3">Available Session Types</label>
+            <div className="flex gap-6">
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  value="personal"
+                  {...register("sessionTypes")}
+                  className="checkbox checkbox-primary"
+                />
+                <span className="text-sm font-medium">Personal Coaching (1-on-1)</span>
+              </label>
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  value="batch"
+                  {...register("sessionTypes")}
+                  className="checkbox checkbox-primary"
+                />
+                <span className="text-sm font-medium">Batch Coaching (Group)</span>
+              </label>
+            </div>
+          </div>
+
+          {/* Personal Coaching Settings */}
+          {sessionTypesArray.includes("personal") && (
+            <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-4 space-y-4">
+              <h4 className="font-semibold text-blue-700 dark:text-blue-300">Personal Coaching Settings</h4>
+              
+              <div>
+                <label className="block font-medium mb-2">Session Fee (BDT per hour)</label>
+                <input
+                  {...register("personalFee", { required: sessionTypesArray.includes("personal") })}
+                  type="number"
+                  placeholder="e.g. 500"
+                  className="input input-bordered w-full bg-transparent border border-[var(--color-border)]"
+                />
+              </div>
+
+              <div>
+                <label className="block font-medium mb-3">Available Time Slots</label>
+                
+                {/* Add New Slot Form */}
+                <div className="bg-white dark:bg-gray-800 p-3 rounded border border-[var(--color-border)] mb-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-xs text-gray-600 dark:text-gray-400 block mb-1">Slot Name</label>
+                      <input
+                        type="text"
+                        value={personalSlotName}
+                        onChange={(e) => setPersonalSlotName(e.target.value)}
+                        placeholder="e.g. Morning Session"
+                        className="input input-sm input-bordered w-full bg-transparent border border-[var(--color-border)]"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs text-gray-600 dark:text-gray-400 block mb-1">Time</label>
+                      <input
+                        type="text"
+                        value={personalSlotTime}
+                        onChange={(e) => setPersonalSlotTime(e.target.value)}
+                        placeholder="e.g. 8:00 AM - 9:00 AM"
+                        className="input input-sm input-bordered w-full bg-transparent border border-[var(--color-border)]"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={addPersonalSlot}
+                    className="btn btn-sm bg-blue-500 hover:bg-blue-600 text-white mt-2 w-full"
+                  >
+                    + Add Slot
+                  </button>
+                </div>
+
+                {/* Display Added Slots */}
+                {personalSlots.length > 0 ? (
+                  <div className="space-y-2 max-h-48 overflow-y-auto p-2 border border-[var(--color-border)] rounded">
+                    {personalSlots.map((slot) => (
+                      <div key={slot.id} className="flex items-center justify-between bg-white dark:bg-gray-800 p-2 rounded border border-gray-200 dark:border-gray-700">
+                        <div>
+                          <span className="font-semibold text-sm">{slot.name}</span>
+                          <span className="text-xs text-gray-500 ml-2">({slot.time})</span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => removePersonalSlot(slot.id)}
+                          className="btn btn-xs btn-error text-white"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-xs text-gray-500 italic p-2">No slots added yet. Add your first slot above.</p>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* Batch Coaching Settings */}
+          {sessionTypesArray.includes("batch") && (
+            <div className="bg-green-50 dark:bg-green-900/20 rounded-lg p-4 space-y-4">
+              <h4 className="font-semibold text-green-700 dark:text-green-300">Batch Coaching Settings</h4>
+              
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block font-medium mb-2">Session Fee (BDT per student per hour)</label>
+                  <input
+                    {...register("batchFee", { required: sessionTypesArray.includes("batch") })}
+                    type="number"
+                    placeholder="e.g. 300"
+                    className="input input-bordered w-full bg-transparent border border-[var(--color-border)]"
+                  />
+                </div>
+
+                <div>
+                  <label className="block font-medium mb-2">Max Students per Batch</label>
+                  <input
+                    {...register("batchMaxStudents")}
+                    type="number"
+                    placeholder="e.g. 10"
+                    defaultValue={10}
+                    className="input input-bordered w-full bg-transparent border border-[var(--color-border)]"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block font-medium mb-3">Available Batches</label>
+                
+                {/* Add New Batch Form */}
+                <div className="bg-white dark:bg-gray-800 p-3 rounded border border-[var(--color-border)] mb-3">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div>
+                      <label className="text-xs text-gray-600 dark:text-gray-400 block mb-1">Batch Name</label>
+                      <input
+                        type="text"
+                        value={batchSlotName}
+                        onChange={(e) => setBatchSlotName(e.target.value)}
+                        placeholder="e.g. Super-6"
+                        className="input input-sm input-bordered w-full bg-transparent border border-[var(--color-border)]"
+                      />
+                    </div>
+                    <div>
+                      <label className="text-xs text-gray-600 dark:text-gray-400 block mb-1">Time</label>
+                      <input
+                        type="text"
+                        value={batchSlotTime}
+                        onChange={(e) => setBatchSlotTime(e.target.value)}
+                        placeholder="e.g. 8:00 AM - 9:00 AM"
+                        className="input input-sm input-bordered w-full bg-transparent border border-[var(--color-border)]"
+                      />
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={addBatchSlot}
+                    className="btn btn-sm bg-green-500 hover:bg-green-600 text-white mt-2 w-full"
+                  >
+                    + Add Batch
+                  </button>
+                </div>
+
+                {/* Display Added Batches */}
+                {batchSlots.length > 0 ? (
+                  <div className="space-y-2 max-h-48 overflow-y-auto p-2 border border-[var(--color-border)] rounded">
+                    {batchSlots.map((slot) => (
+                      <div key={slot.id} className="flex items-center justify-between bg-white dark:bg-gray-800 p-2 rounded border border-gray-200 dark:border-gray-700">
+                        <div>
+                          <span className="font-semibold text-sm">{slot.name}</span>
+                          <span className="text-xs text-gray-500 ml-2">({slot.time})</span>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => removeBatchSlot(slot.id)}
+                          className="btn btn-xs btn-error text-white"
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <p className="text-xs text-gray-500 italic p-2">No batches added yet. Add your first batch above.</p>
+                )}
+              </div>
+            </div>
+          )}
+
+          {!sessionTypesArray.length && (
+            <p className="text-sm text-gray-500 italic">Please select at least one session type to configure booking options.</p>
+          )}
+        </div>
 
         {/* Description */}
         <div>

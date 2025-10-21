@@ -324,7 +324,7 @@ const handlePageChange = (newPage) => {
                   </div>
 
                   <div className="card-actions justify-end mt-4">
-                    <button className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-gray-100 border-none btn-sm">View Profile</button>
+                    <button className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-gray-100 border-none btn-sm">View Details</button>
                     <button className="btn bg-transparent border border-[var(--color-border)] dark:border-[var(--color-border-dark)] shadow-none text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] btn-sm dark:hover:text-gray-300">Book Session</button>
                   </div>
                 </div>
