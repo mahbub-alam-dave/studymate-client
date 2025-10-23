@@ -27,6 +27,10 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import MyAssignments from './pages/privatePages/MyAssignments'
 import BeATutor from './pages/privatePages/BeATutor'
 import FindTutorPage from './pages/publicPages/FindTutors'
+import { PaymentSuccess } from './pages/payment/PaymentSuccess'
+import { PaymentError } from './pages/payment/PaymentError'
+import { PaymentFailed } from './pages/payment/PaymentFailed'
+import { PaymentCancelled } from './pages/payment/PaymentCancelled'
 // import DataLoader from './apis/DataLoader'
 
 const queryClient = new QueryClient();
@@ -63,8 +67,24 @@ const router = createBrowserRouter([
     element: <BlogPage />
   },
   {
-    path: "/find-tutor",
+    path: "/find-tutors",
     element: <FindTutorPage />
+  },
+  {
+    path: "/payment/success",
+    element: <PaymentSuccess />
+  },
+  {
+    path: "/payment/error",
+    element: <PaymentError />
+  },
+  {
+    path: "/payment/failed",
+    element: <PaymentFailed />
+  },
+  {
+    path: "/payment/cancelled",
+    element: <PaymentCancelled />
   },
   {
     path: "create-assignment",

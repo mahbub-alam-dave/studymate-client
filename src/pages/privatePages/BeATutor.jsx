@@ -26,7 +26,8 @@ const BeATutor = () => {
       const newSlot = {
         id: Date.now(),
         name: personalSlotName,
-        time: personalSlotTime
+        time: personalSlotTime,
+        bookedCount: 0
       };
       setPersonalSlots([...personalSlots, newSlot]);
       setPersonalSlotName("");
@@ -47,7 +48,8 @@ const BeATutor = () => {
       const newSlot = {
         id: Date.now(),
         name: batchSlotName,
-        time: batchSlotTime
+        time: batchSlotTime,
+        bookedCount: 0
       };
       setBatchSlots([...batchSlots, newSlot]);
       setBatchSlotName("");

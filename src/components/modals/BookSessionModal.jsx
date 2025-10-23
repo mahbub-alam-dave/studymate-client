@@ -112,19 +112,28 @@ const BookSessionModal = ({ tutor, isOpen, onClose }) => {
         estimatedPrice: previewPrice,
       };
 
-      const response = await axios.post(`${apiURL}/bookings/create`, bookingData);
+      const response = await axios.post(`${apiURL}/api/bookings/create`, bookingData);
 
       if (response.data.success) {
-        Swal.fire({
+        const confirmPayment = await Swal.fire({
           title: 'Booking Successful!',
           html: `
             <p>Your booking has been created.</p>
             <p class="font-bold text-lg mt-2">Final Price: ৳${response.data.finalPrice}</p>
             <p class="text-sm text-gray-500 mt-2">Booking ID: ${response.data.bookingId}</p>
+            <p class="text-sm text-blue-600 mt-3">You will be redirected to the payment gateway</p>
           `,
           icon: 'success',
+          showCancelButton: true,
+          confirmButtonText: "Proceed to Payment",
+          confirmButtonColor: "#10B981",
+          cancelButtonText: "Cancel"
         });
+        if(confirmPayment.isConfirmed) {
+          window.location.href = response.data.paymentUrl;
+        } else {
         onClose();
+        }
       }
     } catch (error) {
       console.error('Booking error:', error);
@@ -144,7 +153,7 @@ const BookSessionModal = ({ tutor, isOpen, onClose }) => {
   const availableBatch = tutor.sessions?.batch?.enabled && tutor.sessions?.batch?.slots?.length > 0;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 bg-opacity-50 z-[9999] flex items-center justify-center p-4">
       <div className="bg-white dark:bg-gray-800 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div className="sticky top-0 bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 p-6 flex items-center justify-between">
@@ -203,16 +212,16 @@ const BookSessionModal = ({ tutor, isOpen, onClose }) => {
                   }}
                   className={`p-4 border-2 rounded-lg text-left transition ${
                     sessionType === 'batch'
-                      ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
+                      ? 'border-blue-500 bg-green-50 dark:bg-blue-900/20'
                       : 'border-gray-300 dark:border-gray-600 hover:border-green-300'
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <Users className="w-6 h-6 text-green-500" />
+                    <Users className="w-6 h-6 text-blue-500" />
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white">Batch Coaching</h3>
                       <p className="text-sm text-gray-500 dark:text-gray-400">Group sessions</p>
-                      <p className="text-sm font-semibold text-green-600 dark:text-green-400 mt-1">
+                      <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 mt-1">
                         ৳{tutor.sessions.batch.fee}/month
                       </p>
                     </div>
@@ -266,13 +275,13 @@ const BookSessionModal = ({ tutor, isOpen, onClose }) => {
                           isFull
                             ? 'border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 opacity-50 cursor-not-allowed'
                             : selectedSlot?.id === slot.id
-                            ? 'border-green-500 bg-green-50 dark:bg-green-900/20'
-                            : 'border-gray-300 dark:border-gray-600 hover:border-green-300'
+                            ? 'border-blue-500 bg-green-50 dark:bg-blue-900/20'
+                            : 'border-gray-300 dark:border-gray-600 hover:border-blue-300'
                         }`}
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-3">
-                            <Users className="w-5 h-5 text-green-500" />
+                            <Users className="w-5 h-5 text-blue-500" />
                             <div>
                               <h4 className="font-semibold text-gray-900 dark:text-white">{slot.name}</h4>
                               <p className="text-sm text-gray-500 dark:text-gray-400">{slot.time}</p>
@@ -281,7 +290,7 @@ const BookSessionModal = ({ tutor, isOpen, onClose }) => {
                           <div className="text-right">
                             <span
                               className={`text-sm font-semibold ${
-                                isFull ? 'text-red-500' : 'text-green-600 dark:text-green-400'
+                                isFull ? 'text-red-500' : 'text-blue-600 dark:text-blue-400'
                               }`}
                             >
                               {isFull ? 'Full' : `${remaining} spots left`}
@@ -310,7 +319,7 @@ const BookSessionModal = ({ tutor, isOpen, onClose }) => {
                       duration === d.value
                         ? sessionType === 'personal'
                           ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20'
-                          : 'border-green-500 bg-green-50 dark:bg-green-900/20'
+                          : 'border-blue-500 bg-blue-50 dark:bg-green-900/20'
                         : 'border-gray-300 dark:border-gray-600 hover:border-gray-400'
                     }`}
                   >
@@ -327,10 +336,10 @@ const BookSessionModal = ({ tutor, isOpen, onClose }) => {
             <div className="bg-gradient-to-r from-blue-50 to-green-50 dark:from-blue-900/20 dark:to-green-900/20 p-4 rounded-lg border border-blue-200 dark:border-blue-800">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <DollarSign className="w-6 h-6 text-green-600 dark:text-green-400" />
+                  <DollarSign className="w-6 h-6 text-blue-600 dark:text-blue-400" />
                   <span className="text-gray-700 dark:text-gray-300">Estimated Price:</span>
                 </div>
-                <span className="text-2xl font-bold text-green-600 dark:text-green-400">৳{previewPrice}</span>
+                <span className="text-2xl font-bold text-blue-600 dark:text-blue-400">৳{previewPrice}</span>
               </div>
               <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
                 * Final price will be calculated at checkout
@@ -353,7 +362,7 @@ const BookSessionModal = ({ tutor, isOpen, onClose }) => {
             className={`flex-1 px-6 py-3 rounded-lg font-semibold transition ${
               !sessionType || !selectedSlot || !duration || loading
                 ? 'bg-gray-300 dark:bg-gray-700 text-gray-500 cursor-not-allowed'
-                : 'bg-gradient-to-r from-blue-500 to-green-500 text-white hover:from-blue-600 hover:to-green-600'
+                : 'bg-gradient-to-r from-[var(--color-primary)] to-blue-400 text-white hover:from-[var(--color-primary)] hover:to-blue-500'
             }`}
           >
             {loading ? 'Processing...' : `Pay ৳${previewPrice}`}

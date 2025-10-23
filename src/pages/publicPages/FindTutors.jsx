@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Search, Filter, DollarSign, Clock, Award, Loader2 } from 'lucide-react';
+import BookSessionModal from '../../components/modals/BookSessionModal';
+import TutorDetailsModal from '../../components/modals/TutorDetailsModal';
 
 const API_BASE_URL = import.meta.env.VITE_api_url || 'http://localhost:3000/api';
 const ITEMS_PER_PAGE = 6;
@@ -34,6 +36,10 @@ export default function FindTutorPage() {
     hasNextPage: false,
     hasPrevPage: false
   });
+
+  const [selectedTutor, setSelectedTutor] = useState({})
+  const [openBookingModal, setOpenBookingModal] = useState(false);
+  const [showDetailsModal, setShowDetailsModal] = useState(false)
   
   // Filter states
   const [searchQuery, setSearchQuery] = useState('');
@@ -164,6 +170,7 @@ const handlePageChange = (newPage) => {
   };
 
   return (
+    <>
     <div className="min-h-screen bg-[var(--color-bg)] dark:bg-[var(--color-bg-dark)] py-8 px-4">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
@@ -324,8 +331,14 @@ const handlePageChange = (newPage) => {
                   </div>
 
                   <div className="card-actions justify-end mt-4">
-                    <button className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-gray-100 border-none btn-sm">View Details</button>
-                    <button className="btn bg-transparent border border-[var(--color-border)] dark:border-[var(--color-border-dark)] shadow-none text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] btn-sm dark:hover:text-gray-300">Book Session</button>
+                    <button   onClick={() => {
+    setSelectedTutor(tutor);
+    setShowDetailsModal(true);
+  }} className="btn bg-[var(--color-primary)] dark:bg-[var(--color-primary-dark)] text-gray-100 border-none btn-sm">View Details</button>
+                    <button onClick={() => {
+                      setSelectedTutor(tutor)
+                      setOpenBookingModal(true)
+                    }} className="btn bg-transparent border border-[var(--color-border)] dark:border-[var(--color-border-dark)] shadow-none text-[var(--color-text-primary)] dark:text-[var(--color-text-primary-dark)] btn-sm dark:hover:text-gray-300">Book Session</button>
                   </div>
                 </div>
               </div>
@@ -385,9 +398,31 @@ const handlePageChange = (newPage) => {
           </div>
         )}
       </div>
+
+  {/* show modals */}
+
     </div>
+      <div className='my-16'>
+      <TutorDetailsModal
+  tutor={selectedTutor}
+  isOpen={showDetailsModal}
+  onClose={() => setShowDetailsModal(false)}
+  onBookSession={() => {
+    setShowDetailsModal(false);
+    setOpenBookingModal(true);
+  }}
+  onMessage={() => {
+    // Handle messaging feature
+    console.log('Open message dialog');
+  }}
+/>
+
+      <BookSessionModal
+  tutor={selectedTutor}
+  isOpen={openBookingModal}
+  onClose={() => setOpenBookingModal(false)}
+/>
+</div>
+</>
   );
 }
-
-
-/* assalmu alaikum vai, I am from End Game Warriors team. Our team member Abu Bokor Siddik is not working concentrically.  He is not attending scrum regularly. Even was not present on the last presentation */
