@@ -11,8 +11,8 @@ import Sidebar from "./Sidebar";
 
 import { PiStudent } from "react-icons/pi";
 
-import logo from "../../assets/world.png"
-import logoWhite from "../../assets/world (1).png"
+// import logo from "../../assets/world.png"
+// import logoWhite from "../../assets/world (1).png"
 
 const Navbar = () => {
   const { user, logOutUser, loading } = useContext(ContextValue);
@@ -66,7 +66,7 @@ const Navbar = () => {
         <span>Blogs</span>
       </NavLink>
       <NavLink
-        to={"/find-tutor"}
+        to={"/find-tutors"}
         className="h-full flex items-center hover:bg-[#c9c9c965] dark:hover:bg-[#c2c2c21c] px-3"
       >
         <span>Find Tutor</span>

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { MessageCircle, Search, X } from 'lucide-react';
 import axios from 'axios';
+import { useSocket } from '../../Contextes/useSocket';
+import ChatWindow from '../../components/messageComponents/ChatWindow';
+import ChatList from '../../components/messageComponents/ChatList';
 import { ContextValue } from '../../Contextes/AllContexts';
-import { useSocket } from '../../Contextes/SocketContext';
-import ChatList from '../../components/Chat/ChatList';
-import ChatWindow from '../../components/Chat/ChatWindow';
 
 const MessagesPage = () => {
   const { user } = useContext(ContextValue);
@@ -72,7 +72,7 @@ const MessagesPage = () => {
   const fetchConversations = async () => {
     try {
       setLoading(true);
-      const response = await axios.get(`${apiURL}/conversations/user/${user.email}`);
+      const response = await axios.get(`${apiURL}/api/conversations/user/${user.email}`);
       if (response.data.success) {
         setConversations(response.data.conversations);
       }
@@ -85,7 +85,7 @@ const MessagesPage = () => {
 
   const fetchUnreadCount = async () => {
     try {
-      const response = await axios.get(`${apiURL}/conversations/unread/${user.email}`);
+      const response = await axios.get(`${apiURL}/api/conversations/unread/${user.email}`);
       if (response.data.success) {
         setUnreadCount(response.data.unreadCount);
       }

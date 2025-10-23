@@ -31,6 +31,8 @@ import { PaymentSuccess } from './pages/payment/PaymentSuccess'
 import { PaymentError } from './pages/payment/PaymentError'
 import { PaymentFailed } from './pages/payment/PaymentFailed'
 import { PaymentCancelled } from './pages/payment/PaymentCancelled'
+import MessagesPage from './pages/privatePages/MessagesPage'
+import { SocketProvider } from './Contextes/SocketProvider'
 // import DataLoader from './apis/DataLoader'
 
 const queryClient = new QueryClient();
@@ -85,6 +87,10 @@ const router = createBrowserRouter([
   {
     path: "/payment/cancelled",
     element: <PaymentCancelled />
+  },
+  {
+    path: "messages",
+    element: <MessagesPage />
   },
   {
     path: "create-assignment",
@@ -173,7 +179,9 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
     <ContextProvider>
+      <SocketProvider>
       <RouterProvider router={router}/>
+      </SocketProvider>
     </ContextProvider>
     </QueryClientProvider>
   </StrictMode>,

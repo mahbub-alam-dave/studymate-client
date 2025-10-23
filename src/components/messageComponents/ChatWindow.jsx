@@ -69,7 +69,7 @@ const ChatWindow = ({ conversation, currentUserId, currentUserName, socket, onli
     try {
       setLoading(true);
       const response = await axios.get(
-        `${apiURL}/messages/conversation/${conversation._id}`
+        `${apiURL}/api/messages/conversation/${conversation._id}`
       );
       if (response.data.success) {
         setMessages(response.data.messages);

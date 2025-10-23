@@ -18,7 +18,7 @@ const TutorDetailsModal = ({ tutor, isOpen, onClose, onBookSession }) => {
   const handleMessage = async () => {
     try {
       // Create or get conversation
-      const response = await axios.post(`${apiURL}/conversations/get-or-create`, {
+      const response = await axios.post(`${apiURL}/api/conversations/get-or-create`, {
         user1Id: user.email,
         user1Name: user.displayName || user.name,
         user1Photo: user.photoURL,
