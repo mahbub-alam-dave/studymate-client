@@ -1,8 +1,44 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { X, Award, Clock, DollarSign, Calendar, Users, BookOpen, MessageCircle, Video } from 'lucide-react';
+import { useNavigate } from 'react-router';
+import { ContextValue } from '../../Contextes/AllContexts';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 
-const TutorDetailsModal = ({ tutor, isOpen, onClose, onBookSession, onMessage }) => {
+const TutorDetailsModal = ({ tutor, isOpen, onClose, onBookSession }) => {
+   const navigate = useNavigate();
+  const { user } = useContext(ContextValue);
+  const apiURL = import.meta.env.VITE_api_url;
+  
+  
+  
   if (!isOpen || !tutor) return null;
+
+
+  const handleMessage = async () => {
+    try {
+      // Create or get conversation
+      const response = await axios.post(`${apiURL}/conversations/get-or-create`, {
+        user1Id: user.email,
+        user1Name: user.displayName || user.name,
+        user1Photo: user.photoURL,
+        user1Role: user.role || 'student',
+        user2Id: tutor.email,
+        user2Name: tutor.name,
+        user2Photo: tutor.photo,
+        user2Role: 'tutor',
+      });
+
+      if (response.data.success) {
+        // Close modal and navigate to messages
+        onClose();
+        navigate('/messages');
+      }
+    } catch (error) {
+      console.error('Error creating conversation:', error);
+      Swal.fire('Error', 'Failed to start conversation', 'error');
+    }
+  };
 
   const hasPersonalSessions = tutor.sessions?.personal?.enabled && tutor.sessions?.personal?.slots?.length > 0;
   const hasBatchSessions = tutor.sessions?.batch?.enabled && tutor.sessions?.batch?.slots?.length > 0;
@@ -60,7 +96,7 @@ const TutorDetailsModal = ({ tutor, isOpen, onClose, onBookSession, onMessage })
               Book Session
             </button>
             <button
-              onClick={onMessage}
+              onClick={handleMessage}
               className="flex items-center justify-center gap-2 px-6 py-3 border-2 border-blue-500 text-blue-500 dark:text-blue-400 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/20 transition font-semibold"
             >
               <MessageCircle size={20} />
