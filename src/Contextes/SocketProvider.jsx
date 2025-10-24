@@ -9,7 +9,7 @@ export const SocketProvider = ({ children }) => {
   const [onlineUsers, setOnlineUsers] = useState(new Set());
   const [connected, setConnected] = useState(false);
 
-  const socketURL = import.meta.env.VITE_socket_url || 'http://localhost:5000';
+  const socketURL = import.meta.env.VITE_socket_url || 'http://localhost:3000';
 
   useEffect(() => {
     if (user?.email) {

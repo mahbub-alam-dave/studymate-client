@@ -1,6 +1,6 @@
 # Study Mate — Online Study Community Application
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://brilliant-donut-fd421b.netlify.app/)  ![License](https://img.shields.io/badge/License-MIT-blue)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-brightgreen)](https://ezi-drop.vercel.app/)  ![License](https://img.shields.io/badge/License-MIT-blue)
 
 ---
 

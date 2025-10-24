@@ -65,7 +65,7 @@ const BeATutor = () => {
   };
 
   const imgbbAPIKey = import.meta.env.VITE_IMGBB_KEY;
-  const apiURL = import.meta.env.VITE_api_url; // e.g. http://localhost:5000/api
+  const apiURL = import.meta.env.VITE_api_url; // e.g. http://localhost:3000/api
 
   // ✅ Handle image upload
   const handleImageUpload = async (event) => {
